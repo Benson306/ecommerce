@@ -1,0 +1,112 @@
+{
+  "categories": [
+    {
+      "categ": "Furniture",
+      "id": 1
+    },
+    {
+      "categ": "Food and Beverage",
+      "id": 2
+    },
+    {
+      "categ": "yay",
+      "id": 3
+    },
+    {
+      "categ": "yeap",
+      "id": 4
+    },
+    {
+      "categ": "okay",
+      "id": 5
+    },
+    {
+      "categ": "okay",
+      "id": 6
+    },
+    {
+      "categ": "nice",
+      "id": 7
+    },
+    {
+      "categ": "yeap",
+      "id": 8
+    },
+    {
+      "categ": "yeap",
+      "id": 9
+    },
+    {
+      "categ": "how",
+      "id": 10
+    },
+    {
+      "categ": "yeah",
+      "id": 11
+    },
+    {
+      "categ": "yeah",
+      "id": 12
+    },
+    {
+      "categ": "yeah",
+      "id": 13
+    },
+    {
+      "categ": "yap",
+      "id": 14
+    },
+    {
+      "categ": "yap",
+      "id": 15
+    },
+    {
+      "categ": "yap",
+      "id": 16
+    },
+    {
+      "categ": "yes",
+      "id": 17
+    },
+    {
+      "categ": "yes",
+      "id": 18
+    },
+    {
+      "categ": "ok",
+      "id": 19
+    },
+    {
+      "categ": "ok",
+      "id": 20
+    },
+    {
+      "categ": "",
+      "id": 21
+    },
+    {
+      "categ": "ok",
+      "id": 22
+    },
+    {
+      "categ": "ok",
+      "id": 23
+    },
+    {
+      "categ": "sawa",
+      "id": 24
+    },
+    {
+      "categ": "sawa2",
+      "id": 25
+    },
+    {
+      "categ": "s",
+      "id": 26
+    },
+    {
+      "categ": "ok",
+      "id": 27
+    }
+  ]
+}
