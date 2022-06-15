@@ -109,6 +109,7 @@ const Categories = () => {
 
                 <br />
                 <br />
+            
                 {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger")}
                 {isPending && <div>Loading ...</div>}
                 {!isPending && <CategoryTable data={search(categories)} /> }
