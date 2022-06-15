@@ -58,7 +58,7 @@ body{
   text-transform: uppercase;
   text-decoration: none;
   color: cornsilk;
-  font-size: 16px;
+  font-size: 18px;
   display: flex;
   align-items: center;
 }
@@ -127,7 +127,7 @@ body{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: #030c3b;
   color: white;
 }
 

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './index.css'
 import { Store } from 'react-notifications-component';
 
-
 const Categories = () => {
 
     const [categories, setCategory] = useState(null);
@@ -10,7 +9,21 @@ const Categories = () => {
     const [isPending, setPending] = useState(true);
 
 
-    
+        function notify(title, message, type){
+            Store.addNotification({
+                title: title,
+                message: message,
+                type: type,
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                duration: 1000,
+                onScreen: true
+                }
+            }) 
+        }
     
 
     useEffect(()=>{
@@ -55,44 +68,16 @@ const Categories = () => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)
         }).then(()=>{
-            Store.addNotification({
-                title: "Success",
-                message: "Succesfully added",
-                type: "success",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                  duration: 1000,
-                  onScreen: true
-                }
-              }) 
-
+           notify("Success","Category Added","success")
         }).catch( ()=>{
-                Store.addNotification({
-                title: "Failed",
-                message: "Try Again",
-                type: "danger",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                  duration: 1000,
-                  onScreen: true
-                }
-              }) 
-
+            notify("Failed","Server Error. Try Again.","danger")
         })
 
 
     }
 
+
     
-      
-
-
     return ( 
         <div className="category">
             <div className="categories">
