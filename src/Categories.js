@@ -1,30 +1,13 @@
 import { useState, useEffect } from 'react';
 import './index.css'
 import { Store } from 'react-notifications-component';
+import CategoryTable from './CategoryTable';
 
 const Categories = () => {
 
-    const [categories, setCategory] = useState(null);
+    const [categories, setCategory] = useState([]);
     const [error, setError] = useState(null);
     const [isPending, setPending] = useState(true);
-
-
-        function notify(title, message, type){
-            Store.addNotification({
-                title: title,
-                message: message,
-                type: type,
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                duration: 1000,
-                onScreen: true
-                }
-            }) 
-        }
-    
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -50,14 +33,27 @@ const Categories = () => {
             }
 
         });
-
-        
         return () => abortCont.abort();
-
     },[categories])
  
     const [categ, setCateg] = useState('');
     const categs = {categ}
+
+    function notify(title, message, type){
+        Store.addNotification({
+            title: title,
+            message: message,
+            type: type,
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+            duration: 1000,
+            onScreen: true
+            }
+        }) 
+    }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -73,10 +69,19 @@ const Categories = () => {
             notify("Failed","Server Error. Try Again.","danger")
         })
 
-
     }
 
+    const [q, setQ] = useState('')
 
+    function search(rows){
+        const columns = rows[0] && Object.keys(rows[0]);
+
+        return rows.filter((row) => 
+            columns.some(
+                (column) => row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1 
+            )
+        )
+    }
     
     return ( 
         <div className="category">
@@ -98,28 +103,16 @@ const Categories = () => {
             </div>
             <br />
             <div className="list_categories">
-                <table id='customers'>
-                    <tr>
-                        <th>Category Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th> 
-                    </tr>
-                    { error && <tr><td colSpan={3} style={{textAlign: 'center'}}>Error Fetching Data</td></tr> }
-                    { isPending && <tr><td colSpan={3} style={{textAlign: 'center'}}>Loading ....</td></tr> }
-                    
-                    {
-                        !isPending && categories.map(category => (
-                            <tr>
-                                <td>{category.categ}</td>
-                                <td><img src={require('./images/editing.png')} width='20px' alt="" /></td>
-                                <td><img src={require('./images/delete.png')} width='20px' alt="" /></td>
-                            </tr>
-                        ))
-                    }
+                <br />
 
-                    </table>
+                <input style={{float:'right',border: '1px solid black', padding: '10px', marginRight:'5%'}} type="text" placeholder="Find in table ...." onChange={ (e) => setQ(e.target.value)} value={q} />
+
+                <br />
+                <br />
+                {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger")}
+                {isPending && <div>Loading ...</div>}
+                {!isPending && <CategoryTable data={search(categories)} /> }
                 
-             
             </div>
         </div>
         

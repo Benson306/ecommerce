@@ -4,7 +4,7 @@ import AdminDash from './AdminDash';
 import AdminSidebar  from './AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
-
+import Datatable from './Datatable'
 
 function App() {
   return (
@@ -26,7 +26,9 @@ function App() {
               </div>
                 
             </Route>
-
+            <Route path='/datatable'>
+              <Datatable />
+            </Route>
 
           </Switch>
           
