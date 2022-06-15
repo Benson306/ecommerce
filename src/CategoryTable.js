@@ -48,7 +48,7 @@ const CategoryTable = ({ data }) => {
                     {
                         columns.slice(0).reverse().map(column => <td>{row[column]}</td>)
                     }
-                    <td><a href='/categories/edit/'><img src={require('./images/editing.png')} width='20px' alt="" /></a></td>
+                    <td><a href={'/admin_dashboard/categories/'+row.id}><img src={require('./images/editing.png')} width='20px' alt="" /></a></td>
                     <td><button onClick={() => handleDelete(row.id)}><img src={require('./images/delete.png')} width='20px' alt="" /></button></td>
                 </tr>
                 )}

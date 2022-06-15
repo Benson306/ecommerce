@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import './index.css'
 import { Store } from 'react-notifications-component';
 import CategoryTable from './CategoryTable';
+import AddCategories from './AddCategories';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import EditCategories from './EditCategories';
 
 const Categories = () => {
 
@@ -36,8 +39,6 @@ const Categories = () => {
         return () => abortCont.abort();
     },[categories])
  
-    const [categ, setCateg] = useState('');
-    const categs = {categ}
 
     function notify(title, message, type){
         Store.addNotification({
@@ -55,21 +56,7 @@ const Categories = () => {
         }) 
     }
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        e.target.value = null;
-
-        fetch('http://localhost:8000/categories',{
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(categs)
-        }).then(()=>{
-           notify("Success","Category Added","success")
-        }).catch( ()=>{
-            notify("Failed","Server Error. Try Again.","danger")
-        })
-
-    }
+    
 
     const [q, setQ] = useState('')
 
@@ -85,22 +72,20 @@ const Categories = () => {
     
     return ( 
         <div className="category">
-            <div className="categories">
-                <br />
-                Add Category:
-                <br />
-                <br />
-                <form onSubmit={handleSubmit} className="add_category">
-                    <input 
-                        type="text" 
-                        onChange={(e) => setCateg(e.target.value)} 
-                        placeholder="Add Category"
-                        required
-                    />
-                    <input type="submit" value="Save"/>
-                </form>
-                <br />
-            </div>
+            <Router>
+                <Switch>
+                    
+                    <Route path='/admin_dashboard/categories/:id'>
+                        <EditCategories />
+                    </Route>
+
+                    <Route >
+                        <AddCategories />
+                    </Route>
+                    
+                </Switch>
+            </Router>
+            
             <br />
             <div className="list_categories">
                 <br />

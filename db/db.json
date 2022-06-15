@@ -1,16 +1,20 @@
 {
   "categories": [
     {
-      "categ": "Furniture",
+      "categ": "1",
       "id": 1
     },
     {
-      "categ": "Food and Beverage",
+      "categ": "900",
       "id": 2
     },
     {
-      "categ": "Footware",
+      "categ": "",
       "id": 3
+    },
+    {
+      "categ": "1238",
+      "id": 4
     }
   ]
 }
