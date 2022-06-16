@@ -27,7 +27,7 @@ const CategoryTable = ({ data }) => {
             method: 'DELETE'
         })
         .then(()=>{
-            notify("Deleted", "Category Deleted", "info")
+            notify("Deleted", "Category Deleted", "danger")
         })
     }
 
@@ -43,6 +43,7 @@ const CategoryTable = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
+                { (data == '' ) && <tr><td colspan={5} style={{textAlign:'center'}}>No data</td></tr>}
                 {
                 data.slice(0).reverse().map(row => <tr>
                     {

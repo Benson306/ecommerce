@@ -43,7 +43,6 @@ const AddCategories = () => {
                 <br />
                 Add Category:
                 <br />
-                { categ }
                 <br />
                 <form onSubmit={handleSubmit} className="add_category">
                     <input 
