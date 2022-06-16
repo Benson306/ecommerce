@@ -5,6 +5,7 @@ import CategoryTable from './CategoryTable';
 import AddCategories from './AddCategories';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import EditCategories from './EditCategories';
+import {withRouter} from 'react-router';
 
 const Categories = () => {
 
@@ -72,19 +73,18 @@ const Categories = () => {
     
     return ( 
         <div className="category">
-            <Router>
+           
                 <Switch>
                     
                     <Route path='/admin_dashboard/categories/:id'>
                         <EditCategories />
                     </Route>
-
-                    <Route >
-                        <AddCategories />
-                    </Route>
                     
+                    <Route path='/admin_dashboard/categories'>
+                        <AddCategories />
+                    </Route> 
                 </Switch>
-            </Router>
+            
             
             <br />
             <div className="list_categories">
@@ -101,7 +101,6 @@ const Categories = () => {
                 
             </div>
         </div>
-        
      );
 }
  

@@ -4,9 +4,9 @@ import Categories from './Categories';
 
 const AdminDash = () => {
     return (
-                <div className="admin_main">
+                
                     
-                    <Router>
+                        <div className="admin_main">
                         <Switch>
                             <Route path='/admin_dashboard/categories'>
                             <div className="category_header">
@@ -16,9 +16,9 @@ const AdminDash = () => {
                             </Route>
                             <Route path='/admin_dashboard/items'>
                             <div className="category_header">
-                                ITEMS
+                                PRODUCTS
                             </div>
-                                items
+                                PRODUCTS
                             </Route>
                             <Route path='/admin_dashboard/orders'>
                             <div className="category_header">
@@ -39,8 +39,9 @@ const AdminDash = () => {
                                 users
                             </Route>
                         </Switch>
-                    </Router>
-                </div>
+
+                        </div>
+                
         
      );
 }

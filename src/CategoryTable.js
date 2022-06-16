@@ -1,4 +1,5 @@
 import { Store } from 'react-notifications-component';
+import { Link } from 'react-router-dom';
 
 const CategoryTable = ({ data }) => {
 
@@ -45,11 +46,15 @@ const CategoryTable = ({ data }) => {
             <tbody>
                 { (data == '' ) && <tr><td colspan={5} style={{textAlign:'center'}}>No data</td></tr>}
                 {
-                data.slice(0).reverse().map(row => <tr>
+                data.slice(0).reverse().map(row => <tr key={row.id}>
                     {
                         columns.slice(0).reverse().map(column => <td>{row[column]}</td>)
                     }
-                    <td><a href={'/admin_dashboard/categories/'+row.id}><img src={require('./images/editing.png')} width='20px' alt="" /></a></td>
+                    
+                    <td><Link to={ `/admin_dashboard/categories/${row.id}` }>
+                            <img src={require('./images/editing.png')} width='20px' alt="" />
+                        </Link></td>
+                    {/* <td><a href={'/admin_dashboard/categories/'+row.id}><img src={require('./images/editing.png')} width='20px' alt="" /></a></td> */}
                     <td><button onClick={() => handleDelete(row.id)}><img src={require('./images/delete.png')} width='20px' alt="" /></button></td>
                 </tr>
                 )}

@@ -31,6 +31,7 @@ const AddCategories = () => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)
         }).then(()=>{
+            e.target.reset()
            notify("Success","Category Added","success")
         }).catch( ()=>{
             notify("Failed","Server Error. Try Again.","danger")

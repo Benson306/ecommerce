@@ -5,6 +5,9 @@ import AdminSidebar  from './AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Datatable from './Datatable'
+import Home from './Home';
+import Categories from './Categories';
+
 
 function App() {
   return (
@@ -14,16 +17,22 @@ function App() {
         
           <Switch>
 
+            <Route exact path='/'>
+              <Home />
+
+            </Route>
+
             <Route path='/admin'>
                 <AdminLogin />
             </Route>
 
             <Route path='/admin_dashboard'>
               <div className="adminDash">
-                <AdminSidebar />
-                    
+                <AdminSidebar /> 
                 <AdminDash />
               </div>
+
+
                 
             </Route>
             <Route path='/datatable'>
