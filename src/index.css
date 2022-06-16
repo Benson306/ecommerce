@@ -11,18 +11,12 @@
 body{
   top: 0;
   margin: 0;
-  /* background-image: url('images/background.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 100vh; */
 }
 .loginadmin{
   margin-top: 10%;
 }
 .adminLogin {
   padding: 50px;
-  /* background-color: #1c1f2e;
-  opacity: 0.5; */
   background-color: rgba(0, 0, 0, 0.5);
   width: 50%;
   margin-left: 25%;
@@ -85,7 +79,9 @@ body{
   color: darkblue;
   height: 20px;
   box-shadow: 1px 1px 8px 0px #888888;
+  position: fixed;
   padding: 10px;
+  width: 77%;
 }
 .add_category{
   display: flex;
@@ -133,25 +129,29 @@ body{
   color: white;
 }
 
-#note {
-  position: absolute;
-  z-index: 101;
-  top: 0;
-  left: 0;
+nav{
+  background-color: #030c3b;
+  color: white;
+  text-overflow: inherit;
+  position: fixed;
   right: 0;
-  background: #fde073;
-  text-align: center;
-  line-height: 2.5;
-  overflow: hidden; 
-  -webkit-box-shadow: 0 0 5px black;
-  -moz-box-shadow:    0 0 5px black;
-  box-shadow:         0 0 5px black;
+  left: 20%;
+  top: 0;
 }
-.cssanimations.csstransforms #note {
-  -webkit-transform: translateY(-50px);
-  -webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
-  -moz-transform:    translateY(-50px);
-  -moz-animation:    slideDown 2.5s 1.0s 1 ease forwards;
+nav ul li{
+  list-style: none;
+  padding: 10px;
 }
-
-
+nav ul li a{
+  text-decoration: none;
+  color: white;
+}
+nav ul li a:hover{
+  color: orange;
+}
+.navRight{
+  display: flex;
+  text-align: right;
+  margin-left: 80%;
+  position:inherit;
+}

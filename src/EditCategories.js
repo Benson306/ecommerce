@@ -75,7 +75,7 @@ const AddCategories = () => {
                         style={{color: 'white'}}
                         defaultValue={ categ }
                     />
-                    <input type="submit" value="Save"/>
+                    <input type="submit" value="Save" style={{backgroundColor: 'maroon'}}/>
                 </form>
                 <br />
             </div>

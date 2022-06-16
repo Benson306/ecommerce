@@ -52,7 +52,7 @@ const AddCategories = () => {
                         placeholder="Add Category"
                         required
                     />
-                    <input type="submit" value="Save"/>
+                    <input type="submit" value="Save" />
                 </form>
                 <br />
             </div>

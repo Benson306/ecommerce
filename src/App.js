@@ -7,7 +7,7 @@ import 'react-notifications-component/dist/theme.css'
 import Datatable from './Datatable'
 import Home from './Home';
 import Categories from './Categories';
-
+import Nav from './Nav'
 
 function App() {
   return (
