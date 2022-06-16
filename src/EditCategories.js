@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import { Store } from 'react-notifications-component';
-import { useParams } from 'react-router-dom';
+import { useHistory ,useParams } from 'react-router-dom';
 
 const AddCategories = () => {
 
@@ -26,7 +26,12 @@ const AddCategories = () => {
         }) 
     }
 
+    const history = useHistory();
+
     const [value, setValue] = useState('');
+
+
+
     useEffect(()=>{
         fetch('http://localhost:8000/categories/'+id)
         .then((data)=>{
@@ -47,7 +52,8 @@ const AddCategories = () => {
             body: JSON.stringify(categs)
         }).then(()=>{
            notify("Success","Category Edited","warning")
-           
+           history.push('/admin_dashboard/categories')
+
         }).catch( ()=>{
             notify("Failed","Server Error. Try Again.","danger")
         })
@@ -57,7 +63,7 @@ const AddCategories = () => {
     return ( 
         <div className="categories" style={{backgroundColor: '#030c3b', color: 'white'}}>
                 <br />
-                Edit Category:
+                Edit Category: <div style={{color:'orange', fontSize:'20px'}}>{value}</div> 
                 <br />
                 <br />
                 <form onSubmit={handleSubmit} className="add_category">
@@ -67,7 +73,7 @@ const AddCategories = () => {
                         placeholder={ value }
                         required
                         style={{color: 'white'}}
-                        defaultValue={ value }
+                        defaultValue={ categ }
                     />
                     <input type="submit" value="Save"/>
                 </form>
