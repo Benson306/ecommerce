@@ -1,20 +1,3 @@
 {
-  "categories": [
-    {
-      "categ": "1",
-      "id": 1
-    },
-    {
-      "categ": "900",
-      "id": 2
-    },
-    {
-      "categ": "",
-      "id": 3
-    },
-    {
-      "categ": "1238",
-      "id": 4
-    }
-  ]
+  "categories": []
 }

@@ -26,6 +26,17 @@ const AddCategories = () => {
         }) 
     }
 
+    const [value, setValue] = useState('');
+    useEffect(()=>{
+        fetch('http://localhost:8000/categories/'+id)
+        .then((data)=>{
+            return data.json()
+        })
+        .then((data)=>{
+            setValue(data.categ)
+        })
+    })
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         e.target.value = null;
@@ -47,16 +58,15 @@ const AddCategories = () => {
                 <br />
                 Edit Category:
                 <br />
-                { categ }
                 <br />
                 <form onSubmit={handleSubmit} className="add_category">
                     <input 
                         type="text"
-                        onChange={(e) => setCateg(e.target.value)} 
-                        placeholder="Add Category"
+                        onChange={(e) => setCateg(e.target.value) && setValue(e.target.value) } 
+                        placeholder={ value }
                         required
                         style={{color: 'white'}}
-                        defaultValue={1}
+                        defaultValue={ value }
                     />
                     <input type="submit" value="Save"/>
                 </form>
