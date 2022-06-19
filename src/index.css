@@ -1,11 +1,11 @@
 * {
   margin: 0;
-  padding: 0;
+  /* padding: 0;
   border: 0;
   outline: 0;
   font-size: 100%;
   vertical-align: baseline;
-  background: transparent;
+  background: transparent; */
 }
 
 body{
@@ -154,4 +154,85 @@ nav ul li a:hover{
   text-align: right;
   margin-left: 80%;
   position:inherit;
+}
+.add_product{
+  margin-top: 2%;
+  background-color: white;
+  box-shadow: 1px 1px 8px 0px #888888;
+  padding: 5px;
+}
+.add_product label{
+  font-weight: bolder;
+}
+.productForm{
+  display: flex;
+  margin-top: 2%;
+}
+.productForm input,select{
+  padding: 10px;
+}
+.productForm input[type=text], select, textarea{
+  border: none;
+  border-bottom: 1px solid black;
+  width: 90%;
+}
+.productForm input[type=file]{
+  padding: 10px;
+}
+.productLeft{
+  width: 45%;
+  margin-left: 5%;
+  padding: 10px;
+  border-right: 1px solid #030c3b;
+}
+.productRight{
+  padding: 10px;
+  margin-left: 5%;
+}
+.previews{
+  display: flex;
+  padding: 10px;
+  margin-left: 5%;
+}
+.previewInput{
+  display: block;
+}
+.heading{
+  background-color: orange;
+  width: 30%;
+  padding: 10px;
+  text-align: center;
+  margin-left: 35%;
+}
+.subheading{
+  background-color: #030c3b;
+  width: 20%;
+  padding: 5px;
+  text-align: center;
+  color: white;
+}
+.productsButtons{
+  display: flex;
+}
+.productsButtons input{
+  width: 10%;
+  background-color: orange;
+  padding: 10px;
+  color: black;
+  border-radius: 5%;
+  border: 1px solid orange;
+  margin-left: 35%;
+  margin-right: 10%;
+}
+.productsButtons button{
+  width: 10%;
+  padding: 10px;
+  color: #030c3b;
+  border-radius: 5%;
+  border-radius: 5%;
+  border: 1px solid #030c3b;
+}
+td button{
+  border: none;
+  background-color: transparent;
 }

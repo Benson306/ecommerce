@@ -2,6 +2,7 @@ import './index.css'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Categories from './Categories';
 import Nav from './Nav';
+import Products from './Products';
 
 const AdminDash = () => {
     return (
@@ -27,7 +28,7 @@ const AdminDash = () => {
                             <br />
                             <br />
                             <br />
-                                PRODUCTS
+                            <Products />
                             </Route>
                             <Route path='/admin_dashboard/orders'>
                             <div className="category_header">

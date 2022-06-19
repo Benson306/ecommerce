@@ -33,7 +33,7 @@ const AddCategories = () => {
 
 
     useEffect(()=>{
-        fetch('http://localhost:8000/categories/'+id)
+        fetch('http://localhost:8001/categories/'+id)
         .then((data)=>{
             return data.json()
         })
@@ -46,7 +46,9 @@ const AddCategories = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('http://localhost:8000/categories/'+id,{
+        console.log("clicked")
+
+        fetch('http://localhost:8001/edit_categories/'+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)
@@ -63,7 +65,7 @@ const AddCategories = () => {
     return ( 
         <div className="categories" style={{backgroundColor: '#030c3b', color: 'white'}}>
                 <br />
-                Edit Category: <div style={{color:'orange', fontSize:'20px'}}>{value}</div> 
+                Edit Category: <div style={{color:'orange', fontSize:'20px'}}>{!value && <span>Loading...</span> }</div> <div style={{color:'orange', fontSize:'20px'}}>{value}</div> 
                 <br />
                 <br />
                 <form onSubmit={handleSubmit} className="add_category">
@@ -72,7 +74,7 @@ const AddCategories = () => {
                         onChange={(e) => setCateg(e.target.value) && setValue(e.target.value) } 
                         placeholder={ value }
                         required
-                        style={{color: 'white'}}
+                        style={{color: 'black'}}
                         defaultValue={ categ }
                     />
                     <input type="submit" value="Save" style={{backgroundColor: 'maroon'}}/>

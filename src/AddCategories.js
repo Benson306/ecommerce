@@ -26,14 +26,15 @@ const AddCategories = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('http://localhost:8000/categories',{
+        fetch('http://localhost:8001/add_categories',{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)
         }).then(()=>{
             e.target.reset()
            notify("Success","Category Added","success")
-        }).catch( ()=>{
+        }).catch( (err)=>{
+            console.log(err)
             notify("Failed","Server Error. Try Again.","danger")
         })
 

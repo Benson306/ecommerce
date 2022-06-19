@@ -9,8 +9,13 @@
       "id": 5
     },
     {
-      "categ": "knknkn",
+      "categ": "okay",
       "id": 6
+    }
+  ],
+  "products": [
+    {
+      "id": 1
     }
   ]
 }

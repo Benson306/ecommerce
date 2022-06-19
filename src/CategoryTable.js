@@ -24,7 +24,7 @@ const CategoryTable = ({ data }) => {
     }
 
     const handleDelete = (id)=>{
-        fetch('http://localhost:8000/categories/'+ id,{
+        fetch('http://localhost:8001/del_categories/'+ id,{
             method: 'DELETE'
         })
         .then(()=>{
@@ -35,27 +35,28 @@ const CategoryTable = ({ data }) => {
     return ( 
         <table id="customers" >
             <thead>
-                {/* <tr>{data[0] && columns.map(heading => <th>{heading}</th> ) } <th>Edit</th><th>Delete</th> </tr> */}
-                <tr>
+                <tr>{data[0] && columns.slice(0).reverse().map(heading => <th>{heading}</th> ) } <th>Edit</th><th>Delete</th> </tr>
+                {/* <tr>
                     <th>Id</th>
                     <th>Category</th>
                     <th>Edit</th>
                     <th>Delete</th>
-                </tr>
+                    <th></th>
+                </tr> */}
             </thead>
             <tbody>
                 { (data == '' ) && <tr><td colspan={5} style={{textAlign:'center'}}>No data</td></tr>}
                 {
-                data.slice(0).reverse().map(row => <tr key={row.id}>
+                data.slice(0).reverse().map(row => <tr>
                     {
                         columns.slice(0).reverse().map(column => <td>{row[column]}</td>)
                     }
                     
-                    <td><Link to={ `/admin_dashboard/categories/${row.id}` }>
+                    <td><Link to={ `/admin_dashboard/categories/${row._id}` }>
                             <img src={require('./images/editing.png')} width='20px' alt="" />
                         </Link></td>
                     {/* <td><a href={'/admin_dashboard/categories/'+row.id}><img src={require('./images/editing.png')} width='20px' alt="" /></a></td> */}
-                    <td><button onClick={() => handleDelete(row.id)}><img src={require('./images/delete.png')} width='20px' alt="" /></button></td>
+                    <td><button onClick={() => handleDelete(row._id)}><img src={require('./images/delete.png')} width='20px' alt="" /></button></td>
                 </tr>
                 )}
             </tbody>
