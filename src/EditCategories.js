@@ -65,7 +65,9 @@ const AddCategories = () => {
     return ( 
         <div className="categories" style={{backgroundColor: '#030c3b', color: 'white'}}>
                 <br />
-                Edit Category: <div style={{color:'orange', fontSize:'20px'}}>{!value && <span>Loading...</span> }</div> <div style={{color:'orange', fontSize:'20px'}}>{value}</div> 
+                Edit Category: 
+                <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{!value && <span>Loading...</span> }</div> 
+                <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{value}</div> 
                 <br />
                 <br />
                 <form onSubmit={handleSubmit} className="add_category">

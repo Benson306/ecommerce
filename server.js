@@ -14,6 +14,7 @@ const cors = require("cors");
 app.use(cors());
 
 
+
 mongoose.connect('mongodb+srv://benson306:benson306@bencluster.axe8t.mongodb.net/ecommerce?retryWrites=true&w=majority');
 
 
