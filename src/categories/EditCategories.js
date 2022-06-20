@@ -46,7 +46,6 @@ const AddCategories = () => {
         e.preventDefault();
         e.target.value = null;
 
-        console.log("clicked")
 
         fetch('http://localhost:8001/edit_categories/'+id,{
             method: 'PUT',

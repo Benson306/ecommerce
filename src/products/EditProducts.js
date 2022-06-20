@@ -3,7 +3,7 @@ import '../index.css'
 import { useHistory } from "react-router-dom";
 import { Store } from "react-notifications-component";
 
-const AddProducts = () => {
+const EditProducts = () => {
 
     const [category, setCategory] = useState([])
 
@@ -95,8 +95,8 @@ const AddProducts = () => {
     return (   
         <div>
             
-            <form onSubmit={handleSubmit} className='add_product'>
-            <div className="heading">Add New Products</div>
+            <form onSubmit={handleSubmit} className='edit_product'>
+            <div className="heading" style={{color:'black'}}>Edit Product</div>
             <div class='productForm'>
                 <div class='productLeft'>
                         <label>Category:</label>
@@ -164,7 +164,7 @@ const AddProducts = () => {
                 </div>
             </div>
             <br />
-            <div className="subheading">Add Images of the product:</div>
+            <div className="subheading" style={{backgroundColor:'orange', color:'black'}}>Add Images of the product:</div>
             <br />
             <div className='previews'>
                 
@@ -208,4 +208,4 @@ const AddProducts = () => {
      );
 }
  
-export default AddProducts;
+export default EditProducts;

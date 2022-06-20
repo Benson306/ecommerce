@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Categories from '../categories/Categories';
 import Nav from '../Nav/Nav';
 import Products from '../products/Products';
+import AddProducts from '../products/AddProducts';
+import EditProducts from '../products/EditProducts';
 
 const AdminDash = () => {
     return (
@@ -28,8 +30,27 @@ const AdminDash = () => {
                             <br />
                             <br />
                             <br />
-                            <Products />
+                                <Products />
                             </Route>
+                            <Route path='/admin_dashboard/add_products'>
+                            <div className="category_header">
+                                PRODUCTS
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                                <AddProducts />
+                            </Route>
+                            <Route path='/admin_dashboard/edit_products/:id'>
+                            <div className="category_header">
+                                PRODUCTS
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                                <EditProducts />
+                            </Route>
+
                             <Route path='/admin_dashboard/orders'>
                             <div className="category_header">
                                 ORDERS

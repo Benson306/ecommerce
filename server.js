@@ -97,14 +97,24 @@ let upload = multer({
 });
 
 
+app.get('/products', function(req, res){
+    Product.find({}, function(err, data){
+        res.json(data)
+    })
+})
+
 app.post('/add_product', urlEncoded, function(req, res){
-    console.log(req.body)
-    // Product(req.body).save(function(err, data){
-    //     if(err) throw err;
-    //     res.send(JSON.stringify({"status": 200, "error": null, "response": "data"}));
-    //     // res.json({data: "sent"})
-    // // })
-    res.json({"response":"sent"})
+    Product(req.body).save(function(err, data){
+        if(err) throw err;
+        // res.send(JSON.stringify({"status": 200, "error": null, "response": "data"}));
+        res.json({data: "sent"})
+    })
+})
+
+app.delete('/del_products/:id', urlEncoded, function(req, res){
+    Product.findByIdAndRemove(req.params.id, function(err, data){
+        res.json(data)
+    })
 })
 
 app.listen(8001)

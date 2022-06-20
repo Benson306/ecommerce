@@ -236,3 +236,14 @@ td button{
   border: none;
   background-color: transparent;
 }
+
+.edit_product{
+  margin-top: 2%;
+  background-color: #030c3b;
+  box-shadow: 1px 1px 8px 0px #888888;
+  padding: 5px;
+  color: white;
+}
+.edit_product label{
+  font-weight: bolder;
+}
