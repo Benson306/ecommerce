@@ -40,13 +40,15 @@ const AddCategories = () => {
         })
         .then((data)=>{
             setData(data.categ)
+
+            setCateg(data.categ)
         })
     })
+
 
     const handleSubmit = (e) =>{
         e.preventDefault();
         e.target.value = null;
-
 
         fetch('http://localhost:8001/edit_categories/'+id,{
             method: 'PUT',
