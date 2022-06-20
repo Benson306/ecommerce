@@ -7,8 +7,6 @@ const AddCategories = () => {
 
     const { id } = useParams();
 
-    const [categ, setCateg] = useState('');
-    const categs = {categ}
 
     function notify(title, message, type){
         Store.addNotification({
@@ -28,7 +26,10 @@ const AddCategories = () => {
 
     const history = useHistory();
 
-    const [value, setValue] = useState('');
+
+    const [data, setData] = useState(null)
+    const [categ, setCateg] = useState('');
+    const categs = { categ }
 
 
 
@@ -38,7 +39,7 @@ const AddCategories = () => {
             return data.json()
         })
         .then((data)=>{
-            setValue(data.categ)
+            setData(data.categ)
         })
     })
 
@@ -65,18 +66,16 @@ const AddCategories = () => {
         <div className="categories" style={{backgroundColor: '#030c3b', color: 'white'}}>
                 <br />
                 Edit Category: 
-                <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{!value && <span>Loading...</span> }</div> 
-                <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{value}</div> 
+                <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{!data && <span>Loading...</span> }</div> 
                 <br />
                 <br />
                 <form onSubmit={handleSubmit} className="add_category">
                     <input 
                         type="text"
-                        onChange={(e) => setCateg(e.target.value) && setValue(e.target.value) } 
-                        placeholder={ value }
+                        onChange={(e) => setCateg(e.target.value) } 
                         required
                         style={{color: 'black'}}
-                        defaultValue={ categ }
+                        defaultValue={ data }
                     />
                     <input type="submit" value="Save" style={{backgroundColor: 'maroon'}}/>
                 </form>

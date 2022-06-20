@@ -77,13 +77,6 @@ const EditProducts = () => {
         return () => abortCont.Abort()
     },[]);
 
-
-
-        
-
-
-
-
     function handleCancel(){
         history.push('/admin_dashboard/products')
     }
