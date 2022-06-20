@@ -1,8 +1,8 @@
-import './index.css'
+import '../index.css'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Categories from './Categories';
-import Nav from './Nav';
-import Products from './Products';
+import Categories from '../categories/Categories';
+import Nav from '../Nav/Nav';
+import Products from '../products/Products';
 
 const AdminDash = () => {
     return (

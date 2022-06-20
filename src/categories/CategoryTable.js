@@ -53,10 +53,10 @@ const CategoryTable = ({ data }) => {
                     }
                     
                     <td><Link to={ `/admin_dashboard/categories/${row._id}` }>
-                            <img src={require('./images/editing.png')} width='20px' alt="" />
+                            <img src={require('../images/editing.png')} width='20px' alt="" />
                         </Link></td>
                     {/* <td><a href={'/admin_dashboard/categories/'+row.id}><img src={require('./images/editing.png')} width='20px' alt="" /></a></td> */}
-                    <td><button onClick={() => handleDelete(row._id)}><img src={require('./images/delete.png')} width='20px' alt="" /></button></td>
+                    <td><button onClick={() => handleDelete(row._id)}><img src={require('../images/delete.png')} width='20px' alt="" /></button></td>
                 </tr>
                 )}
             </tbody>

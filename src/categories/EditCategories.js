@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './index.css'
+import '../index.css'
 import { Store } from 'react-notifications-component';
 import { useHistory ,useParams } from 'react-router-dom';
 

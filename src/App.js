@@ -1,13 +1,13 @@
-import AdminLogin from './AdminLogin';
+import AdminLogin from './admin/AdminLogin';
 import { BrowserRouter as  Router, Route, Switch } from 'react-router-dom'
-import AdminDash from './AdminDash';
-import AdminSidebar  from './AdminSidebar';
+import AdminDash from './admin/AdminDash';
+import AdminSidebar  from './admin/AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
-import Datatable from './Datatable'
+import Datatable from './Datatable/Datatable'
 import Home from './Home';
-import Categories from './Categories';
-import Nav from './Nav'
+import Categories from './categories/Categories';
+import Nav from './Nav/Nav'
 
 function App() {
   return (

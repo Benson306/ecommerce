@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import './index.css'
+import '../index.css'
 import { Store } from 'react-notifications-component';
-import CategoryTable from './CategoryTable';
-import AddCategories from './AddCategories';
+import CategoryTable from '../categories/CategoryTable';
+import AddCategories from '../categories/AddCategories';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import EditCategories from './EditCategories';
+import EditCategories from '../categories/EditCategories';
 import {withRouter} from 'react-router';
 
 const Categories = () => {

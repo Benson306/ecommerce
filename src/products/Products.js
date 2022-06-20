@@ -1,5 +1,5 @@
 import { BrowserRouter as Route, Switch } from "react-router-dom";
-import AddProducts from "./AddProducts";
+import AddProducts from "../products/AddProducts";
 const Products = () => {
     return ( 
         <div>

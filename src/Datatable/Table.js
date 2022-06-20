@@ -16,8 +16,8 @@ const Table = ({ data }) => {
                     {
                         columns.map(column => <td>{row[column]}</td>)
                     }
-                    <td><img src={require('./images/editing.png')} width='20px' alt="" /></td>
-                    <td><img src={require('./images/delete.png')} width='20px' alt="" /></td>
+                    <td><img src={require('../images/editing.png')} width='20px' alt="" /></td>
+                    <td><img src={require('../images/delete.png')} width='20px' alt="" /></td>
                 </tr>
                 )}
             </tbody>
