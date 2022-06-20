@@ -28,23 +28,27 @@ const AddCategories = () => {
 
 
     const [data, setData] = useState(null)
-    const [categ, setCateg] = useState('');
-    const categs = { categ }
-
-
+    const [categ, setCateg] = useState(null);
+    
 
     useEffect(()=>{
-        fetch('http://localhost:8001/categories/'+id)
+        const abortCont = new AbortController();
+        fetch('http://localhost:8001/categories/'+id,{signal: abortCont.signal})
         .then((data)=>{
             return data.json()
         })
         .then((data)=>{
             setData(data.categ)
-
             setCateg(data.categ)
         })
-    })
 
+        return () => abortCont.Abort()
+    },[])
+
+    const categs = { categ }
+
+
+    console.log(categs)
 
     const handleSubmit = (e) =>{
         e.preventDefault();
