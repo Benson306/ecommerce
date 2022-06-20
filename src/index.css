@@ -109,7 +109,7 @@ body{
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 99%;
 }
 
 #customers td, #customers th {

@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import '../index.css'
 import { useHistory } from "react-router-dom";
 import { Store } from "react-notifications-component";
+import { useParams } from "react-router-dom";
 
 const EditProducts = () => {
 
     const [category, setCategory] = useState([])
+
+
+
+    const { id } = useParams();
+
 
     const history = useHistory();
 
@@ -33,9 +39,6 @@ const EditProducts = () => {
         return () => abortCont.abort();
     },[])
 
-    function handleCancel(){
-        history.push('/admin_dashboard/products')
-    }
 
     const [categ, setCateg] = useState(null);
     const [prodName, setProdName] = useState(null);
@@ -50,7 +53,40 @@ const EditProducts = () => {
     const [preview3, setPreview3] = useState('');
     const [preview4, setPreview4] = useState('');
 
+    const [data, setData] = useState('')
 
+    useEffect(()=>{
+        const abortCont = new AbortController();
+        fetch('http://localhost:8001/products/'+id,{ signal: abortCont.signal })
+        .then((res)=>{
+            return res.json();
+        })
+        .then((data)=>{
+            setData(data);
+
+            setCateg(data.categ)
+            setProdName(data.prodName)
+            setProdDetails(data.prodDetails)
+            setFeatures(data.features)
+            setWeight(data.weight)
+            setPrice(data.price)
+            setSpecifications(data.specifications)
+            setInBox(data.inBox);
+        })
+
+        return () => abortCont.Abort()
+    },[]);
+
+
+
+        
+
+
+
+
+    function handleCancel(){
+        history.push('/admin_dashboard/products')
+    }
 
 
     function notify(title, message, type){
@@ -71,14 +107,16 @@ const EditProducts = () => {
 
     const datas = { categ, prodName, prodDetails, features, weight, price, specifications, inBox } 
 
+    console.log(datas)
+
     const handleSubmit = (e)=>{
 
         e.preventDefault();
         e.target.value = null;
 
      
-        fetch('http://localhost:8001/add_product',{
-            method: 'POST',
+        fetch('http://localhost:8001/edit_product/'+id,{
+            method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(datas)
         }).then((res)=>{
@@ -86,7 +124,7 @@ const EditProducts = () => {
                 notify("Failed","Server Error. Try Again.","danger")
             }else{
                 history.push('/admin_dashboard/products')
-                notify("success","Product Added", "success" )
+                notify("success","Product Edited", "warning" )
             }
         })
     }
@@ -96,7 +134,8 @@ const EditProducts = () => {
         <div>
             
             <form onSubmit={handleSubmit} className='edit_product'>
-            <div className="heading" style={{color:'black'}}>Edit Product</div>
+            <div className="heading" style={{color:'black'}}>Edit Product  </div>
+            { !data && <div style={{color: 'yellow', fontSize:'18px'}}>Loading ... <br /></div>}
             <div class='productForm'>
                 <div class='productLeft'>
                         <label>Category:</label>
@@ -105,7 +144,7 @@ const EditProducts = () => {
                         <select 
                         onChange={e => setCateg(e.target.value)}
                         required>
-                            <option value=""></option>
+                            <option value={data.categ}>{data.categ}</option>
                             {(category.length == 0) && <option value="">Loading ....</option>}
                             {category.map((categ)=> (
                                 <option value={categ.id}>{categ.categ}</option>
@@ -117,19 +156,19 @@ const EditProducts = () => {
                         <label>Products' Name:</label>
                         <br />
                         <br />
-                        <input type="text" onChange={e => setProdName(e.target.value)} name="" id="" required/>
+                        <input type="text" onChange={e => setProdName(e.target.value)} defaultValue={ data.prodName } required/>
                         <br />
                         <br />
                         <label htmlFor="">Product Details:</label>
                         <br />
                         <br />
-                        <textarea onChange={e => setProdDetails(e.target.value)} name="" id="" cols="50" rows="5" required></textarea>
+                        <textarea onChange={e => setProdDetails(e.target.value)} defaultValue={ data.prodDetails } cols="50" rows="5" required></textarea>
                         <br />
                         <br />
                         <label htmlFor="" required>Key Features:</label>
                         <br />
                         <br />
-                        <textarea onChange={e => setFeatures(e.target.value)} name="" id="" cols="50" rows="5" required></textarea>
+                        <textarea onChange={e => setFeatures(e.target.value)} defaultValue={ data.prodName } cols="50" rows="5" required></textarea>
 
                 </div>
                 <div className="productRight">
@@ -137,25 +176,25 @@ const EditProducts = () => {
                         <label htmlFor="">Weight:</label>
                         <br />
                         <br />
-                        <input onChange={e => setWeight(e.target.value)} type="text" name="" id="" required/>
+                        <input onChange={e => setWeight(e.target.value)} defaultValue={ data.weight } type="text" name="" id="" required/>
                         <br />
                         <br />
                         <label htmlFor="">Price:</label>
                         <br />
                         <br />
-                        <input type="text" onChange={e => setPrice(e.target.value)} name="" id="" required/>
+                        <input type="text" onChange={e => setPrice(e.target.value)} defaultValue={ data.price } name="" id="" required/>
                         <br />
                         <br />
                         <label htmlFor="">Specifications:</label>
                         <br />
                         <br />
-                        <textarea name="" id="" onChange={e => setSpecifications(e.target.value)} cols="50" rows="5" required></textarea>
+                        <textarea name="" id="" onChange={e => setSpecifications(e.target.value)} defaultValue={ data.specifications } cols="50" rows="5" required></textarea>
                         <br />
                         <br />
                         <label htmlFor="">Whats in the Box:</label>
                         <br />
                         <br />
-                        <textarea  onChange={e => setInBox(e.target.value)} name="" id="" cols="50" rows="5" required></textarea>
+                        <textarea  onChange={e => setInBox(e.target.value)} defaultValue={ data.inBox } cols="50" rows="5" required></textarea>
                         <br />
 
                         

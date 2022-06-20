@@ -103,11 +103,23 @@ app.get('/products', function(req, res){
     })
 })
 
+app.get('/products/:id', urlEncoded, function(req, res){
+    Product.findById(req.params.id, function(err, data){
+        res.json(data)
+    })
+});
+
 app.post('/add_product', urlEncoded, function(req, res){
     Product(req.body).save(function(err, data){
         if(err) throw err;
         // res.send(JSON.stringify({"status": 200, "error": null, "response": "data"}));
         res.json({data: "sent"})
+    })
+})
+
+app.put('/edit_product/:id', urlEncoded, function(req, res){
+    Product.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, data){
+        res.json(data)
     })
 })
 
