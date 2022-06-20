@@ -12,6 +12,37 @@ let mongoose= require('mongoose');
 
 const cors = require("cors");
 app.use(cors());
+app.use(express.static('src'));
+
+let multer = require('multer');
+let path = require('path');
+const { url } = require('inspector');
+
+let storage = multer.diskStorage({
+    destination: (req, file, cb)=>{
+        cb(null, 'src/uploads')
+    },
+    filename: (req, file, cb)=>{
+        //console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+let upload = multer({
+    storage: storage
+});
+upload.any
+
+app.post('/images', urlEncoded, upload.fields([{name: 'file1',maxCount: 1}, { name: 'file2', maxCount: 1 }]),function(req, res){
+
+    let preview1 = req.files.file1[0].filename;
+    let preview2 = req.files.file2[0].filename;
+
+    let files = JSON.stringify({ "preview1": preview1,"preview2": preview2, "name": req.body.name})
+
+    console.log(files)
+
+})
 
 
 
@@ -79,23 +110,6 @@ let productsSchema = new mongoose.Schema({
 
 let Product = mongoose.model('products', productsSchema)
 
-let multer = require('multer');
-let path = require('path');
-
-let storage = multer.diskStorage({
-    destination: (req, file, cb)=>{
-        cb(null, 'src/uploads')
-    },
-    filename: (req, file, cb)=>{
-        //console.log(file);
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
-
-let upload = multer({
-    storage: storage
-});
-
 
 app.get('/products', function(req, res){
     Product.find({}, function(err, data){
@@ -128,5 +142,7 @@ app.delete('/del_products/:id', urlEncoded, function(req, res){
         res.json(data)
     })
 })
+
+
 
 app.listen(8001)

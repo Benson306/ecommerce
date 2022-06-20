@@ -8,6 +8,7 @@ import Datatable from './Datatable/Datatable'
 import Home from './Home';
 import Categories from './categories/Categories';
 import Nav from './Nav/Nav'
+import FileUpload from './FileUpload';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
             <Route exact path='/'>
               <Home />
 
+            </Route>
+
+            <Route path='/images'>
+              <FileUpload />
             </Route>
 
             <Route path='/admin'>
