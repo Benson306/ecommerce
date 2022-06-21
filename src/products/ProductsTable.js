@@ -26,7 +26,7 @@ const ProductsTable = ({data}) => {
             method: 'DELETE'
         })
         .then(()=>{
-            notify("Deleted", "Category Deleted", "danger")
+            notify("Deleted", "Product Deleted", "danger")
         })
     }
 

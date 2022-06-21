@@ -51,8 +51,6 @@ const AddProducts = () => {
     const [preview4, setPreview4] = useState('');
 
 
-
-
     function notify(title, message, type){
         Store.addNotification({
             title: title,
@@ -69,9 +67,20 @@ const AddProducts = () => {
         }) 
     }
 
-    const datas = { categ, prodName, prodDetails, features, weight, price, specifications, inBox } 
+    const datas = { categ, prodName, prodDetails, features, weight, price, specifications, inBox }
+
+    console.log(JSON.stringify(datas))
 
     const handleSubmit = (e)=>{
+
+        let formData =  new FormData();
+
+        formData.append("file1", preview1);
+        formData.append("file2", preview2);
+        formData.append("file3", preview3);
+        formData.append("file4", preview4);
+        formData.append("datas", JSON.stringify(datas));
+
 
         e.preventDefault();
         e.target.value = null;
@@ -79,8 +88,7 @@ const AddProducts = () => {
      
         fetch('http://localhost:8001/add_product',{
             method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(datas)
+            body: formData
         }).then((res)=>{
             if(!res.ok){
                 notify("Failed","Server Error. Try Again.","danger")
@@ -179,19 +187,19 @@ const AddProducts = () => {
                                 <label htmlFor="">Preview Picture 2:</label>
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview2(e.target.value)} type="file" name="" id="" required/>
+                                <input onChange={e => setPreview2(e.target.files[0])} type="file" name="" id="" required/>
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview3(e.target.value)} type="file" name="" id="" />
+                                <input onChange={e => setPreview3(e.target.files[0])} type="file" name="" id="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview4(e.target.value)}type="file" name="" id="" />
+                                <input onChange={e => setPreview4(e.target.files[0])}type="file" name="" id="" />
                 </div>
             </div>
             <br />

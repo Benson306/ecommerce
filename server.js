@@ -31,7 +31,7 @@ let storage = multer.diskStorage({
 let upload = multer({
     storage: storage
 });
-upload.any
+
 
 app.post('/images', urlEncoded, upload.fields([{name: 'file1',maxCount: 1}, { name: 'file2', maxCount: 1 }]),function(req, res){
 
@@ -123,13 +123,33 @@ app.get('/products/:id', urlEncoded, function(req, res){
     })
 });
 
-app.post('/add_product', urlEncoded, function(req, res){
-    Product(req.body).save(function(err, data){
-        if(err) throw err;
-        // res.send(JSON.stringify({"status": 200, "error": null, "response": "data"}));
-        res.json({data: "sent"})
+// app.post('/add_product', urlEncoded, function(req, res){
+//     Product(req.body).save(function(err, data){
+//         if(err) throw err;
+//         // res.send(JSON.stringify({"status": 200, "error": null, "response": "data"}));
+//         res.json({data: "sent"})
+//     })
+// })
+
+app.post('/add_product', urlEncoded, upload.fields([{name: 'file1',maxCount: 1}, { name: 'file2', maxCount: 1 }, { name: 'file3', maxCount: 1 }, { name: 'file4', maxCount: 1 }]),function(req, res){
+
+    let preview1 = req.files.file1[0].filename;
+    let preview2 = req.files.file2[0].filename;
+    let preview3 = req.files.file3[0].filename;
+    let preview4 = req.files.file4[0].filename;
+
+    let data = JSON.parse(req.body.datas)
+
+    let previews = { "preview1": preview1,"preview2": preview2, "preview3": preview3,"preview4": preview4}
+
+    let oldData = { ...data, ...previews};
+
+    Product(oldData).save(function(err, data){
+        res.json(data);
     })
+
 })
+
 
 app.put('/edit_product/:id', urlEncoded, function(req, res){
     Product.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, data){
