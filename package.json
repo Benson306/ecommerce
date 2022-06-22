@@ -58,5 +58,6 @@
   "homepage": "/",
   "devDependencies": {
     "interpolate-html-plugin": "^4.0.0"
-  }
+  },
+  "proxy": "http://localhost:8001"
 }
