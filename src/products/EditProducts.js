@@ -57,7 +57,7 @@ const EditProducts = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8001/products/'+id,{ signal: abortCont.signal })
+        fetch('/products/'+id,{ signal: abortCont.signal })
         .then((res)=>{
             return res.json();
         })
@@ -108,7 +108,7 @@ const EditProducts = () => {
         e.target.value = null;
 
      
-        fetch('http://localhost:8001/edit_product/'+id,{
+        fetch('/edit_product/'+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(datas)

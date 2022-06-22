@@ -5,6 +5,7 @@ import Nav from '../Nav/Nav';
 import Products from '../products/Products';
 import AddProducts from '../products/AddProducts';
 import EditProducts from '../products/EditProducts';
+import ProductDetails from '../products/ProductDetails';
 
 const AdminDash = () => {
     return (
@@ -49,6 +50,15 @@ const AdminDash = () => {
                             <br />
                             <br />
                                 <EditProducts />
+                            </Route>
+                            <Route path='/admin_dashboard/more/:id'>
+                            <div className="category_header">
+                                PRODUCTS DETAILS
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                                <ProductDetails />
                             </Route>
 
                             <Route path='/admin_dashboard/more/:id'>

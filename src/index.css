@@ -194,8 +194,10 @@ nav ul li a:hover{
   padding: 10px;
   margin-left: 5%;
 }
-.previewInput{
+.previewsInput{
   display: block;
+  width: 20%;
+  margin-right: 5%;
 }
 .heading{
   background-color: orange;
@@ -246,4 +248,49 @@ td button{
 }
 .edit_product label{
   font-weight: bolder;
+}
+.more{
+  background-color: #030c3b;
+  box-shadow: 1px 1px 8px 0px #888888;
+  padding: 5px;
+  color: white;
+}
+.itemBrand{
+  font-size: 20px;
+  color: orange;
+}
+.more img{
+  width: 200px;
+  height: 200px;
+}
+.more .subheading{
+  background-color: orange;
+  width: 20%;
+  padding: 5px;
+  text-align: center;
+  color: black;
+}
+.more .productsButtons{
+  display: flex;
+}
+.more .productsButtons a{
+  text-decoration: none;
+  text-align: center;
+  width: 10%;
+  background-color: #04AA6D;
+  padding: 10px;
+  color: white;
+  border-radius: 5%;
+  border: 1px solid #04AA6D;
+  margin-left: 30%;
+  margin-right: 5%;
+}
+.more .productsButtons button{
+  width: 10%;
+  padding: 10px;
+  color: #030c3b;
+  border-radius: 5%;
+  border-radius: 5%;
+  border: 1px solid #030c3b;
+  margin-right: 5%;
 }

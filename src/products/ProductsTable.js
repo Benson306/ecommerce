@@ -58,14 +58,14 @@ const ProductsTable = () => {
     }
 
     const handleDelete = (id)=>{
-        fetch('http://localhost:8001/del_products/'+ id,{
+        fetch('/del_products/'+ id,{
             method: 'DELETE'
         })
         .then(()=>{
             notify("Deleted", "Product Deleted", "danger")
         })
     }
-    let no = 0;
+
 
         return ( 
             <div className='list_categories'>
