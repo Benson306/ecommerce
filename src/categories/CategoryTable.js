@@ -24,7 +24,7 @@ const CategoryTable = ({ data }) => {
     }
 
     const handleDelete = (id)=>{
-        fetch('http://localhost:8001/del_categories/'+ id,{
+        fetch('/del_categories/'+ id,{
             method: 'DELETE'
         })
         .then(()=>{

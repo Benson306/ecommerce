@@ -86,7 +86,7 @@ const AddProducts = () => {
         e.target.value = null;
 
      
-        fetch('http://localhost:8001/add_product',{
+        fetch('/add_product',{
             method: 'POST',
             body: formData
         }).then((res)=>{

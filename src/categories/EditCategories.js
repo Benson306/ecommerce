@@ -33,7 +33,7 @@ const AddCategories = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8001/categories/'+id,{signal: abortCont.signal})
+        fetch('/categories/'+id,{signal: abortCont.signal})
         .then((data)=>{
             return data.json()
         })
@@ -54,7 +54,7 @@ const AddCategories = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('http://localhost:8001/edit_categories/'+id,{
+        fetch('/edit_categories/'+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)

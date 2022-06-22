@@ -18,7 +18,7 @@ const FileUpload = () => {
         formData.append('file2',file2)
         formData.append("name",name)
         
-        fetch('http://localhost:8001/images',{
+        fetch('/images',{
             method: 'POST',
             body: formData
         })

@@ -26,7 +26,7 @@ const AddCategories = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('http://localhost:8001/add_categories',{
+        fetch('/add_categories',{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)

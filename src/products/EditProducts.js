@@ -17,7 +17,7 @@ const EditProducts = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8001/categories',{signal: abortCont.signal})
+        fetch('/categories',{signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 console.log("no data")

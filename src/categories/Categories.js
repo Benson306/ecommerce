@@ -15,7 +15,7 @@ const Categories = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8001/categories', {signal: abortCont.signal})
+        fetch('/categories', {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')

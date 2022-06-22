@@ -12,7 +12,7 @@ const ProductsTable = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8001/products', {signal: abortCont.signal})
+        fetch('/products', {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')

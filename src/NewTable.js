@@ -10,7 +10,7 @@ const NewTable = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('http://localhost:8001/categories',{signal: abortCont.signal})
+        fetch('/categories',{signal: abortCont.signal})
         .then(res=>{
             return res.json();
         })

@@ -10,7 +10,7 @@ const [q, setQ] = useState('')
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8000/categories', {signal: abortCont.signal})
+        fetch('/categories', {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')
