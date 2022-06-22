@@ -93,7 +93,7 @@ const AddProducts = () => {
             if(!res.ok){
                 notify("Failed","Server Error. Try Again.","danger")
             }else{
-                history.push('/admin_dashboard/products')
+                // history.push('/admin_dashboard/products')
                 notify("success","Product Added", "success" )
             }
         })

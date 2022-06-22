@@ -7,8 +7,8 @@ import 'react-notifications-component/dist/theme.css'
 import Datatable from './Datatable/Datatable'
 import Home from './Home';
 import Categories from './categories/Categories';
-import Nav from './Nav/Nav'
-import FileUpload from './FileUpload';
+import Nav from './Nav/Nav';
+import NewTable from './NewTable';
 
 function App() {
   return (
@@ -23,8 +23,8 @@ function App() {
 
             </Route>
 
-            <Route path='/images'>
-              <FileUpload />
+            <Route path='/tbl'>
+              <NewTable />
             </Route>
 
             <Route path='/admin'>

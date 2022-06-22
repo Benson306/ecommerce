@@ -10,6 +10,8 @@ app.use(express.json())
 
 let mongoose= require('mongoose');
 
+mongoose.connect('mongodb+srv://benson306:benson306@bencluster.axe8t.mongodb.net/ecommerce?retryWrites=true&w=majority');
+
 const cors = require("cors");
 app.use(cors());
 app.use(express.static('src'));
@@ -31,22 +33,6 @@ let storage = multer.diskStorage({
 let upload = multer({
     storage: storage
 });
-
-
-app.post('/images', urlEncoded, upload.fields([{name: 'file1',maxCount: 1}, { name: 'file2', maxCount: 1 }]),function(req, res){
-
-    let preview1 = req.files.file1[0].filename;
-    let preview2 = req.files.file2[0].filename;
-
-    let files = JSON.stringify({ "preview1": preview1,"preview2": preview2, "name": req.body.name})
-
-    console.log(files)
-
-})
-
-
-
-mongoose.connect('mongodb+srv://benson306:benson306@bencluster.axe8t.mongodb.net/ecommerce?retryWrites=true&w=majority');
 
 
 
@@ -105,7 +91,11 @@ let productsSchema = new mongoose.Schema({
     weight: String,
     price: String,
     specifications: String,
-    inBox: String
+    inBox: String,
+    preview1: String,
+    preview2: String,
+    preview3: String,
+    preview4: String
 })
 
 let Product = mongoose.model('products', productsSchema)
@@ -123,13 +113,6 @@ app.get('/products/:id', urlEncoded, function(req, res){
     })
 });
 
-// app.post('/add_product', urlEncoded, function(req, res){
-//     Product(req.body).save(function(err, data){
-//         if(err) throw err;
-//         // res.send(JSON.stringify({"status": 200, "error": null, "response": "data"}));
-//         res.json({data: "sent"})
-//     })
-// })
 
 app.post('/add_product', urlEncoded, upload.fields([{name: 'file1',maxCount: 1}, { name: 'file2', maxCount: 1 }, { name: 'file3', maxCount: 1 }, { name: 'file4', maxCount: 1 }]),function(req, res){
 

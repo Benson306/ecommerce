@@ -51,6 +51,16 @@ const AdminDash = () => {
                                 <EditProducts />
                             </Route>
 
+                            <Route path='/admin_dashboard/more/:id'>
+                            <div className="category_header">
+                                MORE DETAILS ON PRODUCT
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                                <EditProducts />
+                            </Route>
+
                             <Route path='/admin_dashboard/orders'>
                             <div className="category_header">
                                 ORDERS
