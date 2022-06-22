@@ -47,9 +47,6 @@ const AddCategories = () => {
 
     const categs = { categ }
 
-
-    console.log(categs)
-
     const handleSubmit = (e) =>{
         e.preventDefault();
         e.target.value = null;
@@ -71,7 +68,7 @@ const AddCategories = () => {
     return ( 
         <div className="categories" style={{backgroundColor: '#030c3b', color: 'white'}}>
                 <br />
-                Edit Category: 
+                Edit Category:  <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{ data }</div> 
                 <div style={{color:'orange', fontSize:'20px', marginLeft:'10%'}}>{!data && <span>Loading...</span> }</div> 
                 <br />
                 <br />
@@ -81,7 +78,7 @@ const AddCategories = () => {
                         onChange={(e) => setCateg(e.target.value) } 
                         required
                         style={{color: 'black'}}
-                        defaultValue={ data }
+                        defaultValue={ categ }
                     />
                     <input type="submit" value="Save" style={{backgroundColor: 'maroon'}}/>
                 </form>
