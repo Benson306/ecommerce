@@ -51,7 +51,6 @@ const ProductDetails = () => {
         }) 
     }
 
-    console.log(id);
 
     const handleDelete = ()=>{
         fetch('/del_products/'+id,{
@@ -166,7 +165,7 @@ const ProductDetails = () => {
         }
         <br />
         <br />
-        
+
     </div> 
     );
 }

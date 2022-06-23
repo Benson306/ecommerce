@@ -4,6 +4,8 @@ let app = express();
 
 let bodyParser = require('body-parser');
 
+let fs = require('fs');
+
 let urlEncoded = bodyParser.urlencoded({extended: false});
 
 app.use(express.json())
@@ -142,6 +144,29 @@ app.put('/edit_product/:id', urlEncoded, function(req, res){
 })
 
 app.delete('/del_products/:id', urlEncoded, function(req, res){
+    Product.findById(req.params.id, function(err, item){
+        fs.unlink(`src/uploads/${item.preview1}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+        fs.unlink(`src/uploads/${item.preview2}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+        fs.unlink(`src/uploads/${item.preview3}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+        fs.unlink(`src/uploads/${item.preview4}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+
+    })
     Product.findByIdAndRemove(req.params.id, function(err, data){
         res.json(data)
     })

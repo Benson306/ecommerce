@@ -132,9 +132,11 @@ const CategoryTable = () => {
 
             </tbody>
         </table>
-        <br />
         
+        <br />
+
         <div className='pageNumbers' style={{display:'flex', marginLeft: '5%',color:'darkblue'}}>
+            <br />
 
             {
                 pageNumbers.map( number =>(
@@ -145,7 +147,7 @@ const CategoryTable = () => {
                     </div>
                 ))
             }
-
+            <br />
         </div>
         <br />
     
