@@ -10,6 +10,25 @@ const ProductsTable = () => {
     const [isPending, setPending] = useState(true);
     const [q, setQ] = useState("");
 
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [dataPerPage, setDataPerPage] = useState(5);
+
+    const indexOfLastData = currentPage * dataPerPage;
+    const indexOfFirstData = indexOfLastData - dataPerPage;
+    const currentData = datas.slice(indexOfFirstData, indexOfLastData);
+
+    const pageNumbers = [];
+    const totalData = datas.length;
+
+    for(let i =1; i <= Math.ceil(totalData / dataPerPage);i++){
+        pageNumbers.push(i);
+    }
+    
+    function paginate(number){
+        setCurrentPage(number);
+    }
+
     useEffect(()=>{
         const abortCont = new AbortController();
         fetch('/products', {signal: abortCont.signal})
@@ -66,11 +85,13 @@ const ProductsTable = () => {
         })
     }
 
+    
+
 
         return ( 
             <div className='list_categories'>
                 <br />
-            <input style={{float:'right',border: '1px solid black', padding: '10px', marginRight:'5%'}} type="text" placeholder="Search...." onChange={ (e) => setQ(e.target.value)} />
+            <input style={{float:'right',border: '1px solid black', padding: '10px', marginRight:'5%'}} type="text" placeholder="Search...." onChange={ (e) =>{setQ(e.target.value); setDataPerPage(datas.length) } } />
             <table id="customers">
                 <thead>
                         <tr>
@@ -87,9 +108,9 @@ const ProductsTable = () => {
                 <tbody>
                     { (error !== null ) && <tr><td colspan={8} style={{textAlign:'center'}}>Failed to fetch data</td></tr>}
                     { isPending &&  <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr> }
-                    { (datas == "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
+                    { !isPending && (currentData == "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
                     {   
-                        datas.filter( val =>{
+                        currentData.filter( val =>{
                             if(q === ''){
                                 return val;
                             }else if(
@@ -98,7 +119,9 @@ const ProductsTable = () => {
                                 val.prodDetails.toLowerCase().includes(q.toLowerCase()) ||
                                 val.features.toLowerCase().includes(q.toLowerCase())
                             ){
-                                return val;
+                                
+                                        return val;
+                                
                             }
                         }).map( data => (
                             <tr key={data._id}>
@@ -126,35 +149,22 @@ const ProductsTable = () => {
 
                 </tbody>
             </table>
+            <br />
+            <div className='pageNumbers' style={{display:'flex', marginLeft:'5%', color:'darkblue'}}>
+
+            {
+                pageNumbers.map( number =>(
+                    <div style={{border: '1px solid gray', padding:'10px'}}>
+                        <a href='#' onClick={()=>paginate(number)}>
+                            {number}
+                        </a>
+                    </div>
+                ))
+            }
+
+        </div>
+        <br />
     </div> 
-            // <table id="customers" >
-            //     <thead>
-            //         <tr>{data[0] && columns.map(heading => <th>{heading}</th> ) } <th>Edit</th><th>Delete</th> </tr>
-            //         {/* <tr>
-            //             <th>Id</th>
-            //             <th>Category</th>
-            //             <th>Edit</th>
-            //             <th>Delete</th>
-            //             <th></th>
-            //         </tr> */}
-            //     </thead>
-            //     <tbody>
-            //         { (data == '' ) && <tr><td colspan={5} style={{textAlign:'center'}}>No data</td></tr>}
-            //         {
-            //         data.map(row => <tr>
-            //             {
-            //                 columns.map(column => <td>{row[column]}</td>)
-            //             }
-                        
-            //             <td><Link to={ `/admin_dashboard/edit_products/${row._id}` }>
-            //                     <img src={require('../images/editing.png')} width='20px' alt="" />
-            //                 </Link></td>
-            //             <td><button onClick={() => handleDelete(row._id)}><img src={require('../images/delete.png')} width='20px' alt="" /></button></td>
-            //         </tr>
-            //         )}
-            //     </tbody>
-    
-            // </table>
             
          );
 

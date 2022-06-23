@@ -8,7 +8,25 @@ const CategoryTable = () => {
     const [categories, setCategory] = useState([]);
     const [error, setError] = useState(null);
     const [isPending, setPending] = useState(true);
-    const [q, setQ] = useState('')
+    const [q, setQ] = useState("");
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [dataPerPage, setDataPerPage] = useState(5);
+
+    const indexOfLastData = currentPage * dataPerPage;
+    const indexOfFirstData = indexOfLastData - dataPerPage;
+    const currentData = categories.slice(indexOfFirstData, indexOfLastData);
+
+    const pageNumbers = [];
+    const totalData = categories.length;
+
+    for(let i =1; i <= Math.ceil(totalData / dataPerPage);i++){
+        pageNumbers.push(i);
+    }
+
+    function paginate(number){
+        setCurrentPage(number);
+    }
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -63,11 +81,15 @@ const CategoryTable = () => {
         })
     }
 
+    
+
     return ( 
         <div className="list_categories">
         <br />
+        
+        
 
-        <input style={{float:'right',border: '1px solid black', padding: '10px', marginRight:'5%'}} type="text" placeholder="Search...." onChange={ (e) => setQ(e.target.value)} />
+        <input style={{float:'right',border: '1px solid black', padding: '10px', marginRight:'5%'}} type="text" placeholder="Search...." onChange={ (e) => { setQ(e.target.value);  setDataPerPage(categories.length) } } />
 
         <br />
         <table id="customers">
@@ -83,7 +105,8 @@ const CategoryTable = () => {
             <tbody>
             {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger")}
             {isPending && <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr>}
-            { categories.filter( categ =>{
+            { !isPending && (currentData == "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
+            { currentData.filter( categ =>{
                 if(q === ''){
                     return categ;
                 }else if(
@@ -109,39 +132,26 @@ const CategoryTable = () => {
 
             </tbody>
         </table>
+        <br />
+        
+        <div className='pageNumbers' style={{display:'flex', marginLeft: '5%',color:'darkblue'}}>
+
+            {
+                pageNumbers.map( number =>(
+                    <div style={{border: '1px solid gray', padding:'10px'}}>
+                        <a href='#' onClick={()=>paginate(number)}>
+                            {number}
+                        </a>
+                    </div>
+                ))
+            }
+
+        </div>
+        <br />
     
         
         
     </div>
-        // <table id="customers" >
-        //     <thead>
-        //         <tr>{data[0] && columns.slice(0).reverse().map(heading => <th>{heading}</th> ) } <th>Edit</th><th>Delete</th> </tr>
-        //         {/* <tr>
-        //             <th>Id</th>
-        //             <th>Category</th>
-        //             <th>Edit</th>
-        //             <th>Delete</th>
-        //             <th></th>
-        //         </tr> */}
-        //     </thead>
-        //     <tbody>
-        //         { (data == '' ) && <tr><td colspan={5} style={{textAlign:'center'}}>No data</td></tr>}
-        //         {
-        //         data.slice(0).reverse().map(row => <tr>
-        //             {
-        //                 columns.slice(0).reverse().map(column => <td>{row[column]}</td>)
-        //             }
-                    
-        //             <td><Link to={ `/admin_dashboard/categories/${row._id}` }>
-        //                     <img src={require('../images/editing.png')} width='20px' alt="" />
-        //                 </Link></td>
-        //             {/* <td><a href={'/admin_dashboard/categories/'+row.id}><img src={require('./images/editing.png')} width='20px' alt="" /></a></td> */}
-        //             <td><button onClick={() => handleDelete(row._id)}><img src={require('../images/delete.png')} width='20px' alt="" /></button></td>
-        //         </tr>
-        //         )}
-        //     </tbody>
-
-        // </table>
         
      );
 }

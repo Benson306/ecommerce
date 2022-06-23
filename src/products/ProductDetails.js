@@ -161,8 +161,12 @@ const ProductDetails = () => {
             </div>
             <br />
             <br />
+
             </div>
         }
+        <br />
+        <br />
+        
     </div> 
     );
 }
