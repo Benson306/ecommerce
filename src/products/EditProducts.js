@@ -81,8 +81,6 @@ const EditProducts = () => {
         history.push('/admin_dashboard/products')
     }
 
-    console.log(data.preview1)
-
     function notify(title, message, type){
         Store.addNotification({
             title: title,
@@ -122,11 +120,16 @@ const EditProducts = () => {
         })
     }
 
-    const handlePreview1 = () =>{
+
+    function handlePreview1(e){
+        e.preventDefault();
+
+        let data = e.target.files[0];
 
         let formData =  new FormData();
 
-        formData.append("file1", preview1);
+        formData.append("file1", data);
+
 
 
         fetch('/edit_pic1/'+id,{
@@ -134,7 +137,61 @@ const EditProducts = () => {
             body: formData
         })
         .then(()=>{
-            notify("success","Picture Replaced", "warning" )
+            notify("success","Picture Replaced", "warning" );
+        })
+    }
+    function handlePreview2(e){
+        e.preventDefault();
+
+        let data = e.target.files[0];
+
+        let formData =  new FormData();
+
+        formData.append("file2", data);
+
+
+        fetch('/edit_pic2/'+id,{
+            method:'PUT',
+            body: formData
+        })
+        .then(()=>{
+            notify("success","Picture Replaced", "warning" );
+        })
+    }
+    function handlePreview3(e){
+        e.preventDefault();
+
+        let data = e.target.files[0];
+
+        let formData =  new FormData();
+
+        formData.append("file3", data);
+
+
+        fetch('/edit_pic3/'+id,{
+            method:'PUT',
+            body: formData
+        })
+        .then(()=>{
+            notify("success","Picture Replaced", "warning" );
+        })
+    }
+    function handlePreview4(e){
+        e.preventDefault();
+
+        let data = e.target.files[0];
+
+        let formData =  new FormData();
+
+        formData.append("file4", data);
+
+
+        fetch('/edit_pic4/'+id,{
+            method:'PUT',
+            body: formData
+        })
+        .then(()=>{
+            notify("success","Picture Replaced", "warning" );
         })
     }
 
@@ -224,7 +281,7 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview1}`)} alt="" />
                                 <br />
                                 <br />
-                                <input onChange={ (e) =>{ setPreview1(e.target.files[0]); handlePreview1() } } type="file" name="" id="" required/>
+                                <input onChange={ (e) =>{ setPreview1(e.target.files[0]); handlePreview1(e) }} type="file" name="" id="" />
                 </div>
                                 
                 <div className="previewsInput">
@@ -234,7 +291,7 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview2}`)} alt="" />
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview2(e.target.value)} type="file" name="" id="" required/>
+                                <input onChange={e =>{ setPreview2(e.target.files[0]); handlePreview2(e) }} type="file" name="" id="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 3:</label>
@@ -243,7 +300,7 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview3}`)} alt=""  />
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview3(e.target.value)} type="file" name="" id="" />
+                                <input onChange={e => {setPreview3(e.target.files[0]); handlePreview3(e)}} type="file" name="" id="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
@@ -252,7 +309,7 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview4}`)} alt="" />
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview4(e.target.value)}type="file" name="" id="" />
+                                <input onChange={e => { setPreview4(e.target.files[0]); handlePreview4(e)}}type="file" name="" id="" />
                 </div>
             </div> }
             <br />

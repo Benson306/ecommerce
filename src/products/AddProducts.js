@@ -69,7 +69,6 @@ const AddProducts = () => {
 
     const datas = { categ, prodName, prodDetails, features, weight, price, specifications, inBox }
 
-    console.log(JSON.stringify(datas))
 
     const handleSubmit = (e)=>{
 
@@ -98,6 +97,12 @@ const AddProducts = () => {
             }
         })
     }
+
+    console.log(preview1)
+    console.log(preview2)
+    console.log(preview3)
+    console.log(preview4)
+
 
 
     return (   

@@ -174,20 +174,70 @@ app.delete('/del_products/:id', urlEncoded, function(req, res){
 
 app.put('/edit_pic1/:id', upload.single('file1'), function(req, res){
 
-    // let preview1 = req.file.filename;
+    let preview1 = req.file.filename;
 
-    console.log(req.file.filename)
-    // Product.findById(req.params.id, function(err, item){
-    //     fs.unlink(`src/uploads/${item.preview1}`, function(err){
-    //         if(err){
-    //             console.log('not deleted')
-    //         }
-    //     })
+    Product.findById(req.params.id, function(err, item){
+        fs.unlink(`src/uploads/${item.preview1}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
 
-    //     Product.findByIdAndUpdate(req.params.id,{"preview1":preview1} ,{new:true},function(err,data){
-    //         res.json(data)
-    //     })
-    // })
+        Product.findByIdAndUpdate(req.params.id,{"preview1":preview1} ,{new:true},function(err,data){
+            res.json(data)
+        })
+    })
+    
+})
+app.put('/edit_pic2/:id', upload.single('file2'), function(req, res){
+
+    let preview2 = req.file.filename;
+
+    Product.findById(req.params.id, function(err, item){
+        fs.unlink(`src/uploads/${item.preview2}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+
+        Product.findByIdAndUpdate(req.params.id,{"preview2":preview2} ,{new:true},function(err,data){
+            res.json(data)
+        })
+    })
+    
+})
+app.put('/edit_pic3/:id', upload.single('file3'), function(req, res){
+
+    let preview3 = req.file.filename;
+
+    Product.findById(req.params.id, function(err, item){
+        fs.unlink(`src/uploads/${item.preview3}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+
+        Product.findByIdAndUpdate(req.params.id,{"preview3":preview3} ,{new:true},function(err,data){
+            res.json(data)
+        })
+    })
+    
+})
+app.put('/edit_pic4/:id', upload.single('file4'), function(req, res){
+
+    let preview4 = req.file.filename;
+
+    Product.findById(req.params.id, function(err, item){
+        fs.unlink(`src/uploads/${item.preview4}`, function(err){
+            if(err){
+                console.log('not deleted')
+            }
+        })
+
+        Product.findByIdAndUpdate(req.params.id,{"preview4":preview4} ,{new:true},function(err,data){
+            res.json(data)
+        })
+    })
     
 })
 
