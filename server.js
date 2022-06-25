@@ -170,6 +170,25 @@ app.delete('/del_products/:id', urlEncoded, function(req, res){
     Product.findByIdAndRemove(req.params.id, function(err, data){
         res.json(data)
     })
+});
+
+app.put('/edit_pic1/:id', upload.single('file1'), function(req, res){
+
+    // let preview1 = req.file.filename;
+
+    console.log(req.file.filename)
+    // Product.findById(req.params.id, function(err, item){
+    //     fs.unlink(`src/uploads/${item.preview1}`, function(err){
+    //         if(err){
+    //             console.log('not deleted')
+    //         }
+    //     })
+
+    //     Product.findByIdAndUpdate(req.params.id,{"preview1":preview1} ,{new:true},function(err,data){
+    //         res.json(data)
+    //     })
+    // })
+    
 })
 
 

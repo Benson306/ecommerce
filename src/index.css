@@ -294,3 +294,7 @@ td button{
   border: 1px solid #030c3b;
   margin-right: 5%;
 }
+.previews img{
+  width: 200px;
+  height: 200px;
+}

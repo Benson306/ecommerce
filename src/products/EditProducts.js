@@ -81,6 +81,7 @@ const EditProducts = () => {
         history.push('/admin_dashboard/products')
     }
 
+    console.log(data.preview1)
 
     function notify(title, message, type){
         Store.addNotification({
@@ -100,7 +101,6 @@ const EditProducts = () => {
 
     const datas = { categ, prodName, prodDetails, features, weight, price, specifications, inBox } 
 
-    console.log(datas)
 
     const handleSubmit = (e)=>{
 
@@ -122,6 +122,22 @@ const EditProducts = () => {
         })
     }
 
+    const handlePreview1 = () =>{
+
+        let formData =  new FormData();
+
+        formData.append("file1", preview1);
+
+
+        fetch('/edit_pic1/'+id,{
+            method:'PUT',
+            body: formData
+        })
+        .then(()=>{
+            notify("success","Picture Replaced", "warning" )
+        })
+    }
+
 
     return (   
         <div>
@@ -129,7 +145,7 @@ const EditProducts = () => {
             <form onSubmit={handleSubmit} className='edit_product'>
             <div className="heading" style={{color:'black'}}>Edit Product  </div>
             { !data && <div style={{color: 'yellow', fontSize:'18px'}}>Loading ... <br /></div>}
-            <div class='productForm'>
+           {data && <div class='productForm'>
                 <div class='productLeft'>
                         <label>Category:</label>
                         <br />
@@ -189,26 +205,33 @@ const EditProducts = () => {
                         <br />
                         <textarea  onChange={e => setInBox(e.target.value)} defaultValue={ data.inBox } cols="50" rows="5" required></textarea>
                         <br />
-
-                        
                         
 
                 </div>
-            </div>
+                
+            </div> }
+
             <br />
-            <div className="subheading" style={{backgroundColor:'orange', color:'black'}}>Add Images of the product:</div>
+            <div className="subheading" style={{backgroundColor:'orange', color:'black'}}>Replace Images of the product:</div>
             <br />
-            <div className='previews'>
+           { data && <div className='previews'>
                 
                 <div className="previewsInput">
+                                
                                 <label htmlFor="">Preview Picture 1:</label>
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview1(e.target.files[0])} type="file" name="" id="" required/>
+                                <img src={require(`../uploads/${data.preview1}`)} alt="" />
+                                <br />
+                                <br />
+                                <input onChange={ (e) =>{ setPreview1(e.target.files[0]); handlePreview1() } } type="file" name="" id="" required/>
                 </div>
                                 
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 2:</label>
+                                <br />
+                                <br />
+                                <img src={require(`../uploads/${data.preview2}`)} alt="" />
                                 <br />
                                 <br />
                                 <input onChange={e => setPreview2(e.target.value)} type="file" name="" id="" required/>
@@ -217,15 +240,21 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
+                                <img src={require(`../uploads/${data.preview3}`)} alt=""  />
+                                <br />
+                                <br />
                                 <input onChange={e => setPreview3(e.target.value)} type="file" name="" id="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
+                                <img src={require(`../uploads/${data.preview4}`)} alt="" />
+                                <br />
+                                <br />
                                 <input onChange={e => setPreview4(e.target.value)}type="file" name="" id="" />
                 </div>
-            </div>
+            </div> }
             <br />
             <br />
             <div className="productsButtons">

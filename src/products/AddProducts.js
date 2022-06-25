@@ -193,13 +193,13 @@ const AddProducts = () => {
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview3(e.target.files[0])} type="file" name="" id="" />
+                                <input onChange={e => setPreview3(e.target.files[0])} type="file" name="" id="" required/>
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
-                                <input onChange={e => setPreview4(e.target.files[0])}type="file" name="" id="" />
+                                <input onChange={e => setPreview4(e.target.files[0])}type="file" name="" id="" required/>
                 </div>
             </div>
             <br />
