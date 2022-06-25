@@ -115,7 +115,7 @@ const EditProducts = () => {
                 notify("Failed","Server Error. Try Again.","danger")
             }else{
                 history.push('/admin_dashboard/products')
-                notify("success","Product Edited", "warning" )
+                notify("Success","Product Edited", "warning" )
             }
         })
     }
@@ -137,7 +137,7 @@ const EditProducts = () => {
             body: formData
         })
         .then(()=>{
-            notify("success","Picture Replaced", "warning" );
+            notify("Success","Picture Replaced", "warning" );
         })
     }
     function handlePreview2(e){
@@ -155,7 +155,7 @@ const EditProducts = () => {
             body: formData
         })
         .then(()=>{
-            notify("success","Picture Replaced", "warning" );
+            notify("Success","Picture Replaced", "warning" );
         })
     }
     function handlePreview3(e){
@@ -173,7 +173,7 @@ const EditProducts = () => {
             body: formData
         })
         .then(()=>{
-            notify("success","Picture Replaced", "warning" );
+            notify("Success","Picture Replaced", "warning" );
         })
     }
     function handlePreview4(e){
@@ -191,7 +191,7 @@ const EditProducts = () => {
             body: formData
         })
         .then(()=>{
-            notify("success","Picture Replaced", "warning" );
+            notify("Success","Picture Replaced", "warning" );
         })
     }
 
@@ -281,7 +281,9 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview1}`)} alt="" />
                                 <br />
                                 <br />
-                                <input onChange={ (e) =>{ setPreview1(e.target.files[0]); handlePreview1(e) }} type="file" name="" id="" />
+
+                                <input style={{display:'none'}} onChange={ (e) =>{ setPreview1(e.target.files[0]); handlePreview1(e) }} placeholder="" type="file" name="" id="img1" />
+                                <label for="img1"><div style={{padding: '10px', textAlign:'center', width:'50%', marginLeft:'25%', backgroundColor:'lightgray', color:'#030c3b', border:'1px solid orange'}}>Replace</div></label>
                 </div>
                                 
                 <div className="previewsInput">
@@ -291,7 +293,8 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview2}`)} alt="" />
                                 <br />
                                 <br />
-                                <input onChange={e =>{ setPreview2(e.target.files[0]); handlePreview2(e) }} type="file" name="" id="" />
+                                <input onChange={e =>{ setPreview2(e.target.files[0]); handlePreview2(e) }} type="file" name="" id="img2" style={{display:'none'}}/>
+                                <label for="img2"><div style={{padding: '10px', textAlign:'center', width:'50%', marginLeft:'25%', backgroundColor:'lightgray', color:'#030c3b', border:'1px solid orange'}}>Replace</div></label>
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 3:</label>
@@ -300,7 +303,8 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview3}`)} alt=""  />
                                 <br />
                                 <br />
-                                <input onChange={e => {setPreview3(e.target.files[0]); handlePreview3(e)}} type="file" name="" id="" />
+                                <input onChange={e => {setPreview3(e.target.files[0]); handlePreview3(e)}} type="file" name="" id="img3" style={{display:'none'}} />
+                                <label for="img3"><div style={{padding: '10px', textAlign:'center', width:'50%', marginLeft:'25%', backgroundColor:'lightgray', color:'#030c3b', border:'1px solid orange'}}>Replace</div></label>
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
@@ -309,7 +313,8 @@ const EditProducts = () => {
                                 <img src={require(`../uploads/${data.preview4}`)} alt="" />
                                 <br />
                                 <br />
-                                <input onChange={e => { setPreview4(e.target.files[0]); handlePreview4(e)}}type="file" name="" id="" />
+                                <input onChange={e => { setPreview4(e.target.files[0]); handlePreview4(e)}}type="file" name="" id="img4" style={{display:'none'}} />
+                                <label for="img4"><div style={{padding: '10px', textAlign:'center', width:'50%', marginLeft:'25%', backgroundColor:'lightgray', color:'#030c3b', border:'1px solid orange'}}>Replace</div></label>
                 </div>
             </div> }
             <br />
