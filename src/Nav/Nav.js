@@ -1,20 +1,30 @@
-import { Link } from "react-router-dom";
 
 const Nav = () => {
-    return ( 
-        <div>
-            <nav>
-                <ul>
-                    <div className="navRight">
-                        <li style={{float:'right'}}><Link to={'/admin_dashboard/profile'}>My Account</Link></li>
-                        <li><Link>Sign Out</Link></li>
-                    </div>
+    return ( <div className='clientNav'>
+        <nav>
+            <ul>
+                <li style={{marginTop:'5px'}}>
+                    <img src={require('../images/menu.png')} alt="" width="30px"/>
+                </li>
+
+                <li style={{fontSize:'22px',marginTop:'5px'}}>Ecomm</li>
+
+                <li style={{width:'50%'}}>
+                    <form action="" style={{display:'flex'}}>
+                        <input type="text" name="" placeholder="Search products, brands and categories" required style={{padding:'10px', marginRight:'20px'}} />
+                        <input type="submit" value="Search" id="" style={{height:'30px',backgroundColor:'orange', border:'1px solid orange', borderRadius:'5px',width:'20%', marginTop:'5px',color:'#030c3b',fontSize:'16px'}} />
+                    </form>
                     
-                </ul>
-            </nav>
-            <br />
-        </div>
-     );
+                </li>
+
+                <li style={{display:'flex'}}> <img src={require('../images/user.png')} width="25px" height="25px" style={{marginTop:'5%'}} alt="" /> <div style={{marginTop:'10%',marginLeft:'2%'}}>Account</div></li>
+
+                <li style={{display:'flex'}}> <img src={require('../images/shopping-cart.png')} width="25px" height="30px" style={{marginTop:'5%'}} alt="" /> <div style={{marginTop:'10px',marginLeft:'5%'}}>Cart</div></li>
+
+                <li style={{display:'flex'}}> <img src={require('../images/love.png')} width="25px" height="25px" style={{marginTop:'10%'}} alt="" /> <div style={{marginTop:'12px',marginLeft:'5%'}}>Wishlist</div></li>
+            </ul>
+        </nav>
+    </div> );
 }
  
 export default Nav;

@@ -1,7 +1,7 @@
 import '../index.css'
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Route, Switch} from 'react-router-dom';
 import Categories from '../categories/Categories';
-import Nav from '../Nav/Nav';
+import AdminNav from '../adminNav/AdminNav';
 import Products from '../products/Products';
 import AddProducts from '../products/AddProducts';
 import EditProducts from '../products/EditProducts';
@@ -12,7 +12,7 @@ const AdminDash = () => {
             
         
                         <div className="admin_main">
-                            <Nav />
+                            <AdminNav />
                             <br />
                         <Switch>
                             <Route path='/admin_dashboard/categories'>

@@ -1,6 +1,17 @@
+import Nav from './Nav/Nav';
+
+
 const Home = () => {
     return ( 
-        <div>Home</div>
+        <div>
+            <Nav />
+            <br />
+            <br />
+            <br />
+            <br />
+            Home
+            </div>
+        
      );
 }
  
