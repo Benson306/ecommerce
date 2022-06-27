@@ -14,7 +14,7 @@ function App() {
     <ReactNotifications />
         
           <Switch>
-
+          Home
             <Route exact path='/'>
               <Home />
 
