@@ -1,17 +1,17 @@
+import ListCategories from './clientComponents/ListCategories';
 import Nav from './Nav/Nav';
 
 
 const Home = () => {
     return ( 
-        <div>
+        <div class="home">
             <Nav />
             <br />
             <br />
             <br />
             <br />
-            Home
-            Home
-            </div>
+            <ListCategories />
+        </div>
         
      );
 }
