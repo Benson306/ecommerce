@@ -38,12 +38,11 @@ const ListCategories = () => {
         return ()=> abortCont.Abort();
     },[])
 
-    console.log(categories);
 
 
     return ( <div className='listCategories'>
             {
-                error && <div style={{color:'red'}}>Could Not Fetch Data</div>
+                error && <div style={{color:'red'}}>Could Not Fetch Data. Try Again</div>
             }
             {
                 isPending && <div>Loading ...</div>
