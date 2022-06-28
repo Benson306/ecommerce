@@ -43,7 +43,7 @@ const ListCategories = () => {
 
     return ( <div className='listCategories'>
             {
-                error && <div>Could Not Fetch Data</div>
+                error && <div style={{color:'red'}}>Could Not Fetch Data</div>
             }
             {
                 isPending && <div>Loading ...</div>
