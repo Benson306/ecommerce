@@ -6,6 +6,7 @@ const ListCategories = () => {
 
     const [categories, setCategories] = useState([]);
     const [isPending, setPending] = useState(true);
+    const [error, setError] = useState(false);
 
 
     useEffect(()=>{
@@ -13,11 +14,25 @@ const ListCategories = () => {
 
         fetch('/categories',{signal: abortCont.signal})
         .then((response)=>{
-            return response.json();
+            if(response.ok){
+                return response.json();
+            }else{
+                throw Error('Could Not Fetch Data');
+            }
         })
         .then((response)=>{
             setPending(false);
             setCategories(response);
+        })
+        .catch(err=>{
+            if(err.name === 'AbortError'){
+                console.log('Abort Error')
+            }else{
+                setError(true)
+                setPending(false)
+            }
+            setError(true);
+            setPending(false);
         })
 
         return ()=> abortCont.Abort();
@@ -27,6 +42,9 @@ const ListCategories = () => {
 
 
     return ( <div className='listCategories'>
+            {
+                error && <div>Could Not Fetch Data</div>
+            }
             {
                 isPending && <div>Loading ...</div>
             }
