@@ -13,24 +13,24 @@ const Carousel = () => {
       };
 
     return ( <div className="carousel">
-        <Slider {...settings}>
+        <Slider {...settings} style={{width:'40%', marginLeft:'25%'}}>
             <div>
-                <h3>1</h3>
+                <img src={require('../images/add.png')} width='300px'alt="" />
             </div>
             <div>
-                <h3>2</h3>
+                <img src={require('../images/application.png')} width='300px'alt="" />
             </div>
             <div>
-                <h3>3</h3>
+                <img src={require('../images/background.jpg')} width='300px'alt="" />
             </div>
             <div>
-                <h3>4</h3>
+            <   img src={require('../images/cargo.png')} width='300px'alt="" />
             </div>
             <div>
-                <h3>5</h3>
+                <img src={require('../images/delete.png')} width='300px'alt="" />
             </div>
             <div>
-                <h3>6</h3>
+            <img src={require('../images/editing.png')} width='300px'alt="" />
             </div>
         </Slider>
 
