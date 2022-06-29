@@ -364,7 +364,22 @@ td button{
   margin-left: 2%;
 }
 .carou{
-  background-color: orange;
-  margin-left: 5%;
-  width: 73%;
+  background-image: url("./images/banner.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  margin-left: 3%;
+  width: 75%;
+  height: 300px;
+}
+.search{
+  background-color:orange; 
+  width:60%;
+  margin-left: 20%;
+  padding: 20px;
+  align-items: center;
+  margin-top:10%;
+}
+.search input{
+  opacity: 1;
 }

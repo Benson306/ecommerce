@@ -1,5 +1,5 @@
 import ListCategories from './clientComponents/ListCategories';
-import Carousel from './clientComponents/Carousel';
+import Search from './clientComponents/Search';
 import Nav from './Nav/Nav';
 
 
@@ -16,7 +16,7 @@ const Home = () => {
                     <ListCategories />
                 </div>
                 <div className="carou">
-                    <Carousel />
+                    <Search />
                 </div>
                 
             </div>

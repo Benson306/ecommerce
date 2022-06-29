@@ -10,10 +10,7 @@ const Nav = () => {
                 <li style={{fontSize:'22px',marginTop:'5px'}}>Ecomm</li>
 
                 <li style={{width:'50%'}}>
-                    <form action="" style={{display:'flex'}}>
-                        <input type="text" name="" placeholder="Search products, brands and categories" required style={{padding:'10px', marginRight:'20px'}} />
-                        <input type="submit" value="Search" id="" style={{height:'30px',backgroundColor:'orange', border:'1px solid orange', borderRadius:'5px',width:'20%', marginTop:'5px',color:'#030c3b',fontSize:'16px'}} />
-                    </form>
+                    
                     
                 </li>
 
