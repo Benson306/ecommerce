@@ -33,6 +33,7 @@ const Home = () => {
                 <br />
                 <br />
                 <br />
+                <br />
                     <Search />
             </div>
             <br />
