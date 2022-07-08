@@ -7,7 +7,7 @@ const adminNav = () => {
                 <ul>
                     <div className="navRight">
                         <li style={{float:'right'}}><Link to={'/admin_dashboard/profile'}>My Account</Link></li>
-                        <li><Link>Sign Out</Link></li>
+                        <li><Link to={'/admin_dashboard/profile'}>Sign Out</Link></li>
                     </div>
                     
                 </ul>

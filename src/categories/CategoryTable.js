@@ -105,7 +105,7 @@ const CategoryTable = () => {
             <tbody>
             {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger")}
             {isPending && <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr>}
-            { !isPending && (currentData == "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
+            { !isPending && (currentData === "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
             { currentData.filter( categ =>{
                 if(q === ''){
                     return categ;

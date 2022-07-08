@@ -108,7 +108,7 @@ const ProductsTable = () => {
                 <tbody>
                     { (error !== null ) && <tr><td colspan={8} style={{textAlign:'center'}}>Failed to fetch data</td></tr>}
                     { isPending &&  <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr> }
-                    { !isPending && (currentData == "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
+                    { !isPending && (currentData === "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
                     {   
                         currentData.filter( val =>{
                             if(q === ''){

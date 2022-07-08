@@ -310,7 +310,7 @@ td button{
   padding: 1px;
   position: fixed;
 }
-:hover{
+.clientNav nav:hover{
   color: orange;
 }
 .clientNav nav ul{

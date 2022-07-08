@@ -1,11 +1,13 @@
 import '../index.css'
-import { BrowserRouter as Route, Switch} from 'react-router-dom';
-import Categories from '../categories/Categories';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AdminNav from '../adminNav/AdminNav';
 import Products from '../products/Products';
 import AddProducts from '../products/AddProducts';
 import EditProducts from '../products/EditProducts';
 import ProductDetails from '../products/ProductDetails';
+import EditCategories from '../categories/EditCategories';
+import AddCategories from '../categories/AddCategories';
+import CategoryTable from '../categories/CategoryTable';
 
 const AdminDash = () => {
     return (
@@ -14,7 +16,11 @@ const AdminDash = () => {
                         <div className="admin_main">
                             <AdminNav />
                             <br />
+
                         <Switch>
+                            <Route path='/admin_dashboard/categories/:id'>
+                                <EditCategories />
+                            </Route>
                             <Route path='/admin_dashboard/categories'>
                             <div className="category_header">
                                 
@@ -22,7 +28,9 @@ const AdminDash = () => {
                             </div>
                             <br />
                             <br />
-                                <Categories />
+                                <AddCategories />
+                                    <br />
+                                <CategoryTable />
                             </Route>
                             <Route path='/admin_dashboard/products'>
                             <div className="category_header">
@@ -99,6 +107,7 @@ const AdminDash = () => {
                                 users
                             </Route>
                         </Switch>
+                        
 
                         </div>
                 

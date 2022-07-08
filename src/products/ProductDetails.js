@@ -156,7 +156,7 @@ const ProductDetails = () => {
                         Edit
                     </Link>
                     <button onClick={handleDelete} style={{backgroundColor:'darkred', color:'white'}}>Delete</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <button onClick={handleCancel}>Back</button>
             </div>
             <br />
             <br />
