@@ -27,11 +27,14 @@ const TopProducts = () => {
         <div class='productList'>
             { products.map(product =>(
                 <div className="product">
-                    {product._id}
+                    <img src={require(`../uploads/${product.preview1}`)} width='218px' height='150px' alt="" />
+                    <br />
+                    <div style={{paddingTop:'2px'}}>{product.prodName}</div>
+                   <div style={{color:'#030c3b', paddingTop:'2px'}}>Ksh. {product.price}</div> 
                 </div>
             ))
             }
-
+        
         </div> 
     );
 }

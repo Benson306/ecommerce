@@ -335,10 +335,9 @@ td button{
   box-shadow: 1px 1px 8px 0px #888888;
   padding: 5px;
   color: black;
-  
+  width: 100%;
 }
 .categ{
-  /* border-bottom: 1px solid #030c3b; */
   padding: 10px;
 }
 .categ:hover{
@@ -360,12 +359,11 @@ td button{
   display: flex;
 }
 .list{
-  width: 20%;
+  width: 25%;
   margin-left: 2%;
 }
 .topProducts{
-  margin-left: 2%;
-  margin-right: 3%;
+  margin-right: 2%;
   width: 74%;
   color: black;
 }
@@ -401,6 +399,8 @@ td button{
   box-shadow: 1px 1px 8px 0px #888888;
   padding: 5px;
   color: black;
+  font-size: 16px;
   margin-right: 2%;
-  width:30%;
+  width:22%;
+  height: 200px;
 }

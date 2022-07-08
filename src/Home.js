@@ -44,6 +44,8 @@ const Home = () => {
                 </div>
                 <div className="topProducts">
                     <TopProducts />
+                    <br />
+                    <br />
                 </div>
                 
                 
