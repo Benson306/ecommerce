@@ -359,11 +359,11 @@ td button{
   display: flex;
 }
 .list{
-  width: 25%;
+  width: 20%;
   margin-left: 2%;
 }
 .topProducts{
-  margin-right: 2%;
+  margin-left: 2%;
   width: 74%;
   color: black;
 }

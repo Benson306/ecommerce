@@ -24,10 +24,13 @@ const TopProducts = () => {
 
 
     return ( 
-        <div class='productList'>
+        <div className="prd">
+            <div className="topTitile" style={{fontSize:'18px', fontWeight:'bolder'}}>Top Products:</div>
+            <div class='productList'>
+            
             { products.map(product =>(
                 <div className="product">
-                    <img src={require(`../uploads/${product.preview1}`)} width='218px' height='150px' alt="" />
+                    <img src={require(`../uploads/${product.preview1}`)} width='220px' height='150px' alt="" />
                     <br />
                     <div style={{paddingTop:'2px'}}>{product.prodName}</div>
                    <div style={{color:'#030c3b', paddingTop:'2px'}}>Ksh. {product.price}</div> 
@@ -36,6 +39,9 @@ const TopProducts = () => {
             }
         
         </div> 
+
+        </div>
+        
     );
 }
  
