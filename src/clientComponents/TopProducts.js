@@ -25,7 +25,7 @@ const TopProducts = () => {
 
     return ( 
         <div className="prd">
-            <div className="topTitile" style={{fontSize:'18px', fontWeight:'bolder'}}>Top Products:</div>
+            <div className="topTitile">Top Products:</div>
             <div class='productList'>
             
             { products.map(product =>(
