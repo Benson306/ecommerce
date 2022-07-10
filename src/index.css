@@ -431,7 +431,8 @@ td button{
   background-color: white;
   width: 60%;
   margin-right: 3%;
-  padding: 10px;
+  padding: 2px;
+  display: block;
 }
 .delivery{
   background-color: white;
@@ -449,4 +450,45 @@ td button{
   padding: 10px;
   width: 80%;
   margin-top: 1%;
+}
+.topArea{
+  display: flex;
+  padding: 10px;
+}
+.pics{
+  width: 30%;
+}
+.moreImages{
+  display: block;
+}
+.moreImages :hover{
+  border: 1px solid #030c3b;
+}
+.topDetails{
+  padding: 5px;
+  width: 70%;
+}
+.prodHeading{
+  font-size: larger;
+  padding: 5px;
+}
+.prodBody{
+  font-size: large;
+  padding: 5px;
+}
+.prodFooter{
+  font-size: large;
+  font-weight: bolder;
+  padding: 5px;
+}
+.topDetails button{
+  background-color: orange;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  width: 80%;
+  padding:10px;
+  margin-left: 10%;
+  border: 1px solid orange;
+  margin-top: 5%;
 }
