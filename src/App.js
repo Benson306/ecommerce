@@ -1,25 +1,26 @@
-import AdminLogin from './admin/AdminLogin';
 import { BrowserRouter as  Router, Route, Switch } from 'react-router-dom'
+import $ from 'jquery';
+import 'react-notifications-component/dist/theme.css'
+
+
+import AdminLogin from './admin/AdminLogin';
 import AdminDash from './admin/AdminDash';
 import AdminSidebar  from './admin/AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import Datatable from './Datatable/Datatable'
 import Home from './Home';
 
 function App() {
+
+
   return (
     <Router>
     <div className="App">
     <ReactNotifications />
         
           <Switch>
-          Home
-            <Route exact path='/'>
-              <Home />
-
+            <Route path='/'>
+                <Home />
             </Route>
-
 
             <Route path='/admin'>
                 <AdminLogin />
@@ -31,18 +32,14 @@ function App() {
                 <AdminDash />
               </div>
 
+            </Route>
 
-                
-            </Route>
-            <Route path='/datatable'>
-              <Datatable />
-            </Route>
+            <Route exact path='*'>
+                    404 Not Found
+                </Route>
 
           </Switch>
           
-        
-      
-      
     </div>
     </Router>
   );

@@ -1,11 +1,11 @@
+import $ from 'jquery'
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
+
 import ListCategories from './clientComponents/ListCategories';
 import Search from './clientComponents/Search';
 import Nav from './Nav/Nav';
-import $ from 'jquery'
-import TopProducts from './clientComponents/TopProducts';
-import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import Preview from './clientComponents/Preview';
-
+import TopProducts from './clientComponents/TopProducts';
 
 const Home = () => {
     $(function(){
@@ -25,13 +25,16 @@ const Home = () => {
 
     return ( 
         <div class="home">
+            <Router>
+
             <Nav />
             <br />
             <br />
             <br />
             <br />
-        <Router>
+        
             <Switch>
+
                 <Route exact path='/'>
 
                         <div className="carou">

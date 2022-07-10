@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
     return ( <div className='clientNav'>
         <nav>
             <ul>
                 <li style={{marginTop:'5px'}}>
+                  <Link to="/">
                     <img src={require('../images/menu.png')} alt="" width="30px"/>
+                  </Link>  
                 </li>
 
                 <li style={{fontSize:'22px',marginTop:'5px'}}>Ecomm</li>
