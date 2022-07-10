@@ -3,6 +3,8 @@ import Search from './clientComponents/Search';
 import Nav from './Nav/Nav';
 import $ from 'jquery'
 import TopProducts from './clientComponents/TopProducts';
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
+import Preview from './clientComponents/Preview';
 
 
 const Home = () => {
@@ -28,28 +30,43 @@ const Home = () => {
             <br />
             <br />
             <br />
-            <div className="carou">
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                    <Search />
-            </div>
-            <br />
-            <div className="banner">
-                <div className="list">
-                    <ListCategories />
-                </div>
-                <div className="topProducts">
-                    <TopProducts />
+        <Router>
+            <Switch>
+                <Route exact path='/'>
+
+                        <div className="carou">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                            <Search />
+                    </div>
                     <br />
-                    <br />
-                </div>
+                    <div className="banner">
+                        <div className="list">
+                            <ListCategories />
+                        </div>
+                        <div className="topProducts">
+                            <TopProducts />
+                            <br />
+                            <br />
+                        </div>
+                        
+                        
+                    </div>
                 
-                
-            </div>
+                </Route> 
+
+                <Route path='/preview/:id'>
+                    <Preview />
+                </Route>
+
+            </Switch>
+        </Router>
+            
+            
             
         </div>
         
