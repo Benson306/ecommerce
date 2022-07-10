@@ -458,6 +458,14 @@ td button{
 .pics{
   width: 30%;
 }
+.pics button{
+  background-color:orange;
+  visibility: visible;
+}
+.pics button:hover{
+  visibility: visible;
+  background-color: orange;
+}
 .moreImages{
   display: block;
 }
@@ -466,7 +474,8 @@ td button{
 }
 .topDetails{
   padding: 5px;
-  width: 70%;
+  width: 68%;
+  margin-left: 2%;
 }
 .prodHeading{
   font-size: larger;
@@ -486,9 +495,8 @@ td button{
   color: white;
   font-size: 14px;
   text-align: center;
-  width: 80%;
+  width: 90%;
   padding:10px;
-  margin-left: 10%;
   border: 1px solid orange;
-  margin-top: 5%;
+  margin-top: 18%;
 }

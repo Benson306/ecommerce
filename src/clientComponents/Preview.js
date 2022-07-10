@@ -1,5 +1,11 @@
 import {useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
+
 
 const Preview = () => {
     const { id } = useParams();
@@ -7,6 +13,7 @@ const Preview = () => {
     const [product, setProduct] = useState([]);
     const [pending , setPending] = useState(true);
     const [error, setError] = useState('');
+
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -32,7 +39,13 @@ const Preview = () => {
 
     },[])
 
-    
+    let settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
 
     return ( <div className="previewPage">
         { pending && <div>Loading ....</div> }
@@ -40,7 +53,21 @@ const Preview = () => {
                 <div className="slideshow">
                     <div className="topArea">
                         <div className="pics">
-                            <img src={require(`../uploads/${product.preview1}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
+
+                            <Slider {...settings} style={{width:'89%', marginLeft:'6%'}}>
+                                <div>
+                                    <img src={require(`../uploads/${product.preview1}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
+                                </div>
+                                <div>
+                                    <img src={require(`../uploads/${product.preview2}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
+                                </div>
+                                <div>
+                                    <img src={require(`../uploads/${product.preview3}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
+                                </div>
+                                <div>
+                                    <img src={require(`../uploads/${product.preview4}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
+                                </div>
+                            </Slider>
                             <br />
                             <br />
                             <div className="moreImages">
