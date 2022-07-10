@@ -12,7 +12,7 @@ const Preview = () => {
 
     const [product, setProduct] = useState([]);
     const [pending , setPending] = useState(true);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(false);
 
 
     useEffect(()=>{
@@ -22,16 +22,18 @@ const Preview = () => {
         .then((res)=>{
             if(!res.ok){
                 setPending(false);
+                setError(true)
             }else{
                 return res.json();
             }
         })
         .then((res)=>{
+            setError(false)
             setProduct(res);
             setPending(false);
         })
         .catch((err)=>{
-            setError(err.mesage);
+            setError(true);
             setPending(false);
         })
 
@@ -48,13 +50,14 @@ const Preview = () => {
       };
 
     return ( <div className="previewPage">
+        { error && <div>Failed to fetch Data.. Try again</div>}
         { pending && <div>Loading ....</div> }
         {!pending && <div className="topPreview">
                 <div className="slideshow">
                     <div className="topArea">
                         <div className="pics">
 
-                            <Slider {...settings} style={{width:'89%', marginLeft:'6%'}}>
+                            <Slider {...settings} style={{marginLeft:'6%', marginRight:'2%'}}>
                                 <div>
                                     <img src={require(`../uploads/${product.preview1}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
                                 </div>
@@ -79,7 +82,14 @@ const Preview = () => {
                         </div>
                         <div className="topDetails">
                             <div className="prodHeading">{product.prodName}</div>
-                            <div className="prodBody">Category: {product.categ}</div>
+                            <div className="prodBody">
+                                Category: {product.categ}
+                                <br />
+                                <br />
+                                Share Product:
+                                <br />
+                                <br />
+                            </div>
                             <div className="prodFooter">Ksh. {product.price}</div>
                             <button>Add to Cart</button>
                         </div>
@@ -89,9 +99,71 @@ const Preview = () => {
                     Delivery Details
                 </div>
         </div>}
-        <div className="detailsPreview">
-            More details
+
+        {!pending && <div className="detailsPreview">
+            <div className="specHeading">SPECIFICATIONS</div>
+            <hr />
+            <br />
+            <div className="upper">
+                <div className="features">
+                    <div className="extraHeading">
+                        Key Features:
+                    </div>
+                    <div className="extrabody">
+                        {product.prodDetails}
+                    </div>
+                </div>
+                <div className="features">
+                    <div className="extraHeading">
+                        Specifications:
+                    </div>
+                    <div className="extrabody">
+                        <b>Weight:</b> {product.weight}
+                    </div>
+                </div>
+            </div>
+            <div className="features">
+                <div className="extraHeading">
+                    Whats in the Box:
+                </div>
+                <div className="extrabody">
+                    {product.inBox}
+                </div>
+            </div>
         </div>
+        }
+        {!pending && <div className="detailsPreview">
+            <div className="specHeading">SPECIFICATIONS</div>
+            <hr />
+            <br />
+            <div className="upper">
+                <div className="features">
+                    <div className="extraHeading">
+                        Key Features:
+                    </div>
+                    <div className="extrabody">
+                        {product.prodDetails}
+                    </div>
+                </div>
+                <div className="features">
+                    <div className="extraHeading">
+                        Specifications:
+                    </div>
+                    <div className="extrabody">
+                        <b>Weight:</b> {product.weight}
+                    </div>
+                </div>
+            </div>
+            <div className="features">
+                <div className="extraHeading">
+                    Whats in the Box:
+                </div>
+                <div className="extrabody">
+                    {product.inBox}
+                </div>
+            </div>
+        </div>
+        }
         <div className='moreProducts'>
             More Products
         </div>

@@ -430,35 +430,43 @@ td button{
 .slideshow{
   background-color: white;
   width: 60%;
-  margin-right: 3%;
-  padding: 2px;
+  margin-right: 1%;
+  padding: 10px;
   display: block;
+  border-radius: 5px;
 }
 .delivery{
   background-color: white;
   padding: 10px;
-  width: 32%;
+  width: 35%;
+  border-radius: 5px;
 }
 .detailsPreview{
   background-color: white;
   padding: 10px;
   width: 80%;
   margin-top: 1%;
+  border-radius: 5px;
 }
 .moreProducts{
   background-color: white;
   padding: 10px;
   width: 80%;
   margin-top: 1%;
+  border-radius: 5px;
 }
 .topArea{
   display: flex;
   padding: 10px;
 }
 .pics{
-  width: 30%;
+  width: 40%;
+}
+.pics img{
+  margin: 0 auto;
 }
 .pics button{
+  border-radius: 50%;
   background-color:orange;
   visibility: visible;
 }
@@ -469,12 +477,15 @@ td button{
 .moreImages{
   display: block;
 }
+.moreImages img{
+  padding: 1px;
+}
 .moreImages :hover{
   border: 1px solid #030c3b;
 }
 .topDetails{
   padding: 5px;
-  width: 68%;
+  width: 58%;
   margin-left: 2%;
 }
 .prodHeading{
@@ -499,4 +510,26 @@ td button{
   padding:10px;
   border: 1px solid orange;
   margin-top: 18%;
+}
+.upper{
+  display: flex;
+  margin-bottom: 2%;
+}
+.specHeading{
+  padding: 10px;
+}
+.features{
+  padding: 5px;
+  width: 50%;
+  margin-right: 5%;
+}
+.extraHeading{
+  border: 1px solid black;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+.extrabody{
+  border: 1px solid gray;
+  padding: 10px;
 }
