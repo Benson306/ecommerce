@@ -132,38 +132,7 @@ const Preview = () => {
             </div>
         </div>
         }
-        {!pending && <div className="detailsPreview">
-            <div className="specHeading">SPECIFICATIONS</div>
-            <hr />
-            <br />
-            <div className="upper">
-                <div className="features">
-                    <div className="extraHeading">
-                        Key Features:
-                    </div>
-                    <div className="extrabody">
-                        {product.prodDetails}
-                    </div>
-                </div>
-                <div className="features">
-                    <div className="extraHeading">
-                        Specifications:
-                    </div>
-                    <div className="extrabody">
-                        <b>Weight:</b> {product.weight}
-                    </div>
-                </div>
-            </div>
-            <div className="features">
-                <div className="extraHeading">
-                    Whats in the Box:
-                </div>
-                <div className="extrabody">
-                    {product.inBox}
-                </div>
-            </div>
-        </div>
-        }
+        
         <div className='moreProducts'>
             More Products
         </div>
