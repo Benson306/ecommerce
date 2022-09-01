@@ -4,6 +4,8 @@ import '../index.css';
 const TopProducts = () => {
 
     const [products, setProducts] = useState([]);
+    const [isPending, setPending] = useState(true);
+    const [isError, setError] = useState(false);
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -18,6 +20,11 @@ const TopProducts = () => {
         })
         .then(res=>{
             setProducts(res);
+            setPending(false)
+        })
+        .catch(err =>{
+            setPending(false);
+            setError(true);
         })
 
         return () => abortCont.abort();
@@ -28,7 +35,13 @@ const TopProducts = () => {
         <div className="prd">
             <div className="topTitile">Top Products:</div>
             <div class='productList'>
-            { products.map(product =>(
+            {
+                isPending && <div>Loading...</div>
+            }
+            {
+                isError && <div>Failed to Fetch Products</div>
+            }
+            { !isPending && isError && products.map(product =>(
                 
                 <div className="product">
                     <Link to={`/preview/${product._id}`}>

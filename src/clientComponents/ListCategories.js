@@ -48,7 +48,7 @@ const ListCategories = () => {
                 isPending && <div>Loading ...</div>
             }
             {
-                !isPending && categories.map(category =>(
+                !isPending && !error && categories.map(category =>(
                     <div className="categ" key={category._id}>
                        <Link to={`/products/categories/${category._id}`}>
                             {category.categ}
