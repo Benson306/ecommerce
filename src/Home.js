@@ -25,14 +25,14 @@ const Home = () => {
 
     return ( 
         <div class="home">
-            <Router>
+            
 
             <Nav />
             <br />
             <br />
             <br />
             <br />
-        
+            <Router>
             <Switch>
 
                 <Route exact path='/'>

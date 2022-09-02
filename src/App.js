@@ -8,6 +8,8 @@ import AdminDash from './admin/AdminDash';
 import AdminSidebar  from './admin/AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
 import Home from './Home';
+import Preview from './clientComponents/Preview';
+import Nav from './Nav/Nav';
 
 function App() {
 
@@ -33,10 +35,19 @@ function App() {
               </div>
 
             </Route>
-
-            <Route exact path='*'>
-                    404 Not Found
+            <div className="home">
+                <Nav />
+                <br />
+                <br />
+                <br />
+                <br />
+                <Route path='/preview/:id'>
+                    <Preview />
                 </Route>
+            </div>
+            <Route path='*'>
+                    404 Not Found
+            </Route>
 
           </Switch>
           

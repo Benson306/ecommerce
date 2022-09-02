@@ -14,7 +14,6 @@ const Preview = () => {
     const [pending , setPending] = useState(true);
     const [error, setError] = useState(false);
 
-
     useEffect(()=>{
         const abortCont = new AbortController();
 
@@ -37,6 +36,8 @@ const Preview = () => {
             setPending(false);
         })
 
+        
+
         return () => abortCont.Abort();
 
     },[])
@@ -49,6 +50,27 @@ const Preview = () => {
         slidesToScroll: 1
       };
 
+
+      function next(){
+        const slidesContainer = document.querySelector("#slides-container");
+        const slide = document.querySelector(".slide");
+
+          const slideWidth = slide.clientWidth;
+          slidesContainer.scrollLeft += slideWidth;
+
+          console.log(slideWidth)
+      };
+      
+      function back(){
+        const slidesContainer = document.querySelector("#slides-container");
+        const slide = document.querySelector(".slide");
+
+          const slideWidth = slide.clientWidth;
+          slidesContainer.scrollLeft -= slideWidth;
+      };
+
+        
+
     return ( <div className="previewPage">
         { error && <div>Failed to fetch Data.. Try again</div>}
         { pending && <div>Loading ....</div> }
@@ -57,27 +79,31 @@ const Preview = () => {
                     <div className="topArea">
                         <div className="pics">
 
-                            <Slider {...settings} style={{marginLeft:'6%', marginRight:'2%'}}>
-                                <div>
-                                    <img src={require(`../uploads/${product.preview1}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
-                                </div>
-                                <div>
-                                    <img src={require(`../uploads/${product.preview2}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
-                                </div>
-                                <div>
-                                    <img src={require(`../uploads/${product.preview3}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
-                                </div>
-                                <div>
-                                    <img src={require(`../uploads/${product.preview4}`)} width='200px' height='200px' style={{objectFit:'scale-down'}} alt="" />
-                                </div>
-                            </Slider>
+                        <section className="slider-wrapper">
+ 
+                            <button className="slide-arrow" onClick={back} id="slide-arrow-prev">
+                            &#8249;
+                            </button>
+                            
+                            <button className="slide-arrow" onClick={next} id="slide-arrow-next">
+                            &#8250;
+                            </button>
+                            
+                            <ul className="slides-container" id="slides-container">
+                                <li className="slide"><img src={require(`../uploads/${product.preview1}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={require(`../uploads/${product.preview2}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={require(`../uploads/${product.preview3}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={require(`../uploads/${product.preview4}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                            </ul>
+                        </section>
+                            
                             <br />
                             <br />
                             <div className="moreImages">
-                                <img src={require(`../uploads/${product.preview1}`)} width='50px' height='50px' style={{objectFit:'scale-down'}} alt="" />
-                                <img src={require(`../uploads/${product.preview2}`)} width='50px' height='50px' style={{objectFit:'scale-down'}} alt="" />
-                                <img src={require(`../uploads/${product.preview3}`)} width='50px' height='50px' style={{objectFit:'scale-down'}} alt="" />
-                                <img src={require(`../uploads/${product.preview4}`)} width='50px' height='50px' style={{objectFit:'scale-down'}} alt="" />
+                                <img src={require(`../uploads/${product.preview1}`)} width='50px' height='50px' alt="" />
+                                <img src={require(`../uploads/${product.preview2}`)} width='50px' height='50px' alt="" />
+                                <img src={require(`../uploads/${product.preview3}`)} width='50px' height='50px' alt="" />
+                                <img src={require(`../uploads/${product.preview4}`)} width='50px' height='50px' alt="" />
                             </div>
                         </div>
                         <div className="topDetails">
@@ -133,6 +159,45 @@ const Preview = () => {
         </div>
         }
         
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
+        <div className='moreProducts'>
+            More Products
+        </div>
         <div className='moreProducts'>
             More Products
         </div>
