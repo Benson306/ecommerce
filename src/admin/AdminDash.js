@@ -8,13 +8,10 @@ import ProductDetails from '../products/ProductDetails';
 import EditCategories from '../categories/EditCategories';
 import AddCategories from '../categories/AddCategories';
 import CategoryTable from '../categories/CategoryTable';
-
 import '../index.css'
 
 const AdminDash = () => {
     return (
-            
-        
                         <div className="admin_main">
                             <AdminNav />
                             <br />
@@ -112,8 +109,6 @@ const AdminDash = () => {
                         
 
                         </div>
-                
-        
      );
 }
  

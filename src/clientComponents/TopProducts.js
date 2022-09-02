@@ -41,7 +41,7 @@ const TopProducts = () => {
             {
                 isError && <div>Failed to Fetch Products</div>
             }
-            { !isPending && isError && products.map(product =>(
+            { !isPending && !isError && products.map(product =>(
                 
                 <div className="product">
                     <Link to={`/preview/${product._id}`}>
