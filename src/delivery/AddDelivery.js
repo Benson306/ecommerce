@@ -36,8 +36,6 @@ const AddDelivery = () => {
 
     },[])
 
-    console.log(counties);
-
     function notify(title, message, type){
         Store.addNotification({
             title: title,

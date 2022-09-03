@@ -106,14 +106,14 @@ const DeliveryTable = () => {
             {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger")}
             {isPending && <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr>}
             { !isPending && (currentData === "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
-            { currentData.filter( categ =>{
+            { currentData.filter( location =>{
                 if(q === ''){
-                    return categ;
+                    return location;
                 }else if(
-                    categ._id.toLowerCase().includes(q.toLowerCase()) ||
-                    categ.categ.toLowerCase().includes(q.toLowerCase())
+                    location.location.toLowerCase().includes(q.toLowerCase()) ||
+                    location.county.toLowerCase().includes(q.toLowerCase())
                 ){
-                    return categ;
+                    return location;
                 }
             }).map( location =>(
                 <tr key={location._id}>
