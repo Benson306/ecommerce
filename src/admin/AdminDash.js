@@ -9,6 +9,7 @@ import EditCategories from '../categories/EditCategories';
 import AddCategories from '../categories/AddCategories';
 import CategoryTable from '../categories/CategoryTable';
 import '../index.css'
+import AddDelivery from '../delivery/AddDelivery';
 
 const AdminDash = () => {
     return (
@@ -85,6 +86,15 @@ const AdminDash = () => {
                                 <br />
                                 <br />
                                     orders
+                                </Route>
+                                <Route path='/admin_dashboard/delivery'>
+                                <div className="category_header">
+                                    DELIVERY DETAILS
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                    <AddDelivery />
                                 </Route>
                                 <Route path='/admin_dashboard/profile'>
                                 <div className="category_header">

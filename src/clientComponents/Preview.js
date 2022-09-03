@@ -1,10 +1,7 @@
 import {useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 
 
@@ -42,14 +39,6 @@ const Preview = () => {
         return () => abortCont.Abort();
 
     },[])
-
-    let settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
 
 
       function next(){
@@ -200,45 +189,7 @@ const Preview = () => {
         <div className='moreProducts'>
             More Products
         </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <div className='moreProducts'>
-            More Products
-        </div>
+        <br /><br />
         
     </div> );
 }

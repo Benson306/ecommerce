@@ -242,5 +242,9 @@ app.put('/edit_pic4/:id', upload.single('file4'), function(req, res){
 })
 
 
+app.get('/counties', function(req, res){
+    
+})
+
 
 app.listen(8001)

@@ -642,3 +642,25 @@ td button{
 .checked {
   color: orange;
 }
+
+.add_delivery{
+  display: block;
+  margin-left: 10%;
+}
+.add_delivery select{
+  width: 61%;
+}
+.add_delivery input{
+  border: 1px solid gray;
+  padding: 10px;
+}
+.add_delivery input[type=text]{
+  width: 60%;
+}
+.add_delivery input[type=submit]{
+  background-color: orange;
+  padding: 10px;
+  color: black;
+  margin-left: 0%;
+  border: none;
+}
