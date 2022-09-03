@@ -4,8 +4,8 @@ import { Store } from 'react-notifications-component';
 
 const AddDelivery = () => {
 
-    const [categ, setCateg] = useState('');
-    const categs = {categ}
+    const [location, setLocation] = useState('');
+    const [county, setCounty] = useState('');
 
     const [counties, setCounties] = useState([]);
     const [isPending, setPending] = useState(true);
@@ -54,6 +54,25 @@ const AddDelivery = () => {
         }) 
     }
 
+    const data = { location, county };
+    function handleSubmit(e){
+        e.preventDefault();
+        e.target.value = null;
+
+        fetch('/delivery',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        }).then(()=>{
+            e.target.reset()
+           notify("Success","Delivery Station Added","success")
+        }).catch( (err)=>{
+            console.log(err)
+            notify("Failed","Server Error. Try Again.","danger")
+        })
+
+    }
+
 
 
     
@@ -62,13 +81,13 @@ const AddDelivery = () => {
     Add Delivery Point:
     <br />
     <br />
-    <form className="add_delivery">
+    <form onSubmit={handleSubmit} className="add_delivery">
         Select County:
         <br /><br />
         {
                 error && <div style={{color:'red'}}>Failed to fetch Counties</div>
         }
-        <select name="" id="" required>
+        <select name="" id="" required onChange={(e) => setCounty(e.target.value)} >
             
             <option value=""></option>
             {
@@ -79,13 +98,14 @@ const AddDelivery = () => {
                 !isPending && !error && counties.map(county =>(
                         <option key={county.code} value={county.code}>{county.name}</option>
                 ))
-            }
+            } 
         </select>
         <br /><br />
         Specify Pickup Point:
         <br /><br />
         <input 
         type="text"
+        onChange={(e) => setLocation(e.target.value)} 
         placeholder="Pickup Point"
         required
         />

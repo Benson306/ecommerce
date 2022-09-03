@@ -241,9 +241,17 @@ app.put('/edit_pic4/:id', upload.single('file4'), function(req, res){
     
 })
 
+let deliverySchema = new mongoose.Schema({
+    location: String,
+    county: String
+})
 
-app.get('/counties', function(req, res){
-    
+let Delivery = mongoose.model('locations', deliverySchema)
+
+app.post('/delivery', urlEncoded, function(req, res){
+    Delivery(req.body).save(function(err,data){
+        res.json(data);
+    })
 })
 
 
