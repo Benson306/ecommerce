@@ -129,7 +129,38 @@ const Preview = () => {
                     </div>
                 </div>
                 <div className="delivery">
-                    Delivery Details
+                    <div className="deliveryHeader">
+                        <img src={require("../images/fast-delivery.png")} alt="" /> Delivery Details
+                    </div>
+                    <div className="deliveryBody">
+                        <form action="">
+                        Delivery Type:
+                            <br />
+                            <select name="" id="" required>
+                                <option value=""></option>
+                                <option value="">Door Delivery</option>
+                                <option value="">PickUp Point</option>
+                            </select>
+                            <br />
+                        Choose County:
+                        <br />
+                            <select name="" id="" required>
+                                <option value=""></option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Trans Nzoia">Trans Nzoia</option>
+                            </select>
+                        Select Pickup Location:
+                        <br />
+                            <select name="" id="" required>
+                                <option value=""></option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Trans Nzoia">Trans Nzoia</option>
+                            </select>
+                        <br />
+                        <button type='submit'>Set Pickup Location</button>
+                        </form>
+                    </div>
+                    
                 </div>
         </div>}
 

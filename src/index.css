@@ -439,9 +439,38 @@ td button{
 }
 .delivery{
   background-color: #f0f0f0;
-  padding: 10px;
+  padding: 15px;
   width: 25%;
   border-radius: 5px;
+}
+.deliveryHeader{
+  display: flex;
+  justify-content: center;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  margin-bottom: 5%;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+.deliveryBody{
+  padding: 0px;
+}
+.deliveryBody select{
+  margin:2%;
+  border: 1px solid black;
+  width: 90%;
+}
+.deliveryBody button{
+  background-color: #030c3b;
+  color: white;
+  border: 1px solid #030c3b;
+  padding: 10px;
+  margin-top: 2%;
+  margin-left: 23%;
 }
 .detailsPreview{
   background-color: white;
