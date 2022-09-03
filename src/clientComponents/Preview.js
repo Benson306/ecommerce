@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import Slider from "react-slick";
+import { Link } from 'react-router-dom';
 
 
 const Preview = () => {
@@ -96,9 +97,6 @@ const Preview = () => {
                                 <li className="slide"><img src={require(`../uploads/${product.preview4}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
                             </ul>
                         </section>
-                            
-                            <br />
-                            <br />
                             <div className="moreImages">
                                 <img src={require(`../uploads/${product.preview1}`)} width='50px' height='50px' alt="" />
                                 <img src={require(`../uploads/${product.preview2}`)} width='50px' height='50px' alt="" />
@@ -109,14 +107,23 @@ const Preview = () => {
                         <div className="topDetails">
                             <div className="prodHeading">{product.prodName}</div>
                             <div className="prodBody">
-                                Category: {product.categ}
+                                Category: <Link to="">{product.categ}</Link> 
                                 <br />
                                 <br />
-                                Share Product:
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
                                 <br />
+                                <div className="prodFooter">Ksh {product.price}</div>
                                 <br />
+                                SHARE THIS PRODUCT:
+                                <br />
+                                <Link><img src={require("../images/facebook.png")} width="30px" style={{objectFit:'scale-down', marginRight:'5px'}} alt="" /></Link>
+                                <Link><img src={require("../images/twitter.png")} width="30px" style={{objectFit:'scale-down'}} alt="" /></Link>
+                                
                             </div>
-                            <div className="prodFooter">Ksh. {product.price}</div>
                             <button>Add to Cart</button>
                         </div>
                     </div>
