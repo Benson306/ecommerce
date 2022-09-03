@@ -254,5 +254,11 @@ app.post('/delivery', urlEncoded, function(req, res){
     })
 })
 
+app.get('/delivery', urlEncoded, function(req, res){
+    Delivery.find({},function(err,data){
+        res.json(data);
+    })
+})
+
 
 app.listen(8001)

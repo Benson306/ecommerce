@@ -13,7 +13,7 @@ const AddDelivery = () => {
 
     useEffect(()=>{
         const AbortCont = new AbortController();
-        fetch('https://counties-kenya.herokuapp.com/api/v1', {signal: AbortCont.signal})
+        fetch('https://counties-kenya.herokuapp.com/api/v1?order=name&dir=asc', {signal: AbortCont.signal})
         .then(res=>{
             if(res.ok){
                 return res.json();
@@ -80,7 +80,6 @@ const AddDelivery = () => {
     <br />
     Add Delivery Point:
     <br />
-    <br />
     <form onSubmit={handleSubmit} className="add_delivery">
         Select County:
         <br /><br />
@@ -96,7 +95,7 @@ const AddDelivery = () => {
             
             {
                 !isPending && !error && counties.map(county =>(
-                        <option key={county.code} value={county.code}>{county.name}</option>
+                        <option key={county.code} value={county.name}>{county.name}</option>
                 ))
             } 
         </select>
