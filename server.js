@@ -260,5 +260,11 @@ app.get('/delivery', urlEncoded, function(req, res){
     })
 })
 
+app.get('/delivery/:id', urlEncoded, function(req, res){
+    Delivery.findById(req.params.id,function(err,data){
+        res.json(data);
+    })
+})
+
 
 app.listen(8001)

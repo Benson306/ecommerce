@@ -99,6 +99,15 @@ const AdminDash = () => {
                                     <br />
                                     <DeliveryTable />
                                 </Route>
+                                <Route path='/admin_dashboard/edit_delivery/:id'>
+                                <div className="category_header">
+                                    DELIVERY DETAILS
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                    <EditProducts />
+                                </Route>
                                 <Route path='/admin_dashboard/profile'>
                                 <div className="category_header">
                                     MANAGE MY PROFILE

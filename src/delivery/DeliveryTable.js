@@ -103,7 +103,7 @@ const DeliveryTable = () => {
 
             </thead>
             <tbody>
-            {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger")}
+            {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger") && <tr><td colspan={8} style={{textAlign:'center'}}>Failed To fetch Data</td></tr>}
             {isPending && <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr>}
             { !isPending && (currentData === "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
             { currentData.filter( location =>{
@@ -120,7 +120,7 @@ const DeliveryTable = () => {
                     <td>{location.county}</td>
                     <td>{location.location}</td>
                     <td>
-                        <Link to={ `/admin_dashboard/categories/${location._id}` }>
+                        <Link to={ `/admin_dashboard/edit_delivery/${location._id}` }>
                             <img src={require('../images/editing.png')} width='20px' alt="" />
                         </Link>
                     </td>
