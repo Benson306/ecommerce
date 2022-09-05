@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Store } from 'react-notifications-component';
 
 const Login = () => {
     const [ email, setEmail ] = useState(null);
     const [ password, setPassword ] = useState(null);
+
+    const history = useHistory();
 
     const data = {email, password};
 
@@ -42,6 +44,7 @@ const Login = () => {
                 notify("Failed","Wrong Credentials. Try Again","danger");
             }else{
                 notify("Success","Logged In","success");
+                history.push('/');
             }
         })
         .catch((err)=>{

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../index.css'
 import { Store } from 'react-notifications-component';
 
@@ -9,6 +9,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+
+    const history = useHistory();
 
     const data = { email, phone, password };
 
@@ -39,10 +41,10 @@ const Login = () => {
             body: JSON.stringify(data)
         })
         .then(()=>{
-            e.target.reset()
+            e.target.reset();
            notify("Success","You have been registered Succesfully","success");
+           history.push('/login')
         }).catch( (err)=>{
-            console.log(err)
             notify("Failed","Server Error. Try Again.","danger")
         })
     }
