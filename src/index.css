@@ -664,3 +664,46 @@ td button{
   margin-left: 0%;
   border: none;
 }
+
+.login{
+
+}
+.login form{
+  background-color: #030c3b;
+  padding: 20px;
+  width: 40%;
+  margin-left: 30%;
+  color: white;
+  margin-top: 10%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+}
+.login form label{
+  color: orange;
+  margin-left: 10%;
+}
+.login form input{
+  padding: 10px;
+  width: 80%;
+  margin-left: 10%;
+}
+.login form input[type="submit"]{
+  padding: 10px;
+  width: 30%;
+  margin-left: 10%;
+  background-color: orange;
+  color: black;
+  border: 1px solid orange;
+}
+.login .btn{
+  display: flex;
+  margin-top: 5px;
+  justify-content: right;
+}
+.login a{
+  margin-right: 10%;
+  color: yellow;
+}
+.login a:hover{
+  color: orange;
+}

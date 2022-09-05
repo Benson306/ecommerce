@@ -17,7 +17,7 @@ const Nav = () => {
                     
                 </li>
 
-                <li style={{display:'flex'}}> <img src={require('../images/user.png')} width="25px" height="25px" style={{marginTop:'5%'}} alt="" /> <div style={{marginTop:'10%',marginLeft:'2%'}}>Account</div></li>
+                <li style={{display:'flex'}}> <img src={require('../images/user.png')} width="25px" height="25px" style={{marginTop:'5%'}} alt="" /> <div style={{marginTop:'10%',marginLeft:'2%'}}><Link to="/login">Account</Link></div></li>
 
                 <li style={{display:'flex'}}> <img src={require('../images/shopping-cart.png')} width="25px" height="30px" style={{marginTop:'5%'}} alt="" /> <div style={{marginTop:'10px',marginLeft:'5%'}}>Cart</div></li>
 

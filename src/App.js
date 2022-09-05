@@ -10,6 +10,7 @@ import { ReactNotifications } from 'react-notifications-component'
 import Home from './Home';
 import Preview from './clientComponents/Preview';
 import Nav from './Nav/Nav';
+import Login from './clientComponents/Login';
 
 function App() {
 
@@ -26,6 +27,17 @@ function App() {
 
             <Route path='/admin'>
                 <AdminLogin />
+            </Route>
+
+            <Route path='/login'>
+              <div className="home">
+                  <Nav />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                <Login />
+              </div>
             </Route>
 
             <Route path='/admin_dashboard'>
