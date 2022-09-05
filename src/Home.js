@@ -6,6 +6,8 @@ import Search from './clientComponents/Search';
 import Nav from './Nav/Nav';
 import Preview from './clientComponents/Preview';
 import TopProducts from './clientComponents/TopProducts';
+import Login from './clientComponents/Login';
+import Register from './clientComponents/Register';
 
 const Home = () => {
     $(function(){
@@ -27,13 +29,13 @@ const Home = () => {
         <div class="home">
             
 
-                <Nav />
-                <br />
-                <br />
-                <br />
-                <br />
-                <Router>
-                <Switch>
+            <Nav />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Router>
+            <Switch>
 
                 <Route exact path='/'>
 
@@ -60,11 +62,37 @@ const Home = () => {
                         
                     </div>
                 
-                    </Route> 
+                </Route> 
 
-                    <Route path='/preview/:id'>
-                        <Preview />
-                    </Route>
+                <Route path='/login'>
+              <div className="home">
+                  <Nav />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                <Login />
+              </div>
+            </Route>
+
+            <Route path='/Register'>
+              <div className="home">
+                  <Nav />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                <Register />
+              </div>
+              </Route>
+
+                <Route path='/preview/:id'>
+                    <Preview />
+                </Route>
+
+                <Route path='*'>
+                    404 Not Found
+                </Route>
 
             </Switch>
         </Router>
