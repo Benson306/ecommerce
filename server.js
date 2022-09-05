@@ -266,5 +266,10 @@ app.get('/delivery/:id', urlEncoded, function(req, res){
     })
 })
 
+app.delete('/del_delivery/:id', function(req, res){
+    Delivery.findByIdAndDelete(req.params.id, function(err,data){
+        res.json(data)
+    })
+})
 
 app.listen(8001)

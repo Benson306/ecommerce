@@ -73,7 +73,7 @@ const DeliveryTable = () => {
     }
 
     const handleDelete = (id)=>{
-        fetch('/del_categories/'+ id,{
+        fetch('/del_delivery/'+ id,{
             method: 'DELETE'
         })
         .then(()=>{
@@ -106,7 +106,7 @@ const DeliveryTable = () => {
             {error && notify("Failed To fetch Data", "Server Error. Reload Page.","danger") && <tr><td colspan={8} style={{textAlign:'center'}}>Failed To fetch Data</td></tr>}
             {isPending && <tr><td colspan={8} style={{textAlign:'center'}}>Loading...</td></tr>}
             { !isPending && (currentData === "" ) && <tr><td colspan={8} style={{textAlign:'center'}}>No data</td></tr>}
-            { currentData.filter( location =>{
+            { currentData.reverse().filter( location =>{
                 if(q === ''){
                     return location;
                 }else if(
