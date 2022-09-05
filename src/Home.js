@@ -27,13 +27,13 @@ const Home = () => {
         <div class="home">
             
 
-            <Nav />
-            <br />
-            <br />
-            <br />
-            <br />
-            <Router>
-            <Switch>
+                <Nav />
+                <br />
+                <br />
+                <br />
+                <br />
+                <Router>
+                <Switch>
 
                 <Route exact path='/'>
 
@@ -60,11 +60,11 @@ const Home = () => {
                         
                     </div>
                 
-                </Route> 
+                    </Route> 
 
-                <Route path='/preview/:id'>
-                    <Preview />
-                </Route>
+                    <Route path='/preview/:id'>
+                        <Preview />
+                    </Route>
 
             </Switch>
         </Router>
