@@ -11,6 +11,7 @@ import CategoryTable from '../categories/CategoryTable';
 import '../index.css'
 import AddDelivery from '../delivery/AddDelivery';
 import DeliveryTable from '../delivery/DeliveryTable';
+import EditDelivery from '../delivery/EditDelivery';
 
 const AdminDash = () => {
     return (
@@ -106,7 +107,7 @@ const AdminDash = () => {
                                 <br />
                                 <br />
                                 <br />
-                                    <EditProducts />
+                                    <EditDelivery />
                                 </Route>
                                 <Route path='/admin_dashboard/profile'>
                                 <div className="category_header">

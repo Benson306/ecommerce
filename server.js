@@ -272,4 +272,10 @@ app.delete('/del_delivery/:id', function(req, res){
     })
 })
 
+app.put('/edit_delivery/:id', urlEncoded, function(req, res){
+    Delivery.findByIdAndUpdate(req.params.id, req.body ,{new: true}, function(err,data){
+        res.json(data);
+    })
+})
+
 app.listen(8001)
