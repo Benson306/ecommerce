@@ -278,4 +278,18 @@ app.put('/edit_delivery/:id', urlEncoded, function(req, res){
     })
 })
 
+let registerSchema = new mongoose.Schema({
+    email: String,
+    phone: String,
+    password: String
+});
+
+let Register = mongoose.model('users', registerSchema)
+
+app.post('/register', urlEncoded, function(req, res){
+    Register(req.body).save(function(err, data){
+        res.json(data)
+    });
+});
+
 app.listen(8001)
