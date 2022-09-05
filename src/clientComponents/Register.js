@@ -40,7 +40,7 @@ const Login = () => {
         })
         .then(()=>{
             e.target.reset()
-           notify("Success","You have been registered Succesfully","success")
+           notify("Success","You have been registered Succesfully","success");
         }).catch( (err)=>{
             console.log(err)
             notify("Failed","Server Error. Try Again.","danger")

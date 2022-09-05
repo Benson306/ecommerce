@@ -292,4 +292,14 @@ app.post('/register', urlEncoded, function(req, res){
     });
 });
 
+
+app.post('/login', urlEncoded, function(req, res){
+    Register.find({$and: [{email:{$eq: req.body.email}},{password:{$eq: req.body.password}}]}, function(err, data){
+        if(data.length === 0){
+            res.status(400).json('failed');
+        }else{
+            res.status(200).json('success');
+        }
+    })
+})
 app.listen(8001)
