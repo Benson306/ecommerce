@@ -11,6 +11,7 @@ import Home from './Home';
 import Preview from './clientComponents/Preview';
 import Nav from './Nav/Nav';
 import Login from './clientComponents/Login';
+import Register from './clientComponents/Register';
 
 function App() {
 
@@ -28,7 +29,16 @@ function App() {
             <Route path='/admin'>
                 <AdminLogin />
             </Route>
-
+            <Route path='/preview/:id'>
+              <div className="home">
+                  <Nav />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <Preview />
+              </div>
+            </Route>
             <Route path='/login'>
               <div className="home">
                   <Nav />
@@ -39,6 +49,16 @@ function App() {
                 <Login />
               </div>
             </Route>
+            <Route path='/Register'>
+              <div className="home">
+                  <Nav />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                <Register />
+              </div>
+            </Route>
 
             <Route path='/admin_dashboard'>
               <div className="adminDash">
@@ -47,16 +67,7 @@ function App() {
               </div>
 
             </Route>
-            <div className="home">
-                <Nav />
-                <br />
-                <br />
-                <br />
-                <br />
-                <Route path='/preview/:id'>
-                    <Preview />
-                </Route>
-            </div>
+            
             <Route path='*'>
                     404 Not Found
             </Route>

@@ -45,10 +45,12 @@ const TopProducts = () => {
                 
                 <div className="product">
                     <Link to={`/preview/${product._id}`}>
-                        <img src={require(`../uploads/${product.preview1}`)} width='220px' height='150px' style={{objectFit:'scale-down'}} alt="" />
+                        <img src={require(`../uploads/${product.preview1}`)} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
                         <br />
-                        <div style={{paddingTop:'2px'}}>{product.prodName}</div>
-                    <div style={{color:'#030c3b', paddingTop:'2px'}}>Ksh. {product.price}</div> 
+                        <div className="bottom">
+                            <div style={{paddingTop:'2px'}}>{product.prodName}</div>
+                            <div style={{color:'#030c3b', paddingTop:'2px'}}>Ksh. {product.price}</div> 
+                        </div>
                    </Link>
                    
                 </div>
