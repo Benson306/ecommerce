@@ -4,10 +4,12 @@ import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import ListCategories from './clientComponents/ListCategories';
 import Search from './clientComponents/Search';
 import Nav from './Nav/Nav';
+import LoggedNav from './Nav/LoggedNav';
 import Preview from './clientComponents/Preview';
 import TopProducts from './clientComponents/TopProducts';
 import Login from './clientComponents/Login';
 import Register from './clientComponents/Register';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
     $(function(){
@@ -25,11 +27,29 @@ const Home = () => {
         });
     });
 
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(()=>{
+        const abortCont = new AbortController;
+
+        fetch('/auth', {signal: abortCont.signal})
+        .then((res)=>{
+            if(res.ok){
+                setLoggedIn(true);
+            }else{
+                setLoggedIn(false);
+            }
+        })
+
+        return () => abortCont.abort();
+    },[loggedIn])
+
     return ( 
         <div class="home">
             
 
-            <Nav />
+            { !loggedIn && <Nav />}
+            { loggedIn && <LoggedNav />}
             <br />
             <br />
             <br />
@@ -65,26 +85,12 @@ const Home = () => {
                 </Route> 
 
                 <Route path='/login'>
-              <div className="home">
-                  <Nav />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                <Login />
-              </div>
-            </Route>
+                    <Login />
+                </Route>
 
-            <Route path='/Register'>
-              <div className="home">
-                  <Nav />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                <Register />
-              </div>
-              </Route>
+                <Route path='/Register'>
+                    <Register />
+                </Route>
 
                 <Route path='/preview/:id'>
                     <Preview />

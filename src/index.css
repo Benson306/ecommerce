@@ -323,8 +323,11 @@ td button{
   color: white;
   padding: 12px;
   list-style: none;
-  margin-right: 5%;
+  margin-right: 3%;
   text-transform: uppercase;
+}
+.clientNav nav ul li a{
+  font-size: medium;
 }
 .clientNav nav ul li input{
   width: 100%;

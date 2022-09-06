@@ -333,4 +333,26 @@ app.post('/login', urlEncoded, function(req, res){
         }
     })
 })
+
+app.get('/auth', function(req,res){
+    if(req.session.isAuth){
+        res.status(200).json('success');
+    }else{
+        res.status(401).json('failed')
+    }
+});
+
+app.post('/logout', urlEncoded, function(req,res){
+    req.session.destroy(function(err){
+        if(err) throw (err)
+        // res.render('index', {data: ""})
+        res.redirect('/index')
+    });
+})
+
+app.get('/logout', urlEncoded, function(req,res){
+    req.session.destroy(function(err){
+        res.status(200).json('success');
+    })
+})
 app.listen(8001)
