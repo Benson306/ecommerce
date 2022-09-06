@@ -41,7 +41,7 @@ const Home = () => {
             }
         })
 
-        return () => abortCont.abort();
+        return () =>abortCont.abort();
     },[loggedIn])
 
     return ( 
@@ -54,8 +54,6 @@ const Home = () => {
             <br />
             <br />
             <br />
-            <Router>
-            <Switch>
 
                 <Route exact path='/'>
 
@@ -83,25 +81,6 @@ const Home = () => {
                     </div>
                 
                 </Route> 
-
-                <Route path='/login'>
-                    <Login />
-                </Route>
-
-                <Route path='/Register'>
-                    <Register />
-                </Route>
-
-                <Route path='/preview/:id'>
-                    <Preview />
-                </Route>
-
-                <Route path='*'>
-                    404 Not Found
-                </Route>
-
-            </Switch>
-        </Router>
             
             
             
