@@ -309,9 +309,16 @@ let registerSchema = new mongoose.Schema({
 let Register = mongoose.model('users', registerSchema)
 
 app.post('/register', urlEncoded, function(req, res){
-    Register(req.body).save(function(err, data){
-        res.json(data)
-    });
+    Register.find({$or: [{email:{$eq :req.body.email}},{phone: {$eq: req.body.phone}}]},function(err,data){
+            if(data.length !== 0){
+                res.status(409).json('exists');
+            }else{
+                Register(req.body).save(function(err, data){
+                    res.status(200).json('registered')
+                });
+            } 
+    })
+    
 });
 
 
@@ -322,7 +329,6 @@ app.post('/login', urlEncoded, function(req, res){
         }else{
             req.session.isAuth = true;
             req.session.userId = data[0]._id;
-            console.log(req.session.userId);
             res.status(200).json('success');
         }
     })

@@ -5,6 +5,7 @@ import { Store } from 'react-notifications-component';
 const Login = () => {
     const [ email, setEmail ] = useState(null);
     const [ password, setPassword ] = useState(null);
+    const [ pending, setPending ] = useState(false);
 
     const history = useHistory();
 
@@ -27,6 +28,7 @@ const Login = () => {
     };
 
     const handleSubmit = (e) =>{
+        setPending(true);
         e.preventDefault();
         e.target.value = null;
 
@@ -46,9 +48,11 @@ const Login = () => {
                 notify("Success","Logged In","success");
                 history.push('/');
             }
+            setPending(false);
         })
         .catch((err)=>{
             notify("Failed","Server Error","danger");
+            setPending(false);
         })
     }
 
@@ -59,14 +63,15 @@ const Login = () => {
             <div style={{justifyContent:'center', textAlign:'center'}}>LOGIN</div>
             <label htmlFor="">Email:</label> 
             <br />
-            <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+            <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
             <br />
             <br />
             <label htmlFor="">Password:</label>
             <br />
-            <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required />
             <br /><br />
-            <input type="submit" value="Login" />
+            { !pending && <input type="submit" value="Login" /> }
+            { pending && <input type="submit" value="Loading ...." style={{backgroundColor:'maroon', color:'white'}}/> }
             <br />
             <div className="btn">
                 <Link to="">Forgot Password?</Link>

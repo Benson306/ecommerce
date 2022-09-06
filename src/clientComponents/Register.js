@@ -9,6 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [pending, setPending]= useState(false);
 
     const history = useHistory();
 
@@ -32,6 +33,7 @@ const Login = () => {
 
 
     const handleSubmit = (e) =>{
+        setPending(true);
         e.preventDefault();
         e.target.value = null;
 
@@ -40,12 +42,22 @@ const Login = () => {
             headers: {'content-Type':'application/json'},
             body: JSON.stringify(data)
         })
-        .then(()=>{
-            e.target.reset();
-           notify("Success","You have been registered Succesfully","success");
-           history.push('/login')
+        .then((response)=>{
+            return response.json();
+        })
+        .then(response=>{
+            if(response === 'registered'){
+                e.target.reset();
+                notify("Success","You have been registered Succesfully","success");
+                history.push('/login')
+            }else if(response === 'exists'){
+                notify("Failed","Credentials Have Been Used","danger");
+            }
+            setPending(false);
+            
         }).catch( (err)=>{
-            notify("Failed","Server Error. Try Again.","danger")
+            setPending(false);
+            notify("Failed","Server Error. Try Again.","danger");
         })
     }
 
@@ -68,7 +80,8 @@ const Login = () => {
             <br />
             <input type="password" placeholder="Password" onChange={e =>setPassword(e.target.value)} required/>
             <br /><br />
-            <input type="submit" value="Register" style={{backgroundColor:'darkgoldenorange'}}/>
+            { !pending && <input type="submit" value="Register" style={{backgroundColor:'darkgoldenorange'}}/> }
+            { pending && <input type="submit" value="Loading ..." style={{backgroundColor:'maroon', color:'white'}}/> }
             <br />
             <div className="btn">
                 <Link to="/login" style={{textDecoration:'none', color:'white'}}>Already Have an account? Login Here</Link>
