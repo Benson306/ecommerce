@@ -11,8 +11,9 @@ let urlEncoded = bodyParser.urlencoded({extended: false});
 app.use(express.json())
 
 let mongoose= require('mongoose');
+let mongoURI = 'mongodb+srv://benson306:benson306@bencluster.axe8t.mongodb.net/ecommerce?retryWrites=true&w=majority'
 
-mongoose.connect('mongodb+srv://benson306:benson306@bencluster.axe8t.mongodb.net/ecommerce?retryWrites=true&w=majority');
+mongoose.connect(mongoURI);
 
 const cors = require("cors");
 app.use(cors());
@@ -38,6 +39,27 @@ let upload = multer({
 });
 
 
+let session = require('express-session');
+let sessionStore = require('connect-mongodb-session')(session);
+let store = new sessionStore({
+    uri: mongoURI,
+    collection:'userSessions'
+});
+
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: false,
+    resave: false,
+    store: store
+}))
+
+let isAuth = function(req, res, next){
+    if(req.session.isAuth){
+        next();
+    }else{
+        res.redirect('/login');
+    }
+}
 
 let categoriesSchema = new mongoose.Schema({
     categ: String
@@ -298,6 +320,9 @@ app.post('/login', urlEncoded, function(req, res){
         if(data.length === 0){
             res.status(400).json('failed');
         }else{
+            req.session.isAuth = true;
+            req.session.userId = data[0]._id;
+            console.log(req.session.userId);
             res.status(200).json('success');
         }
     })
