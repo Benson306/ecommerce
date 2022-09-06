@@ -683,6 +683,7 @@ td button{
 .login form label{
   color: orange;
   margin-left: 10%;
+  padding: 5px;
 }
 .login form input{
   padding: 10px;

@@ -1,4 +1,4 @@
-import { BrowserRouter as  Router, Route, Switch } from 'react-router-dom'
+import { Redirect ,BrowserRouter as  Router, Route, Switch } from 'react-router-dom'
 import $ from 'jquery';
 import 'react-notifications-component/dist/theme.css'
 
@@ -16,6 +16,7 @@ import ListCategories from './clientComponents/ListCategories';
 import Search from './clientComponents/Search';
 import LoggedNav from './Nav/LoggedNav';
 import TopProducts from './clientComponents/TopProducts';
+import Account from './clientComponents/Account'
 
   function App() {
     $(function(){
@@ -48,7 +49,7 @@ import TopProducts from './clientComponents/TopProducts';
       })
 
       return () => abortCont.abort();
-  },[loggedIn])
+  },[])
 
   return (
     <Router>
@@ -117,6 +118,16 @@ import TopProducts from './clientComponents/TopProducts';
                   <br />
                   <br />
                 <Register />
+              </div>
+            </Route>
+           <Route path='/account'>
+              <div className="home">
+                <LoggedNav />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+              {loggedIn ? <Account /> : <Redirect to="/login" />}
               </div>
             </Route>
 
