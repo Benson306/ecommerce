@@ -154,7 +154,7 @@ body{
 .adminNav .navRight{
   display: flex;
   text-align: right;
-  margin-left: 80%;
+  margin-left: 75%;
   position:inherit;
 }
 .add_product{
