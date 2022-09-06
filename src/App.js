@@ -7,7 +7,6 @@ import AdminLogin from './admin/AdminLogin';
 import AdminDash from './admin/AdminDash';
 import AdminSidebar  from './admin/AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
-import Home from './Home';
 import Preview from './clientComponents/Preview';
 import Nav from './Nav/Nav';
 import Login from './clientComponents/Login';
