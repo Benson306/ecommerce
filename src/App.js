@@ -12,7 +12,6 @@ import Nav from './Nav/Nav';
 import Login from './clientComponents/Login';
 import Register from './clientComponents/Register';
 import { useEffect, useState } from 'react';
-
 import ListCategories from './clientComponents/ListCategories';
 import Search from './clientComponents/Search';
 import LoggedNav from './Nav/LoggedNav';
@@ -37,7 +36,7 @@ import TopProducts from './clientComponents/TopProducts';
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(()=>{
-      const abortCont = new AbortController;
+      const abortCont = new AbortController();
 
       fetch('/auth', {signal: abortCont.signal})
       .then((res)=>{
@@ -48,7 +47,7 @@ import TopProducts from './clientComponents/TopProducts';
           }
       })
 
-      return () =>abortCont.abort();
+      return () => abortCont.abort();
   },[loggedIn])
 
   return (
@@ -87,13 +86,10 @@ import TopProducts from './clientComponents/TopProducts';
                     </div>                
               </div>
             </Route>
-
-            <Route path='/admin'>
-                <AdminLogin />
-            </Route>
             <Route path='/preview/:id'>
               <div className="home">
-                  <Nav />
+                  { !loggedIn && <Nav />}
+                  { loggedIn && <LoggedNav />}
                   <br />
                   <br />
                   <br />
@@ -103,7 +99,8 @@ import TopProducts from './clientComponents/TopProducts';
             </Route>
             <Route path='/login'>
               <div className="home">
-                  <Nav />
+                  { !loggedIn && <Nav />}
+                  { loggedIn && <LoggedNav />}
                   <br />
                   <br />
                   <br />
@@ -113,7 +110,8 @@ import TopProducts from './clientComponents/TopProducts';
             </Route>
             <Route path='/Register'>
               <div className="home">
-                  <Nav />
+                  { !loggedIn && <Nav />}
+                  { loggedIn && <LoggedNav />}
                   <br />
                   <br />
                   <br />
@@ -122,12 +120,14 @@ import TopProducts from './clientComponents/TopProducts';
               </div>
             </Route>
 
+            <Route path='/admin'>
+                <AdminLogin />
+            </Route>
             <Route path='/admin_dashboard'>
               <div className="adminDash">
                 <AdminSidebar /> 
                 <AdminDash />
               </div>
-
             </Route>
             
             <Route path='*'>

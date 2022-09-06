@@ -10,6 +10,10 @@ const Login = () => {
     const history = useHistory();
 
     const data = {email, password};
+    
+    useEffect(()=>{
+
+    });
 
     function notify(title, message, type){
         Store.addNotification({
@@ -28,6 +32,7 @@ const Login = () => {
     };
 
     const handleSubmit = (e) =>{
+        const abortCont = new AbortController();
         setPending(true);
         e.preventDefault();
         e.target.value = null;
@@ -36,7 +41,7 @@ const Login = () => {
             method:'POST',
             headers: {'content-Type':'application/json'},
             body: JSON.stringify(data)
-        })
+        },{signal: abortCont.signal})
         .then((data)=>{
             return data.json();
         })
@@ -47,6 +52,7 @@ const Login = () => {
             }else{
                 notify("Success","Logged In","success");
                 history.push('/');
+                window.location.reload();
             }
             setPending(false);
         })
@@ -54,6 +60,8 @@ const Login = () => {
             notify("Failed","Server Error","danger");
             setPending(false);
         })
+
+        return () => abortCont.abort();
     }
 
     

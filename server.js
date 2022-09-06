@@ -342,14 +342,6 @@ app.get('/auth', function(req,res){
     }
 });
 
-app.post('/logout', urlEncoded, function(req,res){
-    req.session.destroy(function(err){
-        if(err) throw (err)
-        // res.render('index', {data: ""})
-        res.redirect('/index')
-    });
-})
-
 app.get('/logout', urlEncoded, function(req,res){
     req.session.destroy(function(err){
         res.status(200).json('success');

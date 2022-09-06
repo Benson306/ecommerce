@@ -10,7 +10,7 @@ const TopProducts = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products/',{signal: abortCont.signal})
+        fetch('/products',{signal: abortCont.signal})
         .then(res=>{
             if(!res.ok){
                 setPending(false);
