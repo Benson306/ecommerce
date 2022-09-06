@@ -22,6 +22,7 @@ const ListCategories = () => {
         })
         .then((response)=>{
             setPending(false);
+            setError(false);
             setCategories(response);
         })
         .catch(err=>{
@@ -35,7 +36,7 @@ const ListCategories = () => {
             setPending(false);
         })
 
-        return ()=> abortCont.Abort();
+        return ()=> abortCont.abort();
     },[])
 
 

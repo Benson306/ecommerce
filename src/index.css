@@ -146,6 +146,7 @@ body{
 .adminNav nav ul li a{
   text-decoration: none;
   color: white;
+  text-transform: uppercase;
 }
 .adminNav nav ul li a:hover{
   color: orange;
@@ -323,6 +324,7 @@ td button{
   padding: 12px;
   list-style: none;
   margin-right: 5%;
+  text-transform: uppercase;
 }
 .clientNav nav ul li input{
   width: 100%;

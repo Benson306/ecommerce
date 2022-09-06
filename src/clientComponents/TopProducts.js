@@ -13,14 +13,16 @@ const TopProducts = () => {
         fetch('/products',{signal: abortCont.signal})
         .then(res=>{
             if(!res.ok){
-
+                setPending(false);
+                setError(true);
             }else{
                 return res.json();
             }
         })
         .then(res=>{
             setProducts(res);
-            setPending(false)
+            setPending(false);
+            setError(false);
         })
         .catch(err =>{
             setPending(false);
@@ -28,7 +30,7 @@ const TopProducts = () => {
         })
 
         return () => abortCont.abort();
-    },[]);
+    },[products]);
 
 
     return ( 
