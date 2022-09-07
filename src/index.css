@@ -309,7 +309,7 @@ td button{
 .clientNav nav{
   width: 100%;
   background-color: #030c3b;
-  padding: 1px;
+  padding: 0px;
   position: fixed;
   z-index: 100;
 }
