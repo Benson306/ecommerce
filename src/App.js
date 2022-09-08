@@ -18,6 +18,7 @@ import LoggedNav from './Nav/LoggedNav';
 import TopProducts from './clientComponents/TopProducts';
 import Personal from './clientComponents/Personal';
 import ProfileSidebar from './clientComponents/ProfileSidebar';
+import EditPersonal from './clientComponents/EditPersonal';
 
   function App() {
     $(function(){
@@ -121,13 +122,6 @@ import ProfileSidebar from './clientComponents/ProfileSidebar';
                 <Register />
               </div>
             </Route>
-           {/* <Route path='/account'>
-              
-              {loggedIn ? <Account /> : <Redirect to="/login" />}
-              </div>
-            </Route> */}
-        
-
             <Route path='/account/personal'>
               <div className="home">
                   <LoggedNav />
@@ -140,6 +134,23 @@ import ProfileSidebar from './clientComponents/ProfileSidebar';
                       </div>
                       <div className="right">
                         <Personal />
+                      </div>
+                    </div>
+              </div>
+              
+            </Route>
+            <Route path='/account/edit_personal'>
+              <div className="home">
+                  <LoggedNav />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="profile">
+                      <div className="left">
+                          <ProfileSidebar />
+                      </div>
+                      <div className="right">
+                          <EditPersonal />
                       </div>
                     </div>
               </div>

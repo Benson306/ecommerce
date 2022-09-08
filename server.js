@@ -352,5 +352,11 @@ app.get('/profile', function(req,res){
     Register.findById(req.session.userId, function(err, data){
         res.status(200).json(data)
     })
+});
+
+app.put('/edit_profile', function(req,res){
+    Register.findByIdAndUpdate(req.session.userId, req.body, {new: true}, function(err,data){
+        res.status(200).json('success');
+    })
 })
 app.listen(8001)

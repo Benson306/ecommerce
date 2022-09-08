@@ -724,7 +724,7 @@ td button{
   margin-top: 2.5%;
 }
 .personal h1{
-  background-color: #888888;
+  /* background-color: #888888; */
   padding: 10px;
 border-radius: 5px;
 margin-bottom: 1%;
@@ -746,4 +746,24 @@ margin-bottom: 1%;
   font-weight: bold;
   border: 1px solid maroon;
   margin-right: 5%;
+}
+.personal .details button a{
+  text-decoration: none;
+  color: #030c3b;
+}
+.personal input {
+  padding: 8px;
+  width: 40%;
+  margin-bottom: 1%;
+}
+.personal input[type="submit"] {
+  padding: 8px;
+  width: 20%;
+  margin-bottom: 1%;
+  background-color: orange;
+  border: 1px solid orange;
+  border-radius: 5px;
+}
+.personal label{
+  font-size: large;
 }
