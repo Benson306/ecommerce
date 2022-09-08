@@ -371,8 +371,8 @@ let addressSchema = new mongoose.Schema({
 let Address = mongoose.model('addresses', addressSchema);
 
 app.get('/address', function(req,res){
-    Address.find({userId: req.session.userID}, function(err, data){
-        res.status(200).json('success')
+    Address.find({userId: req.session.userId}, function(err, data){
+        res.status(200).json(data[0])
     });
 });
 

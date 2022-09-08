@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Store } from 'react-notifications-component';
 import { useHistory ,useParams } from 'react-router-dom';
 
-const EditDeliveryAdrr = () => {
+const AddDeliveryAdrr = () => {
 
     const [ type, setType ] = useState(null);
     const [ county, setCounty ] = useState('');
@@ -188,4 +188,4 @@ const EditDeliveryAdrr = () => {
     );
 }
  
-export default EditDeliveryAdrr;
+export default AddDeliveryAdrr;

@@ -20,7 +20,7 @@ import Personal from './clientComponents/Personal';
 import ProfileSidebar from './clientComponents/ProfileSidebar';
 import EditPersonal from './clientComponents/EditPersonal';
 import Delivery from './clientComponents/Delivery';
-import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
+import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
 
   function App() {
     $(function(){
@@ -185,7 +185,7 @@ import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
                           <ProfileSidebar />
                       </div>
                       <div className="right">
-                        <EditDeliveryAdrr />
+                        <AddDeliveryAdrr />
                       </div>
                     </div>
               </div>

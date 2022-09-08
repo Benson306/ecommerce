@@ -771,17 +771,30 @@ margin-bottom: 1%;
 .deliv{
   background-color: #f0f0f0;
   padding: 15px;
-  width: 60%;
   border-radius: 5px;
-  margin-left: 20%;
+  margin-right: 0%;
 }
 .deliveryBody .title{
   color: maroon;
-  font-size: large;
+  font-size: larger;
   font-weight: bold;
 }
-
+.deliveryBody .body{
+  color: black;
+  font-size: large;
+  padding: 5px;
+}
+.deliveryBody .body::first-letter {
+  text-transform:capitalize;
+}
+.deliveryBody form{
+  width: 80%;
+  margin-left: 10%;
+}
 .deliveryBody form textarea{
   margin-left: 2%;
   border: 1px solid black;
+}
+.deliveryBody form button{
+  margin-left: 40%;
 }
