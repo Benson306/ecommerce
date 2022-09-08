@@ -346,5 +346,11 @@ app.get('/logout', urlEncoded, function(req,res){
     req.session.destroy(function(err){
         res.status(200).json('success');
     })
+});
+
+app.get('/profile', function(req,res){
+    Register.findById(req.session.userId, function(err, data){
+        res.status(200).json(data)
+    })
 })
 app.listen(8001)

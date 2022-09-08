@@ -312,6 +312,7 @@ td button{
   padding: 0px;
   position: fixed;
   z-index: 100;
+  box-shadow: 0px 15px 10px -15px #111; 
 }
 .clientNav nav:hover{
   color: orange;
@@ -709,4 +710,40 @@ td button{
 }
 .login a:hover{
   color: orange;
+}
+
+.profile{
+  display: flex;
+  
+}
+.profile .right{
+  background-color: #f0f0f0;
+  margin-left: 21%;
+  width: 75%;
+  padding: 10px;
+  margin-top: 2.5%;
+}
+.personal h1{
+  background-color: #888888;
+  padding: 10px;
+border-radius: 5px;
+margin-bottom: 1%;
+}
+.personal .details{
+  padding: 10px;
+}
+.personal .details .title{
+  font-size: larger;
+  color: maroon;
+  font-weight: bolder;
+}
+.personal .details .body{
+  padding-bottom: 10px;
+}
+.personal .details button{
+  padding: 10px;
+  float: right;
+  font-weight: bold;
+  border: 1px solid maroon;
+  margin-right: 5%;
 }

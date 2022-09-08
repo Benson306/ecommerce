@@ -16,7 +16,8 @@ import ListCategories from './clientComponents/ListCategories';
 import Search from './clientComponents/Search';
 import LoggedNav from './Nav/LoggedNav';
 import TopProducts from './clientComponents/TopProducts';
-import Account from './clientComponents/Account'
+import Personal from './clientComponents/Personal';
+import ProfileSidebar from './clientComponents/ProfileSidebar';
 
   function App() {
     $(function(){
@@ -120,14 +121,44 @@ import Account from './clientComponents/Account'
                 <Register />
               </div>
             </Route>
-           <Route path='/account'>
-              <div className="home">
-                <LoggedNav />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
+           {/* <Route path='/account'>
+              
               {loggedIn ? <Account /> : <Redirect to="/login" />}
+              </div>
+            </Route> */}
+        
+
+            <Route path='/account/personal'>
+              <div className="home">
+                  <LoggedNav />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="profile">
+                      <div className="left">
+                          <ProfileSidebar />
+                      </div>
+                      <div className="right">
+                        <Personal />
+                      </div>
+                    </div>
+              </div>
+              
+            </Route>
+            <Route path='/account/delivery'>
+            <div className="home">
+                  <LoggedNav />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="profile">
+                      <div className="left">
+                          <ProfileSidebar />
+                      </div>
+                      <div className="right">
+                        123
+                      </div>
+                    </div>
               </div>
             </Route>
 
