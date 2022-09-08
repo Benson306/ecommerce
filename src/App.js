@@ -19,6 +19,8 @@ import TopProducts from './clientComponents/TopProducts';
 import Personal from './clientComponents/Personal';
 import ProfileSidebar from './clientComponents/ProfileSidebar';
 import EditPersonal from './clientComponents/EditPersonal';
+import Delivery from './clientComponents/Delivery';
+import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
 
   function App() {
     $(function(){
@@ -167,7 +169,23 @@ import EditPersonal from './clientComponents/EditPersonal';
                           <ProfileSidebar />
                       </div>
                       <div className="right">
-                        123
+                        <Delivery />
+                      </div>
+                    </div>
+              </div>
+            </Route>
+            <Route path='/account/edit_delivery_addr'>
+            <div className="home">
+                  <LoggedNav />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="profile">
+                      <div className="left">
+                          <ProfileSidebar />
+                      </div>
+                      <div className="right">
+                        <EditDeliveryAdrr />
                       </div>
                     </div>
               </div>

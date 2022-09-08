@@ -767,3 +767,21 @@ margin-bottom: 1%;
 .personal label{
   font-size: large;
 }
+
+.deliv{
+  background-color: #f0f0f0;
+  padding: 15px;
+  width: 60%;
+  border-radius: 5px;
+  margin-left: 20%;
+}
+.deliveryBody .title{
+  color: maroon;
+  font-size: large;
+  font-weight: bold;
+}
+
+.deliveryBody form textarea{
+  margin-left: 2%;
+  border: 1px solid black;
+}

@@ -278,7 +278,7 @@ app.post('/delivery', urlEncoded, function(req, res){
 
 app.get('/delivery', urlEncoded, function(req, res){
     Delivery.find({},function(err,data){
-        res.json(data);
+        res.status(200).json(data);
     })
 })
 
@@ -359,4 +359,44 @@ app.put('/edit_profile', urlEncoded, function(req,res){
         res.status(200).json('success');
     })
 })
+
+let addressSchema = new mongoose.Schema({
+    type: String,
+    county: String,
+    pickup: String,
+    specificAddr: String,
+    userId: String
+})
+
+let Address = mongoose.model('addresses', addressSchema);
+
+app.get('/address', function(req,res){
+    Address.find({userId: req.session.userID}, function(err, data){
+        res.status(200).json('success')
+    });
+});
+
+app.post('/add_address', urlEncoded, function(req,res){
+    let user = {
+        userId : req.session.userId
+    }
+    let data ={ ...user, ...req.body}
+    Address(data).save(function(err, data){
+        res.status(200).json('success')
+    })
+});
+
+app.get('/county', urlEncoded, function(req, res){
+    Delivery.find({},{_id:0, location:0, __v:0},function(err,data){
+        res.status(200).json(data);
+    })
+});
+
+app.get('/county/:name', urlEncoded, function(req, res){
+    Delivery.find({county: req.params.name },{_id:0, county:0, __v:0},function(err,data){
+        res.status(200).json(data);
+    })
+})
+
+
 app.listen(8001)
