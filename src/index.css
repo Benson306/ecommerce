@@ -744,12 +744,12 @@ margin-bottom: 1%;
   padding: 10px;
   float: right;
   font-weight: bold;
-  border: 1px solid maroon;
+  border: 1px solid black;
   margin-right: 5%;
 }
 .personal .details button a{
   text-decoration: none;
-  color: #030c3b;
+  color: maroon;
 }
 .personal input {
   padding: 8px;
