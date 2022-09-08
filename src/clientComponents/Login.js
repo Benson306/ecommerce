@@ -46,11 +46,11 @@ const Login = () => {
             return data.json();
         })
         .then((data)=>{
-            e.target.reset()
             if(data==='failed'){
                 notify("Failed","Wrong Credentials. Try Again","danger");
             }else{
                 notify("Success","Logged In","success");
+                e.target.reset()
                 history.push('/');
                 window.location.reload();
             }

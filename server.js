@@ -354,7 +354,7 @@ app.get('/profile', function(req,res){
     })
 });
 
-app.put('/edit_profile', function(req,res){
+app.put('/edit_profile', urlEncoded, function(req,res){
     Register.findByIdAndUpdate(req.session.userId, req.body, {new: true}, function(err,data){
         res.status(200).json('success');
     })
