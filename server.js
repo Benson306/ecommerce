@@ -372,7 +372,12 @@ let Address = mongoose.model('addresses', addressSchema);
 
 app.get('/address', function(req,res){
     Address.find({userId: req.session.userId}, function(err, data){
-        res.status(200).json(data[0])
+        if(data.length !== 0){
+            res.status(200).json(data[0])
+        }else{
+            res.status(200).json('failed');
+        }
+        
     });
 });
 

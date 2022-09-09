@@ -1,28 +1,37 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AddDeliveryAdrr from "./AddDeliveryAddr";
 
 const Delivery = () => {
 
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState(false);
     const [ data, setData ] = useState([]);
+    const [found, setFound] = useState(true);
 
     useEffect(()=>{
         const abortCont = new AbortController();
 
         fetch('/address',{signal: abortCont.signal})
-        .then(res=>{
-            if(res.ok){
+        .then((res)=>{
+            if(res.status === 200){
                 return res.json();
             }else{
                 setLoading(false);
-                setError(true);
+                setError(false);
             }
         })
         .then(res =>{
+
             setLoading(false);
             setError(false);
-            setData(res);
+
+            if(res==='failed'){
+                setFound(false);
+            }else{
+                setFound(true);
+                setData(res);
+            }
         })
         .catch((err)=>{
             setLoading(false);
@@ -32,21 +41,28 @@ const Delivery = () => {
         return ()=> abortCont.abort();
     },[])
     let prefix = '';
-    if(data.type === 'pickup' ){
-        prefix = 'Point';
-    }else{
-        prefix = 'Delivery'
+
+    if(data !== null){
+        if(data.type === 'pickup' ){
+            prefix = 'Point';
+        }else{
+            prefix = 'Delivery'
+        }
     }
+    
 
     return ( 
         <div className="deliv">
-                    <div className="deliveryHeader">
-                        <img src={require("../images/fast-delivery.png")} alt="" />My Delivery Details
-                    </div>
-                    <div className="deliveryBody">
+                    
                         { loading && <div>Loading ...</div>}
                         { error && <div>Failed to Fetch Data</div>}
-                        { !loading && !error && 
+                        { !loading && !error && !found  && <AddDeliveryAdrr/> }
+                        { !loading && !error && found &&
+                        <div>
+                            <div className="deliveryHeader">
+                                <img src={require("../images/fast-delivery.png")} alt="" />My Delivery Details
+                            </div>
+                            <div className="deliveryBody">
                             <div className="ben">
                                 <button style={{float:'right', marginRight:'5%', backgroundColor:'transparent'}}><Link to="/account/edit_delivery_addr" style={{textDecoration:'none', color:'maroon'}}>Change Delivery Address</Link></button>
                                 <br />
@@ -55,7 +71,7 @@ const Delivery = () => {
                                 
                                 <div className="title">County:</div>
                                 <div className="body">{data.county}</div>
-                                
+                          
                                 
                                 {
                                     data.pickup !== '' ? <div className="title">Pick-up Point:</div> : <div className="title">Delivery Location:</div>
@@ -65,9 +81,10 @@ const Delivery = () => {
                                 }
                                 
                             </div>
+                        </div>
+                        </div> 
                         }
                     
-                    </div>
                     
                 </div>
     );

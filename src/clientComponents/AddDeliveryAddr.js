@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Store } from 'react-notifications-component';
-import { useHistory ,useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const AddDeliveryAdrr = () => {
 
@@ -111,8 +111,8 @@ const AddDeliveryAdrr = () => {
         })
         .then((res)=>{
             if(res.ok){
-                notify("Success","Delivery Address Added","success")
-                history.push('/admin_dashboard/delivery')
+                notify("Success","Delivery Address Added","success");
+                history.go(0);
             }else{
                 notify("Failed","Server Error. Retry","danger");
             }
@@ -128,7 +128,8 @@ const AddDeliveryAdrr = () => {
                         <img src={require("../images/fast-delivery.png")} alt="" />My Delivery Details
                     </div>
                     <div className="deliveryBody">
-
+                        <div style={{color:'maroon'}}>* You Have not Set A Delivery Address. Fill the form Below:</div>
+                        <br />
                         <form onSubmit={handleSubmit} action="">
                         Delivery Type:
                             <br />

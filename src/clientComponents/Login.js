@@ -11,10 +11,6 @@ const Login = () => {
 
     const data = {email, password};
     
-    useEffect(()=>{
-
-    });
-
     function notify(title, message, type){
         Store.addNotification({
             title: title,
