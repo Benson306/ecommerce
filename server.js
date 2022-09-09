@@ -391,6 +391,12 @@ app.post('/add_address', urlEncoded, function(req,res){
     })
 });
 
+app.put('/edit_address/:id', urlEncoded, function(req,res){
+    Address.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err,data){
+        res.status(200).json('success')
+    })
+});
+
 app.get('/county', urlEncoded, function(req, res){
     Delivery.find({},{_id:0, location:0, __v:0},function(err,data){
         res.status(200).json(data);

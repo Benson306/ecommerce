@@ -21,6 +21,7 @@ import ProfileSidebar from './clientComponents/ProfileSidebar';
 import EditPersonal from './clientComponents/EditPersonal';
 import Delivery from './clientComponents/Delivery';
 import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
+import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
 
   function App() {
     $(function(){
@@ -174,7 +175,7 @@ import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
                     </div>
               </div>
             </Route>
-            <Route path='/account/edit_delivery_addr'>
+            <Route path='/account/add_delivery_addr'>
             <div className="home">
                   <LoggedNav />
                     <br />
@@ -186,6 +187,22 @@ import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
                       </div>
                       <div className="right">
                         <AddDeliveryAdrr />
+                      </div>
+                    </div>
+              </div>
+            </Route>
+            <Route path='/account/edit_delivery_addr'>
+            <div className="home">
+                  <LoggedNav />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="profile">
+                      <div className="left">
+                          <ProfileSidebar />
+                      </div>
+                      <div className="right">
+                        <EditDeliveryAdrr />
                       </div>
                     </div>
               </div>
