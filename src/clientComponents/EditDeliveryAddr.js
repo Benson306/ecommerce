@@ -140,17 +140,19 @@ const EditDeliveryAdrr = () => {
     function handleSubmit(e){
         e.preventDefault();
         e.target.value = null;
-
+        let body = {};
         if(type === 'door'){
+            body = { type,county,pickup: '', specificAddr}
             setPickup('');
         }else if(type === 'pickup'){
-            setSpecific('');
+            body = { type,county,pickup, specificAddr:''}
         }
+
 
         fetch('/edit_address/'+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ type, county, pickup, specificAddr })
+            body: JSON.stringify(body)
         })
         .then((res)=>{
             if(res.ok){
