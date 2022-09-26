@@ -3,14 +3,36 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Store } from 'react-notifications-component';
 
 import { Link } from 'react-router-dom';
+import Delivery from './Delivery'
 
 
 const Preview = () => {
     const { id } = useParams();
+    const history = useHistory();
 
     const [product, setProduct] = useState([]);
     const [pending , setPending] = useState(true);
     const [error, setError] = useState(false);
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(()=>{
+        const abortCont = new AbortController();
+
+        fetch('/auth', {signal: abortCont.signal})
+        .then((res)=>{
+            if(res.ok){
+                setLoggedIn(true);
+                setLoading(false);
+            }else{
+                setLoggedIn(false);
+                setLoading(false);
+            }
+        })
+
+        return () => abortCont.abort();
+    },[])
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -70,31 +92,37 @@ const Preview = () => {
             animationIn: ["animate__animated", "animate__fadeIn"],
             animationOut: ["animate__animated", "animate__fadeOut"],
             dismiss: {
-            duration: 1000,
+            duration: 1500,
             onScreen: true
             }
         }) 
     };
 
       const handleAddToCart = () =>{
-          fetch('/add_cart',{
-              method:'POST',
-              headers: {'Content-Type':'application/json'},
-              body: JSON.stringify({ item_id: id })
-          })
-          .then((res)=>{
-              return res.json();
-          })
-          .then((res)=>{
-            if(res === 'sent'){
-                notify("Success","Added To Cart","success");
-            }else{
-                notify("Failed","Item already exists in your cart","danger");
-            }
-          })
-          .catch((err)=>{
-                console.log('error');
-          })
+          if(loggedIn === true){
+            fetch('/add_cart',{
+                method:'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({ item_id: id })
+            })
+            .then((res)=>{
+                return res.json();
+            })
+            .then((res)=>{
+              if(res === 'sent'){
+                  notify("Success","Added To Cart","success");
+              }else{
+                  notify("Failed","Item already exists in your cart","danger");
+              }
+            })
+            .catch((err)=>{
+                  console.log('error');
+            })
+          }else{
+            notify("Login","Login to Continue","info");
+            history.push('/login')
+          }
+          
       }
 
         
@@ -158,38 +186,7 @@ const Preview = () => {
                     </div>
                 </div>
                 <div className="delivery">
-                    <div className="deliveryHeader">
-                        <img src={require("../images/fast-delivery.png")} alt="" /> Delivery Details
-                    </div>
-                    <div className="deliveryBody">
-                        <form action="">
-                        Delivery Type:
-                            <br />
-                            <select name="" id="" required>
-                                <option value=""></option>
-                                <option value="">Door Delivery</option>
-                                <option value="">PickUp Point</option>
-                            </select>
-                            <br />
-                        Choose County:
-                        <br />
-                            <select name="" id="" required>
-                                <option value=""></option>
-                                <option value="Nairobi">Nairobi</option>
-                                <option value="Trans Nzoia">Trans Nzoia</option>
-                            </select>
-                        Select Pickup Location:
-                        <br />
-                            <select name="" id="" required>
-                                <option value=""></option>
-                                <option value="Nairobi">Nairobi</option>
-                                <option value="Trans Nzoia">Trans Nzoia</option>
-                            </select>
-                        <br />
-                        <button type='submit'>Set Pickup Location</button>
-                        </form>
-                    </div>
-                    
+                <Delivery />
                 </div>
         </div>}
 

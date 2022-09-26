@@ -767,7 +767,9 @@ margin-bottom: 1%;
 .personal label{
   font-size: large;
 }
-
+.delivery .deliv{
+  padding: 5px;
+}
 .deliv{
   background-color: #f0f0f0;
   padding: 15px;
