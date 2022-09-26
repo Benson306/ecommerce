@@ -212,7 +212,7 @@ import Cart from './clientComponents/Cart';
                     </div>
               </div>
             </Route>
-            <Route path='/cart/:id'>
+            <Route path='/cart'>
                       {
                         loading && <div>Loading ...</div>
                       }

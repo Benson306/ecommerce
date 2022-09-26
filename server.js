@@ -43,6 +43,7 @@ let upload = multer({
 
 
 let session = require('express-session');
+
 let sessionStore = require('connect-mongodb-session')(session);
 let store = new sessionStore({
     uri: mongoURI,
@@ -428,7 +429,19 @@ app.post('/add_cart', urlEncoded, function(req, res){
             res.json('exists');
         }
     })
-    
-
 })
+
+app.get('/cart', function(req, res){
+    Cart.find({user_id: req.session.userId}, function(err, data){
+        if(data.length === 0){
+            res.json('no items in cart');
+        }else{
+            Product.find({_id : data[0].items_id}, function(err, dt){
+                res.json(dt);
+            })
+        }
+
+        });
+});
+
 app.listen(8001)
