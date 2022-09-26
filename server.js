@@ -412,5 +412,23 @@ app.get('/county/:name', urlEncoded, function(req, res){
     })
 })
 
+let cartSchema = new mongoose.Schema({
+    user_id:String,
+    items_id: [String]
+})
+let Cart = mongoose.model('cart', cartSchema);
 
+app.post('/add_cart', urlEncoded, function(req, res){
+        Cart.find({$and: [ {user_id: {$eq: req.session.userId}}, {items_id: {$in : [req.body.item_id]} } ]  }, function(err, data){
+        if(data.length === 0){
+            Cart.findOneAndUpdate({user_id: req.session.userId}, {$push: {items_id: req.body.item_id} }, {new:true, upsert:true}, function(data,err){
+                res.json('sent');
+            });
+        }else{
+            res.json('exists');
+        }
+    })
+    
+
+})
 app.listen(8001)

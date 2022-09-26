@@ -1,6 +1,6 @@
 import {useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useParams, useHistory } from 'react-router-dom';
+import { Store } from 'react-notifications-component';
 
 import { Link } from 'react-router-dom';
 
@@ -40,7 +40,6 @@ const Preview = () => {
 
     },[])
 
-    console.log(product)
 
 
       function next(){
@@ -60,6 +59,43 @@ const Preview = () => {
           const slideWidth = slide.clientWidth;
           slidesContainer.scrollLeft -= slideWidth;
       };
+
+      function notify(title, message, type){
+        Store.addNotification({
+            title: title,
+            message: message,
+            type: type,
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+            duration: 1000,
+            onScreen: true
+            }
+        }) 
+    };
+
+      const handleAddToCart = () =>{
+          fetch('/add_cart',{
+              method:'POST',
+              headers: {'Content-Type':'application/json'},
+              body: JSON.stringify({ item_id: id })
+          })
+          .then((res)=>{
+              return res.json();
+          })
+          .then((res)=>{
+            if(res === 'sent'){
+                notify("Success","Added To Cart","success");
+            }else{
+                notify("Failed","Item already exists in your cart","danger");
+            }
+          })
+          .catch((err)=>{
+                console.log('error');
+          })
+      }
 
         
 
@@ -115,7 +151,9 @@ const Preview = () => {
                                 <Link><img src={require("../images/twitter.png")} width="30px" style={{objectFit:'scale-down'}} alt="" /></Link>
                                 
                             </div>
-                            <Link to="/cart/62b73fa755e29cb3b75243c3"><button>Add to Cart</button></Link>
+                            <button onClick={handleAddToCart}>Add to Cart</button>
+
+                            {/* <Link to="/cart/62b73fa755e29cb3b75243c3"><button>Add to Cart</button></Link> */}
                         </div>
                     </div>
                 </div>
