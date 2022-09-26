@@ -22,6 +22,8 @@ import EditPersonal from './clientComponents/EditPersonal';
 import Delivery from './clientComponents/Delivery';
 import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
 import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
+import CategoryTable from './categories/CategoryTable';
+import Cart from './clientComponents/Cart';
 
   function App() {
     $(function(){
@@ -206,6 +208,30 @@ import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
                       </div>
                     </div>
               </div>
+            </Route>
+            <Route path='/cart/:id'>
+              
+                      { loggedIn && 
+                          <div className="home">
+                            <LoggedNav />
+                              <br />
+                              <br />
+                              <br />
+                            <Cart />
+                          </div>
+                      
+                      }
+                      { !loggedIn && <div className="home">
+                            <Nav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                              <Login />
+                          </div>
+                          }
+                
+                
             </Route>
 
             <Route path='/admin'>

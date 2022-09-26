@@ -9,6 +9,7 @@
     "body-parser": "^1.20.0",
     "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
@@ -54,7 +55,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://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@github.com/Benson306/ecommerce.git"
+    "url": "git+${ENV.GIT_URL}"
   },
   "author": "",
   "license": "ISC",
@@ -65,5 +66,5 @@
   "devDependencies": {
     "interpolate-html-plugin": "^4.0.0"
   },
-  "proxy": "http://127.0.0.1:8001/"
+  "proxy": "http://localhost:8001"
 }

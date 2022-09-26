@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-const Preview = () => {
+const Cart = () => {
+
     const { id } = useParams();
 
     const [product, setProduct] = useState([]);
@@ -17,9 +18,11 @@ const Preview = () => {
 
         fetch('/products/'+id, {signal: abortCont.signal})
         .then((res)=>{
+            console.log(res)
             if(!res.ok){
                 setPending(false);
-                setError(true)
+                setError(true);
+
             }else{
                 return res.json();
             }
@@ -34,13 +37,10 @@ const Preview = () => {
             setPending(false);
         })
 
-        
-
         return () => abortCont.abort();
 
     },[])
 
-    console.log(product)
 
 
       function next(){
@@ -61,12 +61,9 @@ const Preview = () => {
           slidesContainer.scrollLeft -= slideWidth;
       };
 
-        
 
-    return ( <div className="previewPage">
-        { error && <div>Failed to fetch Data.. Try again</div>}
-        { pending && <div>Loading ....</div> }
-        {!pending && <div className="topPreview">
+    return ( <div className="slideshow">
+        <div className="topPreview">
                 <div className="slideshow">
                     <div className="topArea">
                         <div className="pics">
@@ -111,89 +108,12 @@ const Preview = () => {
                                 <br />
                                 SHARE THIS PRODUCT:
                                 <br />
-                                <Link><img src={require("../images/facebook.png")} width="30px" style={{objectFit:'scale-down', marginRight:'5px'}} alt="" /></Link>
-                                <Link><img src={require("../images/twitter.png")} width="30px" style={{objectFit:'scale-down'}} alt="" /></Link>
-                                
                             </div>
-                            <Link to="/cart/62b73fa755e29cb3b75243c3"><button>Add to Cart</button></Link>
-                        </div>
+                            </div>
+                       </div>
                     </div>
                 </div>
-                <div className="delivery">
-                    <div className="deliveryHeader">
-                        <img src={require("../images/fast-delivery.png")} alt="" /> Delivery Details
-                    </div>
-                    <div className="deliveryBody">
-                        <form action="">
-                        Delivery Type:
-                            <br />
-                            <select name="" id="" required>
-                                <option value=""></option>
-                                <option value="">Door Delivery</option>
-                                <option value="">PickUp Point</option>
-                            </select>
-                            <br />
-                        Choose County:
-                        <br />
-                            <select name="" id="" required>
-                                <option value=""></option>
-                                <option value="Nairobi">Nairobi</option>
-                                <option value="Trans Nzoia">Trans Nzoia</option>
-                            </select>
-                        Select Pickup Location:
-                        <br />
-                            <select name="" id="" required>
-                                <option value=""></option>
-                                <option value="Nairobi">Nairobi</option>
-                                <option value="Trans Nzoia">Trans Nzoia</option>
-                            </select>
-                        <br />
-                        <button type='submit'>Set Pickup Location</button>
-                        </form>
-                    </div>
-                    
-                </div>
-        </div>}
-
-        {!pending && <div className="detailsPreview">
-            <div className="specHeading">SPECIFICATIONS</div>
-            <hr />
-            <br />
-            <div className="upper">
-                <div className="features">
-                    <div className="extraHeading">
-                        Key Features:
-                    </div>
-                    <div className="extrabody">
-                        {product.prodDetails}
-                    </div>
-                </div>
-                <div className="features">
-                    <div className="extraHeading">
-                        Specifications:
-                    </div>
-                    <div className="extrabody">
-                        <b>Weight:</b> {product.weight}
-                    </div>
-                </div>
-            </div>
-            <div className="features">
-                <div className="extraHeading">
-                    Whats in the Box:
-                </div>
-                <div className="extrabody">
-                    {product.inBox}
-                </div>
-            </div>
-        </div>
-        }
-        
-        <div className='moreProducts'>
-            More Products
-        </div>
-        <br /><br />
-        
-    </div> );
+        </div> );
 }
-
-export default Preview;
+ 
+export default Cart;
