@@ -21,7 +21,6 @@ app.use(express.static('src'));
 
 require('dotenv').config();
 
-console.log(process.env.GIT_URL);
 
 let multer = require('multer');
 let path = require('path');

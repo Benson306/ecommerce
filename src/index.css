@@ -798,3 +798,42 @@ margin-bottom: 1%;
 .deliveryBody form button{
   margin-left: 40%;
 }
+
+.cartProduct{
+  background-color:#ddd;
+  width: 90%;
+  margin-left: 5%;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 2%;
+  display: flex;
+}
+.cartPreview{
+  width: 30%;
+}
+.cartDetails{
+  width: 20%;
+}
+.topCartDetails{
+  padding: 5px;
+  width: 100%;
+  margin-left: 2%;
+}
+.cartButton{
+  width: 50%;
+  margin-left: 10%;
+}
+.cartButton form{
+  display: flex;
+  margin-top: 7%;
+}
+.cartButton button{
+  margin-left: 60%;
+  padding: 10px;
+  color: red;
+}
+.cartButton input{
+  width: 30px;
+  padding: 10px;
+  margin-left: 5%;
+}

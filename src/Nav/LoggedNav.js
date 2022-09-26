@@ -48,11 +48,11 @@ const Nav = () => {
 
                 <li style={{width:'40%'}}></li>
 
-                <li style={{display:'flex', justifyContent:'center', alignItems:'center'}}> <img src={require('../images/shopping-cart.png')} width="35%" style={{marginTop:'1%'}} alt="" /> <div style={{marginTop:'10px',marginLeft:'5%', paddingBottom:'5px'}}><Link to="/cart" style={{color:'white', textDecoration:'none'}}>Cart</Link></div></li>
+                <li style={{display:'flex', justifyContent:'center', alignItems:'center'}}> <img src={require('../images/shopping-cart.png')} width="25%" style={{marginTop:'1%'}} alt="" /> <div style={{marginTop:'10px',marginLeft:'5%', paddingBottom:'5px'}}><Link to="/cart" style={{color:'white', textDecoration:'none'}}>Cart</Link></div></li>
 
                 {/* <li style={{display:'flex', justifyContent:'center', alignItems:'center'}}> <img src={require('../images/love.png')} width="22%" style={{marginTop:'5%'}} alt="" /> <div style={{marginTop:'12px',marginLeft:'5%', paddingBottom:'5px'}}><Link to="/login" style={{color:'white', textDecoration:'none'}}>WishList</Link></div></li> */}
 
-                <li style={{display:'flex', justifyContent:'center', alignItems:'center'}}> <img src={require('../images/user.png')} width="20%" style={{marginTop:'3%', objectFit:'scale-down'}} alt="" /> <div style={{marginTop:'10%',marginLeft:'2%', paddingBottom:'5px'}}><Link to="/account/personal" style={{color:'white', textDecoration:'none'}}>Account</Link></div></li>
+                <li style={{display:'flex', justifyContent:'center', alignItems:'center'}}> <img src={require('../images/user.png')} width="15%" style={{marginTop:'3%', objectFit:'scale-down'}} alt="" /> <div style={{marginTop:'10%',marginLeft:'2%', paddingBottom:'5px'}}><Link to="/account/personal" style={{color:'white', textDecoration:'none'}}>Account</Link></div></li>
 
                 <li style={{display:'flex', justifyContent:'center', alignItems:'center'}}> <img src={require('../images/exit.png')} width="22%" style={{marginTop:'4%', objectFit:'scale-down'}} alt="" /> <div style={{marginTop:'10%',marginLeft:'2%', paddingBottom:'5px'}}><Link  onClick={logout} style={{color:'white', textDecoration:'none'}}>Sign Out</Link></div></li>
             </ul>

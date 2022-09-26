@@ -42,6 +42,7 @@ import Cart from './clientComponents/Cart';
   });
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
       const abortCont = new AbortController();
@@ -50,8 +51,10 @@ import Cart from './clientComponents/Cart';
       .then((res)=>{
           if(res.ok){
               setLoggedIn(true);
+              setLoading(false);
           }else{
               setLoggedIn(false);
+              setLoading(false);
           }
       })
 
@@ -210,8 +213,10 @@ import Cart from './clientComponents/Cart';
               </div>
             </Route>
             <Route path='/cart/:id'>
-              
-                      { loggedIn && 
+                      {
+                        loading && <div>Loading ...</div>
+                      }
+                      { !loading && loggedIn && 
                           <div className="home">
                             <LoggedNav />
                               <br />
@@ -221,7 +226,7 @@ import Cart from './clientComponents/Cart';
                           </div>
                       
                       }
-                      { !loggedIn && <div className="home">
+                      { !loading &&  !loggedIn && <div className="home">
                             <Nav />
                               <br />
                               <br />
@@ -229,7 +234,7 @@ import Cart from './clientComponents/Cart';
                               
                               <Login />
                           </div>
-                          }
+                      }
                 
                 
             </Route>
