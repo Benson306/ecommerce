@@ -181,12 +181,19 @@ const Preview = () => {
                             </div>
                             <button onClick={handleAddToCart}>Add to Cart</button>
 
-                            {/* <Link to="/cart/62b73fa755e29cb3b75243c3"><button>Add to Cart</button></Link> */}
                         </div>
                     </div>
                 </div>
                 <div className="delivery">
-                <Delivery />
+                { loggedIn && <Delivery /> }
+                {!loggedIn && <div style={{width:'50%', margin: '0 auto', textAlign:'center'}}>
+                    Login In to Set Delivery Address <br /> <br />
+                    <img src={require('../images/padlock.png')} alt="" />
+                    <br />
+                    <br />
+                    <Link to="/login"><button style={{padding:'10px', backgroundColor:'orange', border:'none'}}>Login to Continue</button></Link>
+
+                    </div>}
                 </div>
         </div>}
 
