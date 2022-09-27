@@ -80,7 +80,7 @@ const Cart = () => {
 
     const changeData = (item_id, quantity) =>{
         data.forEach(dt=>{
-            if(dt.id === item_id ){
+            if(dt.item_id === item_id ){
                 dt.quantity = Number(quantity);
             }
         })
