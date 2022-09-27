@@ -444,4 +444,12 @@ app.get('/cart', function(req, res){
         });
 });
 
+app.delete('/remove_cart/:id', urlEncoded, function(req, res){
+    Cart.findOneAndUpdate({user_id: req.session.userId}, {$pull: {items_id: req.params.id} }, function(data,err){
+        res.json('deleted');
+    });
+})
+
+
+
 app.listen(8001)
