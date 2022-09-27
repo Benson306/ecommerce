@@ -64,8 +64,7 @@ const Delivery = () => {
                             </div>
                             <div className="deliveryBody">
                             <div className="ben">
-                                <button style={{float:'right', marginRight:'5%', backgroundColor:'transparent'}}><Link to="/account/edit_delivery_addr" style={{textDecoration:'none', color:'maroon'}}>Change Delivery Address</Link></button>
-                                <br />
+                            
                                 <div className="title">Delivery Type:</div>
                                 <div className="body">{data.type} {prefix}</div>
                                 
@@ -79,6 +78,8 @@ const Delivery = () => {
                                 {
                                     data.pickup !== '' ? <div className="body">{data.pickup}</div> : <div className="body">{data.specificAddr}</div>
                                 }
+                                
+                                <Link to="/account/edit_delivery_addr" style={{textDecoration:'none'}}><button style={{float:'right', marginRight:'5%', backgroundColor:'transparent', color:'maroon', width:'40%'}}>Change Delivery Address</button></Link>
                                 
                             </div>
                         </div>

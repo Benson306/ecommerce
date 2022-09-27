@@ -1,21 +1,18 @@
 import {useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { Store } from 'react-notifications-component';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const Cart = () => {
-
-    const { id } = useParams();
-
+    const history =  useHistory();
+    
     const [products, setProducts] = useState([]);
     const [pending , setPending] = useState(true);
     const [error, setError] = useState(false);
 
-    const [totalPrice, setTotalPrice] = useState(0);
     const [newPrice, setNewPrice] = useState(0);
-    const [quantity, setQuantity ] = useState(1);
+    const [data, setData ] = useState([]);
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -36,10 +33,9 @@ const Cart = () => {
             let prc = 0;
             res.map(r =>{
                 prc += Number(r.price);
+                addData(r._id, r.price, 1);
             })
-
-            setTotalPrice(prc);
-            setNewPrice();
+            setNewPrice(prc);
             setPending(false);
         })
         .catch((err)=>{
@@ -49,27 +45,9 @@ const Cart = () => {
 
         return () => abortCont.abort();
 
-    },[products])
-
-
-
-      function next(){
-        const slidesContainer = document.querySelector("#slides-container");
-        const slide = document.querySelector(".slide");
-
-          const slideWidth = slide.clientWidth;
-          slidesContainer.scrollLeft += slideWidth;
-
-          console.log(slideWidth)
-      };
-      
-      function back(){
-        const slidesContainer = document.querySelector("#slides-container");
-        const slide = document.querySelector(".slide");
-
-          const slideWidth = slide.clientWidth;
-          slidesContainer.scrollLeft -= slideWidth;
-      };
+    },[])
+    
+ 
 
       function notify(title, message, type){
         Store.addNotification({
@@ -87,7 +65,31 @@ const Cart = () => {
         }) 
     };
 
-      const handleRemove = (id) =>{
+    function getTotal(){
+        let prc = 0;
+        data.map(r =>{
+            prc += Number(r.price*r.quantity);
+        });
+        setNewPrice(prc);
+    }
+
+    const addData = (id, price, quantity) =>{
+        let newData = {id, price, quantity};
+        setData(prevArray => [...prevArray, newData]);
+    }
+
+    const changeData = (id, quantity) =>{
+        data.forEach(dt=>{
+            if(dt.id === id ){
+                dt.quantity = Number(quantity);
+            }
+        })
+    }
+
+    console.log(data);
+
+      const handleRemove = (e, id) =>{
+            e.preventDefault();
 
             fetch('/remove_cart/'+id,{
                 method: 'DELETE',
@@ -99,6 +101,7 @@ const Cart = () => {
             .then(res =>{
                 if(res === 'deleted'){
                     notify("Success","Removed From Cart","success");
+                    history.go(0);
                 }
             })
       }
@@ -125,15 +128,20 @@ const Cart = () => {
                                         </div>
                                 </div>
                             </div>
+                             
                             <div className="cartButton">
                                 <form action="">
                                     <label style={{fontWeight:'bolder', padding:'10px'}}>Quantity:</label>
-                                    <input defaultValue={1} onChange={e => { setQuantity(e.target.value); {/*setNewPrice(price*e.target.value); */} }} type="number" min={1} name="" id="" />
+                                    <input defaultValue={1} onChange={e => { 
+
+                                        e.target.value < 1  ?   changeData(product._id, 1) : changeData(product._id, e.target.value) ;
+                                        getTotal();
+
+                                     }} type="number" min={1} name="" id="" />
                                 </form>
                                 <br />
-                                {/* <div style={{marginLeft:'7%', fontWeight:'bolder'}}>Total Price:</div>
-                                <div style={{marginLeft:'18%', color:'#030c3b'}}><h2>KES. { newPrice}</h2></div>  */}
-                                <button onClick={ () => { handleRemove(product._id) }}>Remove from Cart</button>
+                                
+                                <button onClick={ (e) => { handleRemove(e, product._id) }}>Remove from Cart</button>
                                 <br />
                             </div>
                     </div>
@@ -143,12 +151,12 @@ const Cart = () => {
 
                 </div>
             
-                <div className='deliv'>
+                { !pending && !error && products.length > 0 ?  <div className='deliv'>
                             <h3>Total Price:</h3> <br />
-                               <h1>{ totalPrice }</h1> 
+                               <h1>{ newPrice }</h1> 
                                 <br /><br />
                                 <button><img src={require('../images/shopping-cart.png') } alt="" /> Checkout </button>
-                </div>
+                </div> : <div></div> }
             </div>
             { !pending && !error && products.length === 0 ? 
             <div style={{width:'50%', margin: '0 auto', backgroundColor: '#ddd', padding: '20px', textAlign:'center'}}>
