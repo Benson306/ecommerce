@@ -73,14 +73,14 @@ const Cart = () => {
         setNewPrice(prc);
     }
 
-    const addData = (id, price, quantity) =>{
-        let newData = {id, price, quantity};
+    const addData = (item_id, price, quantity) =>{
+        let newData = {item_id, price, quantity};
         setData(prevArray => [...prevArray, newData]);
     }
 
-    const changeData = (id, quantity) =>{
+    const changeData = (item_id, quantity) =>{
         data.forEach(dt=>{
-            if(dt.id === id ){
+            if(dt.id === item_id ){
                 dt.quantity = Number(quantity);
             }
         })
@@ -105,7 +105,24 @@ const Cart = () => {
                 }
             })
       }
+      
+      const handleClick = (e)=>{
+          e.preventDefault();
 
+        fetch('/add_order',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then((res)=>{
+            return res.json();
+        })
+        .then(res =>{
+            if(res === 'added'){
+                notify("Success","Added","success");
+            }
+        })
+      }
 
     return ( 
         <div className="cart">
@@ -155,7 +172,7 @@ const Cart = () => {
                             <h3>Total Price:</h3> <br />
                                <h1>{ newPrice }</h1> 
                                 <br /><br />
-                                <button><img src={require('../images/shopping-cart.png') } alt="" /> Checkout </button>
+                                <button onClick={ (e)=>{handleClick(e)}}><img src={require('../images/shopping-cart.png') } alt="" /> Checkout </button>
                 </div> : <div></div> }
             </div>
             { !pending && !error && products.length === 0 ? 
