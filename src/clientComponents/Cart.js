@@ -13,7 +13,7 @@ const Cart = () => {
     const [pending , setPending] = useState(true);
     const [error, setError] = useState(false);
 
-    const [price, setPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [newPrice, setNewPrice] = useState(0);
     const [quantity, setQuantity ] = useState(1);
 
@@ -33,7 +33,12 @@ const Cart = () => {
         .then((res)=>{
             setError(false)
             setProducts(res);
-            setPrice();
+            let prc = 0;
+            res.map(r =>{
+                prc += Number(r.price);
+            })
+
+            setTotalPrice(prc);
             setNewPrice();
             setPending(false);
         })
@@ -103,36 +108,48 @@ const Cart = () => {
         <div className="cart">
             { error && <div><br /><br />Failed to fetch Data.. Try again</div>}
             { pending && <div><br /><br />Loading ....</div> }
-            
-            {   !pending && !error &&  products.map( product => (<div className="cartProduct">
-            
-            
-                <div className="cartDetails">
-                        <div className="topCartDetails">
-                            <div className="prodHeading"><Link to={`/preview/${product._id}`}>{product.prodName}</Link></div>
-                            <div className="prodBody">
-                                Category: <Link to="">{product.categ}</Link> 
+            <div className='cartLayout'>
+                <div className="crt">
+                            {   !pending && !error &&  products.map( product => (
+                        
+                        
+                        <div className="cartProduct">
+                            <div className="cartDetails">
+                                    <div className="topCartDetails">
+                                        <div className="prodHeading"><Link to={`/preview/${product._id}`}>{product.prodName}</Link></div>
+                                        <div className="prodBody">
+                                            Category: <Link to="">{product.categ}</Link> 
+                                            <br />
+                                            <div className="prodFooter">Ksh {product.price}</div>
+                                            <br />
+                                        </div>
+                                </div>
+                            </div>
+                            <div className="cartButton">
+                                <form action="">
+                                    <label style={{fontWeight:'bolder', padding:'10px'}}>Quantity:</label>
+                                    <input defaultValue={1} onChange={e => { setQuantity(e.target.value); {/*setNewPrice(price*e.target.value); */} }} type="number" min={1} name="" id="" />
+                                </form>
                                 <br />
-                                <div className="prodFooter">Ksh {product.price}</div>
+                                {/* <div style={{marginLeft:'7%', fontWeight:'bolder'}}>Total Price:</div>
+                                <div style={{marginLeft:'18%', color:'#030c3b'}}><h2>KES. { newPrice}</h2></div>  */}
+                                <button onClick={ () => { handleRemove(product._id) }}>Remove from Cart</button>
                                 <br />
                             </div>
-                       </div>
-                </div>
-                <div className="cartButton">
-                    <form action="">
-                        <label style={{fontWeight:'bolder', padding:'10px'}}>Quantity:</label>
-                        <input defaultValue={1} onChange={e => { setQuantity(e.target.value); {/*setNewPrice(price*e.target.value); */} }} type="number" min={1} name="" id="" />
-                    </form>
-                    <br />
-                    {/* <div style={{marginLeft:'7%', fontWeight:'bolder'}}>Total Price:</div>
-                    <div style={{marginLeft:'18%', color:'#030c3b'}}><h2>KES. { newPrice}</h2></div>  */}
-                    <button onClick={ () => { handleRemove(product._id) }}>Remove from Cart</button>
-                    <br />
-                </div>
-                
+                    </div>
 
+                    
+                ) ) }
+
+                </div>
+            
+                <div className='deliv'>
+                            <h3>Total Price:</h3> <br />
+                               <h1>{ totalPrice }</h1> 
+                                <br /><br />
+                                <button><img src={require('../images/shopping-cart.png') } alt="" /> Checkout </button>
+                </div>
             </div>
-            ) ) }
             { !pending && !error && products.length === 0 ? 
             <div style={{width:'50%', margin: '0 auto', backgroundColor: '#ddd', padding: '20px', textAlign:'center'}}>
                 <h3>You have no items in Cart</h3><br /><br />
