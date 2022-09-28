@@ -936,16 +936,42 @@ margin-bottom: 1%;
   margin-right: 15%;
   font-weight: bold;
 }
-.recart{
+.btns {
+  display: flex;
+  width: 100%;
+  margin-top: 2%;
+}
+.btns .recart{
+  width: 50%;
+}
+.btns .recart2{
+  width: 50%;
+}
+.btns .recart button{
   margin-left: 5%;
   background-color: orange;
   padding: 10px;
   border: 1px solid orange;
   border-radius: 5px;
+  margin-right: 5%;
+}
+.btns .recart2 button{
+  margin-right: 5%;
+  background-color: green;
+  padding: 10px;
+  color: white;
+  border: 1px solid green;
+  border-radius: 5px;
+  margin-left: 60%;
 }
 .payment{
   font-family:'Times New Roman', Times, serif;
   padding: 10px;
+  background-color:white;
+  border-radius: 5px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 2%;
 }
 .payment form{
   margin-left: 5%;
@@ -960,8 +986,8 @@ margin-bottom: 1%;
   padding: 5px;
   width: 15%;
   margin-bottom: 1%;
-  background-color: #030c3b;
-  color: white;
-  border: 1px solid #030c3b;
+  background-color: orange;
+  color: black;
+  border: 1px solid orange;
   border-radius: 5px;
 }

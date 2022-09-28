@@ -1,8 +1,7 @@
 import {useState, useEffect } from 'react';
 import { Store } from 'react-notifications-component';
 
-import { Link, Redirect, useHistory } from 'react-router-dom';
-import Summary from './Summary';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -109,20 +108,6 @@ const Cart = () => {
       const handleClick = (e)=>{
           e.preventDefault();
 
-        // fetch('/add_order',{
-        //     method: 'POST',
-        //     headers: {'Content-Type':'application/json'},
-        //     body: JSON.stringify(data)
-        // })
-        // .then((res)=>{
-        //     return res.json();
-        // })
-        // .then(res =>{
-        //     if(res === 'added'){
-        //         notify("Success","Added","success");
-        //     }
-        // })
-        
         history.push({
             pathname: '/summary',
             state: data

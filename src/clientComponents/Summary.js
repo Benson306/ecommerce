@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { Store } from 'react-notifications-component';
+
 import Delivery from "./Delivery";
 import Personal from "./Personal";
 
 const Summary = () => {
     const location = useLocation();
     const data = location.state;
+    const history = useHistory();
 
-    //console.log(data);
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,15 +26,53 @@ const Summary = () => {
             .then((res)=>{
                 addData(res._id, res.prodName, res.price, dt.quantity);
                 setProducts(current => [... current, res]);
-                
+                setLoading(false)
             })
         })
-        setLoading(false);
 
        return () => abortCont.abort(); 
     },[])
+
+    function notify(title, message, type){
+        Store.addNotification({
+            title: title,
+            message: message,
+            type: type,
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+            duration: 3000,
+            onScreen: true
+            }
+        }) 
+    };
+
+    const handleClick = (e)=>{
+        e.preventDefault();
+
+      fetch('/add_order',{
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+      })
+      .then((res)=>{
+          return res.json();
+      })
+      .then(res =>{
+            history.push({
+                pathname: '/payment',
+                state: res
+            })
+            notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
+      })
+      
+      
+
+      
+    }
     
-   
 
     const addData = (item_id, name, price, quantity) =>{
         let newData = {item_id, name, price, quantity};
@@ -51,14 +91,14 @@ const Summary = () => {
                 <br />
                 <hr />
                 
-                
+                {loading && <div>Loading...</div>}
                     <table>
                         <th>#</th>
                         <th>Item Name</th>
                         <th>Unit Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
-                    {loading && <div>Loading...</div>}
+                    
                     {
                         !loading && dt.reverse().map(dt =>(
                             <tr>
@@ -89,38 +129,17 @@ const Summary = () => {
                        {total}
                     </div>
                     <br />
-
-                    <Link to={'/cart'}><button className="recart">Make Changes to Order</button></Link>
-                    <br /><br />
-                   <h2>Make Payment</h2>
-                   <hr /> 
-                   <div className="payment">
-                        We accept payments through MPESA. Insert you MPESA phone number below and click on Pay to inititate an MPESA STK PUSH notification.
-                        <br />
-                        <br />
-                        <form action="">
-                            <label htmlFor="">Phone Number:</label>
-                            <br />
-                            <input type="text" name="" placeholder="+254712345678" id="" />
-                            <br />
-                            <input type="submit" value="Pay" />
-                        </form>
-                        Input your PIN on your phone to Complete Payment.
-                        <br /><br />
-                        Now wait to receive your MPESA message. Enter the Transaction Code in the form below and click on Confirm Payment.
-                        <br />
-                        <br />
-                        <form action="">
-                            <label htmlFor="">Transaction Code:</label>
-                            <br />
-                            <input type="text" name="" placeholder="OCK1W5SQ8H" id="" />
-                            <br />
-                            <input type="submit" value="Confirm Payment" />
-                        </form>
-                   </div>
-                   
-
-                   <br /><br /><br />
+                    <div className="btns">
+                        <div className="recart">
+                            <Link to={'/cart'}><button>Make Changes to Order</button></Link>
+                        </div>
+                        <div className="recart2">
+                            <button onClick={(e)=>handleClick(e)}>Complete Order</button>
+                        </div>
+                            
+                    </div>
+                    
+                   <br />
 
 
             </div>

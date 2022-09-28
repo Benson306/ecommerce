@@ -62,6 +62,7 @@ let isAuth = function(req, res, next){
         next();
     }else{
         res.redirect('/login');
+       // res.json('Not Authorised')
     }
 }
 
@@ -464,9 +465,13 @@ let orderSchema =  new mongoose.Schema({
 let Order = mongoose.model('orders', orderSchema);
 
 app.post('/add_order', urlEncoded, function(req, res){
-    Order({ user_id: req.session.userId , items: req.body}).save(function(err,data){
-        res.json('added');
+    Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending'}).save(function(err,data){
+        res.json(data._id);
     })
+})
+
+app.get('/get_order/:id', function(req,res){
+    
 })
 
 

@@ -25,6 +25,7 @@ import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
 import CategoryTable from './categories/CategoryTable';
 import Cart from './clientComponents/Cart';
 import Summary from './clientComponents/Summary';
+import Payment from './clientComponents/Payment';
 
   function App() {
     $(function(){
@@ -264,6 +265,31 @@ import Summary from './clientComponents/Summary';
                           </div>
                       }
                 
+            </Route>
+            <Route path='/payment'>
+                      {
+                        loading && <div>Loading ...</div>
+                      }
+                      { !loading && loggedIn && 
+                          <div className="home">
+                            <LoggedNav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                            <Payment />
+                          </div>
+                      
+                      }
+                      { !loading &&  !loggedIn && <div className="home">
+                            <Nav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                              <Login />
+                          </div>
+                      }
                 
             </Route>
             <Route path='/admin'>
