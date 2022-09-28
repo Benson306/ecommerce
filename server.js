@@ -477,7 +477,20 @@ app.get('/get_order/:id', function(req,res){
 })
 
 app.post('/stk_push/:id', urlEncoded, function(req, res){
-    res.json('sent');
+    let prices = [];
+    
+    Order.findById(req.params.id, function(err, data){
+        let price;
+        data.items.forEach(item => {
+            Product.findById(item.item_id, function (err, data1){
+                let sum = Number(data1.price)* Number(item.quantity);
+                console.log(sum)
+            })
+
+            console.log(price)
+        });
+        
+    })
 })
 
 
