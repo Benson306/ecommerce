@@ -876,6 +876,7 @@ margin-bottom: 1%;
   height: 30px;
   margin-right: 10px;
 }
+
 .summary{
   margin-left: 2%;
   width: 98%;
@@ -896,6 +897,12 @@ margin-bottom: 1%;
   visibility: hidden;
   height: 0;
 }
+.summary .personal .details .dtlTabs{
+  display: flex;
+}
+.summary .personal .details .dtlTabs .tabs{
+ margin-right: 7%;
+}
 .detailsPreview table{
   margin-top: 2%;
   width: 100%;
@@ -907,11 +914,21 @@ margin-bottom: 1%;
   padding: 10px;
   text-align: center;
 }
+.subttl{
+  margin-left: 70%;
+  border-top: 1px solid black;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+}
+.subttl .brand{
+  margin-right: 22%;
+  font-weight: bold;
+}
 .subTotal{
   margin-left: 80%;
   border-top: 1px solid black;
   padding: 5px;
-  
   text-align: center;
   display: flex;
 }
@@ -924,5 +941,27 @@ margin-bottom: 1%;
   background-color: orange;
   padding: 10px;
   border: 1px solid orange;
+  border-radius: 5px;
+}
+.payment{
+  font-family:'Times New Roman', Times, serif;
+  padding: 10px;
+}
+.payment form{
+  margin-left: 5%;
+}
+.payment form input[type="text"]{
+  padding: 10px;
+  width: 30%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+.payment form input[type="submit"]{
+  padding: 5px;
+  width: 15%;
+  margin-bottom: 1%;
+  background-color: #030c3b;
+  color: white;
+  border: 1px solid #030c3b;
   border-radius: 5px;
 }

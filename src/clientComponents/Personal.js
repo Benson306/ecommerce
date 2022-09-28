@@ -51,12 +51,20 @@ const Personal = () => {
         {!loading && !error && 
         <div className="details">
             <button><Link to={'/account/edit_personal'}>Edit</Link></button>
-            <div className="title">Full Name:</div>
-             <div className="body">{data.name}</div>
-            <div className="title">Email:</div>
-             <div className="body">{data.email}</div>   
-            <div className="title">Phone:</div>
-            <div className="body">{data.phone}</div>
+                <div className='dtlTabs'>
+                <div className="tabs">
+                    <div className="title">Full Name:</div>
+                    <div className="body">{data.name}</div>
+                </div>
+                <div className="tabs">
+                    <div className="title">Email:</div>
+                    <div className="body">{data.email}</div> 
+                </div>
+                <div className="tabs">
+                    <div className="title">Phone:</div>
+                    <div className="body">{data.phone}</div>
+                </div>
+            </div>
             <div className="hidden">
                 <div className="title">Password:</div>
                 <div className="body">{stars}</div>

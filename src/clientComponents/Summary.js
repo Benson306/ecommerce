@@ -40,7 +40,7 @@ const Summary = () => {
     }
 
     let no = 1;
-    let total = 0;
+    let total = 200;
     return ( 
     <div className="summary">
         <div className="panel1">
@@ -79,6 +79,11 @@ const Summary = () => {
                         )
                     }
                     </table>
+                    <div className="subttl">
+                       <div className="brand">Delivery Amount:</div>        
+                       200
+                    </div>
+                    <br />
                     <div className="subTotal">
                        <div className="brand">Subtotal:</div>        
                        {total}
@@ -86,8 +91,40 @@ const Summary = () => {
                     <br />
 
                     <Link to={'/cart'}><button className="recart">Make Changes to Order</button></Link>
-                    
+                    <br /><br />
+                   <h2>Make Payment</h2>
+                   <hr /> 
+                   <div className="payment">
+                        We accept payments through MPESA. Insert you MPESA phone number below and click on Pay to inititate an MPESA STK PUSH notification.
+                        <br />
+                        <br />
+                        <form action="">
+                            <label htmlFor="">Phone Number:</label>
+                            <br />
+                            <input type="text" name="" placeholder="+254712345678" id="" />
+                            <br />
+                            <input type="submit" value="Pay" />
+                        </form>
+                        Input your PIN on your phone to Complete Payment.
+                        <br /><br />
+                        Now wait to receive your MPESA message. Enter the Transaction Code in the form below and click on Confirm Payment.
+                        <br />
+                        <br />
+                        <form action="">
+                            <label htmlFor="">Transaction Code:</label>
+                            <br />
+                            <input type="text" name="" placeholder="OCK1W5SQ8H" id="" />
+                            <br />
+                            <input type="submit" value="Confirm Payment" />
+                        </form>
+                   </div>
+                   
+
+                   <br /><br /><br />
+
+
             </div>
+
         </div>
         <div className="panel2">
             <Delivery />
