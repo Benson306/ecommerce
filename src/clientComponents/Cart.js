@@ -1,7 +1,8 @@
 import {useState, useEffect } from 'react';
 import { Store } from 'react-notifications-component';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import Summary from './Summary';
 
 
 const Cart = () => {
@@ -85,7 +86,7 @@ const Cart = () => {
             }
         })
     }
-
+    
     console.log(data);
 
       const handleRemove = (e, id) =>{
@@ -109,19 +110,26 @@ const Cart = () => {
       const handleClick = (e)=>{
           e.preventDefault();
 
-        fetch('/add_order',{
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(data)
+        // fetch('/add_order',{
+        //     method: 'POST',
+        //     headers: {'Content-Type':'application/json'},
+        //     body: JSON.stringify(data)
+        // })
+        // .then((res)=>{
+        //     return res.json();
+        // })
+        // .then(res =>{
+        //     if(res === 'added'){
+        //         notify("Success","Added","success");
+        //     }
+        // })
+        
+        history.push({
+            pathname: '/summary',
+            state: data
         })
-        .then((res)=>{
-            return res.json();
-        })
-        .then(res =>{
-            if(res === 'added'){
-                notify("Success","Added","success");
-            }
-        })
+
+        
       }
 
     return ( 
@@ -129,6 +137,7 @@ const Cart = () => {
             { error && <div><br /><br />Failed to fetch Data.. Try again</div>}
             { pending && <div><br /><br />Loading ....</div> }
             <div className='cartLayout'>
+
                 <div className="crt">
                             {   !pending && !error &&  products.map( product => (
                         
@@ -160,6 +169,7 @@ const Cart = () => {
                                 
                                 <button onClick={ (e) => { handleRemove(e, product._id) }}>Remove from Cart</button>
                                 <br />
+                                
                             </div>
                     </div>
 
@@ -167,7 +177,7 @@ const Cart = () => {
                 ) ) }
 
                 </div>
-            
+           
                 { !pending && !error && products.length > 0 ?  <div className='deliv'>
                             <h3>Total Price:</h3> <br />
                                <h1>{ newPrice }</h1> 

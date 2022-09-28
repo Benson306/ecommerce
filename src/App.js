@@ -24,6 +24,7 @@ import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
 import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
 import CategoryTable from './categories/CategoryTable';
 import Cart from './clientComponents/Cart';
+import Summary from './clientComponents/Summary';
 
   function App() {
     $(function(){
@@ -238,7 +239,33 @@ import Cart from './clientComponents/Cart';
                 
                 
             </Route>
-
+            <Route path='/summary'>
+                      {
+                        loading && <div>Loading ...</div>
+                      }
+                      { !loading && loggedIn && 
+                          <div className="home">
+                            <LoggedNav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                            <Summary />
+                          </div>
+                      
+                      }
+                      { !loading &&  !loggedIn && <div className="home">
+                            <Nav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                              <Login />
+                          </div>
+                      }
+                
+                
+            </Route>
             <Route path='/admin'>
                 <AdminLogin />
             </Route>
