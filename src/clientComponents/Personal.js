@@ -45,7 +45,6 @@ const Personal = () => {
 
         <h1>Personal Information</h1>
         <hr />
-        <br /><br />
 
         { loading && <div>Loading ...</div>}
         { error && <div>Failed to Fetch Data</div>}
@@ -54,15 +53,15 @@ const Personal = () => {
             <button><Link to={'/account/edit_personal'}>Edit</Link></button>
             <div className="title">Full Name:</div>
              <div className="body">{data.name}</div>
-             <br />
             <div className="title">Email:</div>
              <div className="body">{data.email}</div>   
-                <br />
             <div className="title">Phone:</div>
             <div className="body">{data.phone}</div>
-            <br />
-            <div className="title">Password:</div>
-            <div className="body">{stars}</div>
+            <div className="hidden">
+                <div className="title">Password:</div>
+                <div className="body">{stars}</div>
+            </div>
+            
         </div>
                 
 
