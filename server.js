@@ -305,6 +305,7 @@ app.put('/edit_delivery/:id', urlEncoded, function(req, res){
 })
 
 let registerSchema = new mongoose.Schema({
+    name: String,
     email: String,
     phone: String,
     password: String
@@ -313,7 +314,7 @@ let registerSchema = new mongoose.Schema({
 let Register = mongoose.model('users', registerSchema)
 
 app.post('/register', urlEncoded, function(req, res){
-    Register.find({$or: [{email:{$eq :req.body.email}},{phone: {$eq: req.body.phone}}]},function(err,data){
+    Register.find({$or: [{email:{$eq :req.body.email}},{name: {$eq: req.body.name}},{phone: {$eq: req.body.phone}}]},function(err,data){
             if(data.length !== 0){
                 res.status(409).json('exists');
             }else{

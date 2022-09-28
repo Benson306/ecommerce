@@ -6,6 +6,7 @@ import { Store } from 'react-notifications-component';
 
 const Login = () => {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ const Login = () => {
 
     const history = useHistory();
 
-    const data = { email, phone, password };
+    const data = { name, email, phone, password };
 
     function notify(title, message, type){
         Store.addNotification({
@@ -67,6 +68,11 @@ const Login = () => {
     return ( <div className="login">
         <form onSubmit={handleSubmit} action="">
             <div style={{justifyContent:'center', textAlign:'center'}}>REGISTER</div>
+            <label htmlFor="">Full Name:</label> 
+            <br />
+            <input type="text" placeholder="Full Name" onChange={e =>setName(e.target.value)} required/>
+            <br />
+            <br />
             <label htmlFor="">Email:</label> 
             <br />
             <input type="email" placeholder="Email" onChange={e =>setEmail(e.target.value)} required/>

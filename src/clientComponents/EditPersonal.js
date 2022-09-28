@@ -9,6 +9,7 @@ const EditPersonal = () => {
 
         const history = useHistory();
 
+        const [name, setName] = useState('');
         const [ email, setEmail ] = useState('');
         const [ phone, setPhone ] = useState('');
         const [ password, setPassword ] = useState('');
@@ -50,6 +51,7 @@ const EditPersonal = () => {
             .then((res)=>{
                 setError(false);
                 setLoading(false);
+                setName(res.name);
                 setEmail(res.email);
                 setPhone(res.phone);
                 setPassword(res.password);
@@ -71,7 +73,7 @@ const EditPersonal = () => {
             fetch('/edit_profile',{
                 method: 'PUT',
                 headers: {'Content-Type':'application/json'},
-                body: JSON.stringify({ email, phone, password })
+                body: JSON.stringify({ name, email, phone, password })
             })
             .then((res)=>{
                 if(res.ok){
@@ -101,6 +103,15 @@ const EditPersonal = () => {
         {
             !loading && !error &&
             <form onSubmit={handleSubmit} action="">
+            <label htmlFor="">Full Name:</label>
+            <br />
+            <input 
+                type="text" 
+                onChange={(e) => setName(e.target.value) }
+                style={{color: 'black'}}
+                defaultValue={ name }
+                required />
+            <br />
             <label htmlFor="">Email:</label>
             <br />
             <input 
