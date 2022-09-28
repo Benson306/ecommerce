@@ -68,9 +68,6 @@ const Summary = () => {
             notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
       })
       
-      
-
-      
     }
     
 

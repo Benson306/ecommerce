@@ -471,7 +471,13 @@ app.post('/add_order', urlEncoded, function(req, res){
 })
 
 app.get('/get_order/:id', function(req,res){
-    
+    Order.findById(req.params.id, function(err, data){
+        res.json(data);
+    })
+})
+
+app.post('/stk_push/:id', urlEncoded, function(req, res){
+    res.json('sent');
 })
 
 

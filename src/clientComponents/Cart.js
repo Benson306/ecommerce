@@ -168,6 +168,7 @@ const Cart = () => {
                                 <br /><br />
                                 <button onClick={ (e)=>{handleClick(e)}}><img src={require('../images/shopping-cart.png') } alt="" /> Checkout </button>
                 </div> : <div></div> }
+                
             </div>
             { !pending && !error && products.length === 0 ? 
             <div style={{width:'50%', margin: '0 auto', backgroundColor: '#ddd', padding: '20px', textAlign:'center'}}>
