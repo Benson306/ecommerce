@@ -87,7 +87,6 @@ const Cart = () => {
         })
     }
     
-    console.log(data);
 
       const handleRemove = (e, id) =>{
             e.preventDefault();
