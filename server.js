@@ -476,16 +476,31 @@ app.get('/get_order/:id', function(req,res){
     })
 })
 
-app.post('/stk_push/:id', urlEncoded,  function(req, res){
-    
-    
+let unirest = require('unirest');
 
-   Order.findById(req.params.id, function(err, data){
+function accessToken(req, res, next){
+
+    bearer = Buffer.from(process.env.CONSUMER_KEY+":"+process.env.CONSUMER_SECRET).toString('base64');
+
+    unirest('GET', 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials')
+      .headers({
+        'Authorization': 'Basic '+bearer
+      })
+      .end(function (response) { 
+        if (response.error) throw new Error(response.error); 
+        let token = JSON.parse(response.raw_body).access_token;
+        req.access_token = token;
+       next();
+      });
+ }
+
+app.post('/stk_push/:id', accessToken, urlEncoded,  function(req, res){
+    console.log(req.access_token)
+    Order.findById(req.params.id, function(err, data){
         
         let cost = 0;
         let getPrices = async function(data, callback){
 
-        
              await data.items.forEach(dt=>{
                     Product.findById(dt.item_id, function data2(err1, data1){
                             let price = data1.price * dt.quantity;
