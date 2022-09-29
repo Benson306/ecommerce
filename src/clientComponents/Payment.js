@@ -59,6 +59,31 @@ const Payment = () => {
             notify("Infromation","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
         })
     }
+    const [code, setCode]= useState('');
+
+    const handleConfirm = (e) =>{
+
+        e.preventDefault();
+         fetch('/confirm_payment/',{
+             method: 'POST',
+             headers: {'Content-Type':'application/json'},
+             body: JSON.stringify({ code, data })
+         })
+        .then((res)=>{
+            return res.json();
+        })
+        .then((res)=>{
+            
+            if(res === 'confirmed'){
+                notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
+            }else if(res === 'pending'){
+                notify("Pending","Payment Has Not been received. Try Again in A few minutes","Danger");
+            }else if(res === 'existing'){
+                notify("Failed","MPESA code has already been used to confirm another payment","Danger");
+            }
+            
+        })
+    }
 
     return ( <div className="payment">
                 <br />
@@ -91,10 +116,10 @@ const Payment = () => {
                     <br /><br />
                 Now wait to receive your MPESA message. Enter the Transaction Code in the form below and click on Confirm Payment.
                     <br /><br />
-                <form action="">
+                <form onSubmit={handleConfirm}>
                     <label htmlFor="">Transaction Code:</label>
                         <br />
-                    <input type="text" name="" placeholder="OCK1W5SQ8H" required />
+                    <input type="text" name="" onChange={e => setCode(e.target.value) } placeholder="OCK1W5SQ8H" required />
                         <br />
                     <input type="submit" value="Confirm Payment" />
                 </form>

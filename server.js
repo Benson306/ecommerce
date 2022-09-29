@@ -465,8 +465,10 @@ let orderSchema =  new mongoose.Schema({
 let Order = mongoose.model('orders', orderSchema);
 
 app.post('/add_order', urlEncoded, function(req, res){
-    Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending'}).save(function(err,data){
-        res.json(data._id);
+    Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending', delivery_cost: 200}).save(function(err,data){
+        Cart.findOneAndRemove({user_id: req.session.userId},function(err1, data1){
+            res.json(data._id);
+        })
     })
 })
 
@@ -494,31 +496,133 @@ function accessToken(req, res, next){
       });
  }
 
+function stk_push(req,res, amount, phone, transId){
+
+    let token = "Bearer " + req.access_token;
+    let unirest = require('unirest');
+
+    let currentdate = new Date();
+    const timestamp = currentdate.getFullYear() + "" + "" + ("0"+ (currentdate.getMonth()+1)).slice(-2) + "" + "" + ("0"+currentdate.getDate()).slice(-2) + "" + "" + ("0"+currentdate.getHours()).slice(-2) + "" + "" + ("0"+currentdate.getMinutes()).slice(-2)  + "" + "" + ("0"+currentdate.getSeconds()).slice(-2);
+    
+    const password = new Buffer.from('174379' + process.env.PASS_KEY + timestamp ).toString('base64');
+
+
+   let request = unirest('POST', 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest')
+    .headers({
+        'Content-Type': 'application/json',
+        'Authorization': token
+    })
+    .send(JSON.stringify({
+        "BusinessShortCode": "174379",
+        "Password": password,
+        "Timestamp": timestamp,
+        "TransactionType": "CustomerPayBillOnline",
+        "Amount": amount,
+        "PartyA": phone,
+        "PartyB": "174379",
+        "PhoneNumber": phone,
+        "CallBackURL": process.env.Callback_url,
+        "AccountReference": transId,
+        "TransactionDesc": "Payment of Goods at Eccom" 
+    }))
+    .end(response => {
+        if (response.error) {console.log(response.error)};
+        let result = JSON.parse(response.raw_body);
+        res.json(result)
+    });
+};
+
+let stkSchema = new mongoose.Schema({}, { strict: false });
+let Stk = mongoose.model('stk', stkSchema);
+
+app.post('/callback', urlEncoded, function(req,res){
+  
+
+   let result = { 
+        TransactionId : req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
+        PhoneNumber : req.body.Body.stkCallback.CallbackMetadata.Item[4].Value,
+        Amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value, 
+        TransactionDate : req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
+        status: 'pending'
+        
+    }
+
+    if(req.body.Body.stkCallback.ResultDesc === 'The service request is processed successfully.'){
+            Stk(result).save(function(err,data){
+                    if(err) throw err;
+                })
+    }else{
+        res.json('not done')
+    }
+
+});
+
 app.post('/stk_push/:id', accessToken, urlEncoded,  function(req, res){
-    console.log(req.access_token)
+    
     Order.findById(req.params.id, function(err, data){
         
         let cost = 0;
+        var itemsProcessed = 0;
         let getPrices = async function(data, callback){
-
+            
              await data.items.forEach(dt=>{
                     Product.findById(dt.item_id, function data2(err1, data1){
+                            itemsProcessed++;
                             let price = data1.price * dt.quantity;
                             cost+=price;
+                            if(itemsProcessed === data.items.length) {
                             callback && callback(cost)
+                            }
                         })
                 });
         }
         
         getPrices(data, function(cost){
-            console.log(cost);
-
-            
+            cost = cost+200;
+            stk_push(req, res, 10 ,req.body.phone, req.params.id); //initialize cost on production... 1 is for testing
         })
     })
     
     
 })
 
+app.post('/confirm_payment', urlEncoded, function(req, res){
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+
+    var someDate = new Date();
+    var numberOfDaysToAdd = 2;
+    var result = someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+    let newDate = new Date(result);
+
+    var ddd = String(newDate.getDate()).padStart(2, '0');
+    var mmm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyyy = newDate.getFullYear();
+
+    let deliveryDate = mmm + '/' + ddd + '/' + yyyyy;
+
+
+    Stk.find({TransactionId: req.body.code}, function(err, data){
+        if(data.length !== 0){
+
+            if(data[0].status === 'confirmed'){
+                    res.json('existing')
+            }else if(data[0].status === 'pending'){
+                Order.findByIdAndUpdate(req.body.data,{completion_status: 'completed', order_date: today, delivery_date: deliveryDate}, function(err3, date3){})
+                Stk.findOneAndUpdate({TransactionId: req.body.code},{order_id: req.body.data, status: 'confirmed'}, {new: true},function(err1, data1){
+                    res.json('confirmed')
+                })
+            }
+        }else{
+            res.json('pending')
+        }
+    })
+})
 
 app.listen(8001);
