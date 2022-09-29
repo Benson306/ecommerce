@@ -465,7 +465,7 @@ let orderSchema =  new mongoose.Schema({
 let Order = mongoose.model('orders', orderSchema);
 
 app.post('/add_order', urlEncoded, function(req, res){
-    Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending', delivery_cost: 200}).save(function(err,data){
+    Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending',delivery_status: 'pending', delivery_cost: 200}).save(function(err,data){
         Cart.findOneAndRemove({user_id: req.session.userId},function(err1, data1){
             res.json(data._id);
         })
@@ -474,6 +474,12 @@ app.post('/add_order', urlEncoded, function(req, res){
 
 app.get('/get_order/:id', function(req,res){
     Order.findById(req.params.id, function(err, data){
+        res.json(data);
+    })
+})
+
+app.get('/my_order', function(req,res){
+    Order.find({user_id: req.session.userId}, function(err, data){
         res.json(data);
     })
 })

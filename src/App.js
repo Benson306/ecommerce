@@ -26,6 +26,8 @@ import CategoryTable from './categories/CategoryTable';
 import Cart from './clientComponents/Cart';
 import Summary from './clientComponents/Summary';
 import Payment from './clientComponents/Payment';
+import Orders from './clientComponents/Orders';
+import CompleteSummary from './clientComponents/CompleteSummary';
 
   function App() {
     $(function(){
@@ -214,6 +216,22 @@ import Payment from './clientComponents/Payment';
                     </div>
               </div>
             </Route>
+            <Route path='/account/orders'>
+            <div className="home">
+                  <LoggedNav />
+                    <br />
+                    <br />
+                    <br />
+                    <div className="profile">
+                      <div className="left">
+                          <ProfileSidebar />
+                      </div>
+                      <div className="right">
+                        <Orders />
+                      </div>
+                    </div>
+              </div>
+            </Route>
             <Route path='/cart'>
                       {
                         loading && <div>Loading ...</div>
@@ -252,6 +270,32 @@ import Payment from './clientComponents/Payment';
                               <br />
                               
                             <Summary />
+                          </div>
+                      
+                      }
+                      { !loading &&  !loggedIn && <div className="home">
+                            <Nav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                              <Login />
+                          </div>
+                      }
+                
+            </Route>
+            <Route path='/view_summary'>
+                      {
+                        loading && <div>Loading ...</div>
+                      }
+                      { !loading && loggedIn && 
+                          <div className="home">
+                            <LoggedNav />
+                              <br />
+                              <br />
+                              <br />
+                              
+                            <CompleteSummary />
                           </div>
                       
                       }

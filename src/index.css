@@ -1012,3 +1012,30 @@ margin-bottom: 1%;
   border: 1px solid #04AA6D;
   font-size: medium;
 }
+.orders table{
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+.orders table tbody td{
+  padding: 10px;
+}
+
+.orders table tbody tr:nth-child(odd){
+  background-color: #c1c0c4;
+  color: black;
+}
+.orders table th, td{
+  padding: 5px;
+
+}
+.orders table th{
+  border-bottom: 1px solid black;
+}
+.orders table tbody tr td a{
+  text-decoration: none;
+}
+.orders table tbody tr td a:hover{
+  text-decoration: underline;
+}
