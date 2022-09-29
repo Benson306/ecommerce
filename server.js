@@ -504,7 +504,7 @@ function stk_push(req,res, amount, phone, transId){
     let currentdate = new Date();
     const timestamp = currentdate.getFullYear() + "" + "" + ("0"+ (currentdate.getMonth()+1)).slice(-2) + "" + "" + ("0"+currentdate.getDate()).slice(-2) + "" + "" + ("0"+currentdate.getHours()).slice(-2) + "" + "" + ("0"+currentdate.getMinutes()).slice(-2)  + "" + "" + ("0"+currentdate.getSeconds()).slice(-2);
     
-    const password = new Buffer.from('174379' + process.env.PASS_KEY + timestamp ).toString('base64');
+    const password = new Buffer.from(process.env.Short_Code + process.env.PASS_KEY + timestamp ).toString('base64');
 
 
    let request = unirest('POST', 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest')
@@ -513,13 +513,13 @@ function stk_push(req,res, amount, phone, transId){
         'Authorization': token
     })
     .send(JSON.stringify({
-        "BusinessShortCode": "174379",
+        "BusinessShortCode": process.env.Short_Code,
         "Password": password,
         "Timestamp": timestamp,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": amount,
         "PartyA": phone,
-        "PartyB": "174379",
+        "PartyB": process.env.Short_Code,
         "PhoneNumber": phone,
         "CallBackURL": process.env.Callback_url,
         "AccountReference": transId,
