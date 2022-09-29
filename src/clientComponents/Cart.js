@@ -30,15 +30,22 @@ const Cart = () => {
         .then((res)=>{
             setError(false)
             setProducts(res);
-            let prc = 0;
-            res.map(r =>{
+            if(res.length === 0){
+
+            }else{
+                let prc = 0;
+                res.map(r =>{
                 prc += Number(r.price);
                 addData(r._id, r.price, 1);
-            })
-            setNewPrice(prc);
+                })
+                setNewPrice(prc);
+            }
+            
+            
             setPending(false);
         })
         .catch((err)=>{
+            console.log(err)
             setError(true);
             setPending(false);
         })
@@ -116,14 +123,16 @@ const Cart = () => {
         
       }
 
+  
+
     return ( 
         <div className="cart">
-            { error && <div><br /><br />Failed to fetch Data.. Try again</div>}
+            { !pending && error && <div><br /><br />Failed to fetch Data.. Try again</div>}
             { pending && <div><br /><br />Loading ....</div> }
             <div className='cartLayout'>
 
                 <div className="crt">
-                            {   !pending && !error &&  products.map( product => (
+                            {   !pending && !error &&  products.length > 0   ? products.map( product => (
                         
                         
                         <div className="cartProduct">
@@ -155,14 +164,14 @@ const Cart = () => {
                                 <br />
                                 
                             </div>
-                    </div>
+                    </div> 
 
                     
-                ) ) }
+                ) ) : <div></div> } 
 
                 </div>
            
-                { !pending && !error && products.length > 0 ?  <div className='deliv'>
+                { !pending && !error && products.length > 0  ?  <div className='deliv'>
                             <h3>Total Price:</h3> <br />
                                <h1>{ newPrice }</h1> 
                                 <br /><br />
@@ -170,7 +179,7 @@ const Cart = () => {
                 </div> : <div></div> }
                 
             </div>
-            { !pending && !error && products.length === 0 ? 
+            { !pending && !error && products.length === 0  ? 
             <div style={{width:'50%', margin: '0 auto', backgroundColor: '#ddd', padding: '20px', textAlign:'center'}}>
                 <h3>You have no items in Cart</h3><br /><br />
                 <img src={require('../images/empty-cart.png')} alt="" />

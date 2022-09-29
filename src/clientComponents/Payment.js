@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
+import { Checkmark } from 'react-checkmark'
 
 const Payment = () => {
     const location = useLocation();
@@ -10,6 +11,7 @@ const Payment = () => {
     const [loading, setLoading] = useState(true);
 
     const [phone, setPhone] = useState(true);
+    const [show, setShow] = useState(false);
 
     let cost = 200;
 
@@ -75,7 +77,9 @@ const Payment = () => {
         .then((res)=>{
             
             if(res === 'confirmed'){
-                notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
+                setShow(true);
+                //document.querySelector('.animation').style.visibility = "visible";
+                //notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
             }else if(res === 'pending'){
                 notify("Pending","Payment Has Not been received. Try Again in A few minutes","Danger");
             }else if(res === 'existing'){
@@ -90,6 +94,24 @@ const Payment = () => {
             <h2>Make Payment</h2>
                 <br />
             <hr /> 
+            { show && <div className="animation">
+                <br />
+                <center>
+                    <Checkmark size='xxLarge' />
+                    <br />
+                    <h2>Success</h2>
+                    <br />
+                    Payment Has Been Confirmed. Our agents will make delivery in 2 Days. 
+                    <br />
+                    <br />
+                    Thank you For shopping with Us.
+                    <br />
+                    <br />
+                    <Link to={'/account/personal'}><button>OK!</button></Link>
+                </center>
+                
+            </div> }
+            
             <br />
             {loading && <div>Loading ....</div>}
             {!loading && <div>

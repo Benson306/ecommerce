@@ -436,7 +436,7 @@ app.post('/add_cart', urlEncoded, function(req, res){
 app.get('/cart', function(req, res){
     Cart.find({user_id: req.session.userId}, function(err, data){
         if(data.length === 0){
-            res.json('no items in cart');
+            res.json(data);
         }else{
             Product.find({_id : data[0].items_id}, function(err, dt){
                 res.json(dt);
