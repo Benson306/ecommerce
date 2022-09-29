@@ -476,21 +476,33 @@ app.get('/get_order/:id', function(req,res){
     })
 })
 
-app.post('/stk_push/:id', urlEncoded, function(req, res){
-    let prices = [];
+app.post('/stk_push/:id', urlEncoded,  function(req, res){
     
-    Order.findById(req.params.id, function(err, data){
-        let price;
-        data.items.forEach(item => {
-            Product.findById(item.item_id, function (err, data1){
-                let sum = Number(data1.price)* Number(item.quantity);
-                console.log(sum)
-            })
+    
 
-            console.log(price)
-        });
+   Order.findById(req.params.id, function(err, data){
         
+        let cost = 0;
+        let getPrices = async function(data, callback){
+
+        
+             await data.items.forEach(dt=>{
+                    Product.findById(dt.item_id, function data2(err1, data1){
+                            let price = data1.price * dt.quantity;
+                            cost+=price;
+                            callback && callback(cost)
+                        })
+                });
+        }
+        
+        getPrices(data, function(cost){
+            console.log(cost);
+
+            
+        })
     })
+    
+    
 })
 
 
