@@ -527,7 +527,7 @@ td button{
   border-radius: 5px;
 }
 .moreProducts{
-  background-color: white;
+  background-color:#ddd;
   padding: 10px;
   width: 98%;
   margin-top: 1%;
@@ -1084,3 +1084,13 @@ margin-bottom: 1%;
   text-decoration: none;
   color: black;
 }
+
+ .morePd{
+   width: 100%;
+   display: flex;
+ }
+ .morePd .product .bottom{
+   text-align: center;
+   background-color: #c1c0c4;
+   font-size: large;
+ }

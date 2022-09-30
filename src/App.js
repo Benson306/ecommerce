@@ -1,4 +1,4 @@
-import { Redirect ,BrowserRouter as  Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Switch, withRouter } from 'react-router-dom'
 import $ from 'jquery';
 import 'react-notifications-component/dist/theme.css'
 
@@ -108,8 +108,8 @@ import CompleteSummary from './clientComponents/CompleteSummary';
                   <br />
                   <br />
                   <br />
-                  <br />
-                  <Preview />
+                  <br /> 
+                    <Preview />
               </div>
             </Route>
             <Route path='/login'>

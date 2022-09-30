@@ -143,6 +143,11 @@ app.get('/products/:id', urlEncoded, function(req, res){
     })
 });
 
+app.get('/products/similar/:id', urlEncoded, function(req, res){
+    Product.find({categ: req.params.id}, function(err, data){
+        res.json(data)
+    })
+});
 
 app.post('/add_product', urlEncoded, upload.fields([{name: 'file1',maxCount: 1}, { name: 'file2', maxCount: 1 }, { name: 'file3', maxCount: 1 }, { name: 'file4', maxCount: 1 }]),function(req, res){
 

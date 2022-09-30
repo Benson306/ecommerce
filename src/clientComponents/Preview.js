@@ -4,6 +4,7 @@ import { Store } from 'react-notifications-component';
 
 import { Link } from 'react-router-dom';
 import Delivery from './Delivery'
+import MoreProducts from './MoreProducts';
 
 
 const Preview = () => {
@@ -229,10 +230,7 @@ const Preview = () => {
             </div>
         </div>
         }
-        
-        <div className='moreProducts'>
-            More Products
-        </div>
+        {!pending && <MoreProducts props={product.categ}/> }
         <br /><br />
         
     </div> );
