@@ -48,9 +48,7 @@ const Orders = () => {
                                 let number =  order.items.length;
                                 order.items.map(item =>{
                                     cost += (item.price * item.quantity)
-                                })
-
-                                
+                                })                                
 
                                 return (
                                     <tr>

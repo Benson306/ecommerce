@@ -384,14 +384,55 @@ td button{
   height: 350px;
 }
 .search{
-  background-color:rgba(255, 165, 0, 0.8); 
+  
   width:60%;
   margin-left: 20%;
-  padding: 20px;
+  
   align-items: center;
 }
+.search form{
+  background-color:rgba(255, 165, 0, 0.8); 
+  padding: 20px;
+  display: flex;
+}
+.search .searchResult{
+  background-color: white;
+  padding: 10px;
+  max-height: 100px;
+  min-height: 0;
+  width:60%;
+  margin-left: 3%;
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+.search .searchResult::-webkit-scrollbar{
+  display: none;  /* Safari and Chrome */
+}
+.search .searchResult .links{
+  padding: 5px;
+}
+.search .searchResult a{
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  width: 100%;
+}
+.search .searchResult .links:hover{
+  background-color: #c1c0c4;
+}
+
 .search input{
   opacity: 1;
+  border: none;
+}
+.searchIcon{
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  padding: 5px;
 }
 
 .productList{
@@ -1038,4 +1079,8 @@ margin-bottom: 1%;
 }
 .orders table tbody tr td a:hover{
   text-decoration: underline;
+}
+.listCategories a{
+  text-decoration: none;
+  color: black;
 }
