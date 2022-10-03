@@ -51,6 +51,7 @@ const Preview = () => {
             setError(false)
             setProduct(res);
             setPending(false);
+            
         })
         .catch((err)=>{
             setError(true);
@@ -61,7 +62,7 @@ const Preview = () => {
 
         return () => abortCont.abort();
 
-    },[])
+    },[product])
 
 
 
@@ -230,7 +231,7 @@ const Preview = () => {
             </div>
         </div>
         }
-        {!pending && <MoreProducts props={product.categ}/> }
+        {/* {!pending && <MoreProducts props={product.categ}/> } */}
         <br /><br />
         
     </div> );

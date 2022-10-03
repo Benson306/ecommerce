@@ -1088,9 +1088,20 @@ margin-bottom: 1%;
  .morePd{
    width: 100%;
    display: flex;
+   flex-direction: row;
+  flex-wrap: wrap;
  }
  .morePd .product .bottom{
    text-align: center;
    background-color: #c1c0c4;
    font-size: large;
  }
+
+ .moreCategoryProducts{
+  background-color:#ddd;
+  padding: 10px;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1%;
+  border-radius: 5px;
+}

@@ -74,7 +74,7 @@ const EditProducts = () => {
             setInBox(data.inBox);
         })
 
-        return () => abortCont.Abort()
+        return () => abortCont.abort()
     },[]);
 
     function handleCancel(){

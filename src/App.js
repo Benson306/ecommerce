@@ -1,4 +1,4 @@
-import { BrowserRouter as  Router, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Switch, Routes } from 'react-router-dom'
 import $ from 'jquery';
 import 'react-notifications-component/dist/theme.css'
 
@@ -28,6 +28,7 @@ import Summary from './clientComponents/Summary';
 import Payment from './clientComponents/Payment';
 import Orders from './clientComponents/Orders';
 import CompleteSummary from './clientComponents/CompleteSummary';
+import ProductsByCategory from './clientComponents/ProductsByCategory';
 
   function App() {
     $(function(){
@@ -71,6 +72,8 @@ import CompleteSummary from './clientComponents/CompleteSummary';
     <ReactNotifications />
         
         <Switch>
+
+          
           <Route exact path='/'>
             <div class="home">
                     { !loggedIn && <Nav />}
@@ -100,6 +103,17 @@ import CompleteSummary from './clientComponents/CompleteSummary';
                         </div>
                     </div>                
               </div>
+            </Route>
+            <Route path='/products/categories/:id'>
+                <div className="home">
+                    { !loggedIn && <Nav />}
+                    { loggedIn && <LoggedNav />}
+                    <br />
+                    <br />
+                    <br />
+                    <br /> 
+                      <ProductsByCategory />
+                </div>
             </Route>
             <Route path='/preview/:id'>
               <div className="home">
@@ -353,6 +367,7 @@ import CompleteSummary from './clientComponents/CompleteSummary';
           </Switch>
           
     </div>
+    
     </Router>
   );
 }
