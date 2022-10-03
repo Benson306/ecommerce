@@ -1141,3 +1141,13 @@ margin-bottom: 1%;
   color: #030c3b;
   font-weight: bold;
 }
+
+.pdf .btn{
+  padding: 15px; 
+  font-size: large;
+  margin-left:75%; 
+  border-radius:5px; 
+  background-color:green; 
+  color: white;
+  border: 1px solid orange;
+}

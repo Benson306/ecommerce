@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
-
+import JsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const MakeDelivery = () => {
     const location = useLocation();
@@ -67,8 +68,6 @@ const MakeDelivery = () => {
        return () => abortCont.abort(); 
     },[])
 
-    console.log(payment)
-
     function notify(title, message, type){
         Store.addNotification({
             title: title,
@@ -84,6 +83,20 @@ const MakeDelivery = () => {
             }
         }) 
     };
+
+    const generatePDF = () => {
+
+        const input = document.querySelector('.makeDelivery');
+        html2canvas(input)
+        .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new JsPDF('landscape','px','a4');
+            pdf.addImage(imgData, 'JPEG', 0, 0);
+            // pdf.output('dataurlnewwindow');
+            pdf.save("download.pdf");
+        })
+        ;
+    }
 
     const handleClick = (e)=>{
         e.preventDefault();
@@ -126,6 +139,7 @@ const MakeDelivery = () => {
     }
     
     return ( 
+        <div className="pdf">
     <div className="makeDelivery">
             <div className="detailsPreview">
             <h2>User's Personal Information</h2>
@@ -252,9 +266,12 @@ const MakeDelivery = () => {
             }
             <br />
 
+
+
             </div>
-        
-        
+    </div >
+        <button onClick={generatePDF} className='btn' type="button">Set Delivery For Today</button>
+        <br /><br />
     </div>
      );
 }
