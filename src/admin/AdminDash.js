@@ -12,6 +12,7 @@ import '../index.css'
 import AddDelivery from '../delivery/AddDelivery';
 import DeliveryTable from '../delivery/DeliveryTable';
 import EditDelivery from '../delivery/EditDelivery';
+import PendingOrders from '../orders/PendingOrders';
 
 const AdminDash = () => {
     return (
@@ -90,12 +91,12 @@ const AdminDash = () => {
 
                                 <Route path='/admin_dashboard/pending_orders'>
                                 <div className="category_header">
-                                    ORDERS
+                                    PENDING ORDERS
                                 </div>
                                 <br />
                                 <br />
                                 <br />
-                                    Pending orders
+                                    <PendingOrders />
                                 </Route>
                                 <Route path='/admin_dashboard/delivered_orders'>
                                 <div className="category_header">

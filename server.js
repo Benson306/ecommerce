@@ -489,6 +489,24 @@ app.get('/my_order', function(req,res){
     })
 })
 
+app.get('/all_orders', function(req,res){
+    Order.find({}, function(err, data){
+        res.json(data);
+    })
+})
+
+app.get('/pending_orders', function(req, res){
+    Order.find({$and: [{delivery_status: 'pending'}, {completion_status: 'completed'}]}, function(err, data){
+        res.json(data);
+    })
+})
+
+app.get('/delivered_orders', function(req, res){
+    Order.find({delivery_status: 'delivered'}, function(err, data){
+        res.json(data);
+    })
+})
+
 let unirest = require('unirest');
 
 function accessToken(req, res, next){

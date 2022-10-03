@@ -301,7 +301,24 @@ td button{
   width: 200px;
   height: 200px;
 }
-
+.pendingOrders{
+  background-color: white;
+  padding: 5px;
+}
+.pendingOrders table{
+  width: 100%;
+}
+.pendingOrders table tr{
+  background-color: #030c3b;
+  color: white;
+}
+.pendingOrders table th{
+  padding: 5px;
+}
+.pendingOrders table tbody tr{
+  background-color: white;
+  color: black;
+}
 
 
 
