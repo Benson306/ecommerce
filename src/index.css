@@ -319,7 +319,10 @@ td button{
   background-color: white;
   color: black;
 }
-
+.makeDelivery{
+  width: 99%;
+  padding: 10px
+}
 
 
 
@@ -1122,4 +1125,19 @@ margin-bottom: 1%;
   margin-left: 5%;
   margin-top: 1%;
   border-radius: 5px;
+}
+
+.makeDelivery .detailsPreview .details .hidden{
+  visibility: hidden;
+  height: 0;
+}
+.makeDelivery .detailsPreview .details .dtlTabs{
+  display: flex;
+}
+.makeDelivery .detailsPreview .details .dtlTabs .tabs{
+ margin-right: 7%;
+}
+.makeDelivery .detailsPreview .details .dtlTabs .tabs .title{
+  color: #030c3b;
+  font-weight: bold;
 }

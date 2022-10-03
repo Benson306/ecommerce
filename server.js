@@ -365,6 +365,12 @@ app.get('/profile', function(req,res){
     })
 });
 
+app.get('/user_data/:id', function(req, res){
+    Register.findById(req.params.id, function(err, data){
+        res.status(200).json(data)
+    })
+})
+
 app.put('/edit_profile', urlEncoded, function(req,res){
     Register.findByIdAndUpdate(req.session.userId, req.body, {new: true}, function(err,data){
         res.status(200).json('success');
@@ -391,6 +397,18 @@ app.get('/address', function(req,res){
         
     });
 });
+
+app.get('/address/:id', function(req,res){
+    Address.find({userId: req.params.id}, function(err, data){
+        if(data.length !== 0){
+            res.status(200).json(data[0])
+        }else{
+            res.status(200).json('failed');
+        }
+        
+    });
+});
+
 
 app.post('/add_address', urlEncoded, function(req,res){
     let user = {
@@ -613,6 +631,12 @@ app.post('/stk_push/:id', accessToken, urlEncoded,  function(req, res){
     })
     
     
+})
+
+app.get('/payment/:id', function(req, res){
+    Stk.find({order_id: req.params.id}, function(err, data){
+        res.json(data)
+    })
 })
 
 app.post('/confirm_payment', urlEncoded, function(req, res){
