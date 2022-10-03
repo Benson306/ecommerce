@@ -45,7 +45,8 @@ body{
 }
 .adminSidebar ul li{
   list-style: none;
-  padding: 20px;
+  padding: 10px;
+  padding-bottom: 30px;
   vertical-align: middle;
 }
 .adminSidebar ul li a{

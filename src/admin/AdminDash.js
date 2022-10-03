@@ -19,6 +19,14 @@ const AdminDash = () => {
                             <AdminNav />
                             <br />
                             <Switch>
+                                <Route exact path='/admin_dashboard'>
+                                    <div className="category_header">
+                                        
+                                        Dashboard
+                                    </div>
+                                    <br />
+                                    <br />
+                                </Route>
                                 <Route path='/admin_dashboard/categories/:id'>
                                     <EditCategories />
                                 </Route>
@@ -80,14 +88,23 @@ const AdminDash = () => {
                                     <EditProducts />
                                 </Route>
 
-                                <Route path='/admin_dashboard/orders'>
+                                <Route path='/admin_dashboard/pending_orders'>
                                 <div className="category_header">
                                     ORDERS
                                 </div>
                                 <br />
                                 <br />
                                 <br />
-                                    orders
+                                    Pending orders
+                                </Route>
+                                <Route path='/admin_dashboard/delivered_orders'>
+                                <div className="category_header">
+                                    ORDERS
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                    Delivered orders
                                 </Route>
                                 <Route path='/admin_dashboard/delivery'>
                                 <div className="category_header">
