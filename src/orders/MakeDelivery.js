@@ -101,20 +101,16 @@ const MakeDelivery = () => {
     const handleClick = (e)=>{
         e.preventDefault();
 
-      fetch('/add_order',{
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(data)
-      })
+      fetch('/set_delivery/'+data.order_id)
       .then((res)=>{
           return res.json();
       })
       .then(res =>{
             history.push({
-                pathname: '/payment',
+                pathname: '/admin_dashboard/pending_orders',
                 state: res
             })
-            notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
+            notify("Information","Order has been marked as delivered today.","success");
       })
       
     }
@@ -167,7 +163,7 @@ const MakeDelivery = () => {
         </div>
         }
         <br />
-        <h2>Delivery Address:</h2>
+        <h2>Delivery Details:</h2>
         <hr />
         <br />
 
@@ -270,7 +266,7 @@ const MakeDelivery = () => {
 
             </div>
     </div >
-        <button onClick={generatePDF} className='btn' type="button">Set Delivery For Today</button>
+        <button onClick={(e)=>{ generatePDF(); handleClick(e)}} className='btn' type="button">Set Delivery For Today</button>
         <br /><br />
     </div>
      );

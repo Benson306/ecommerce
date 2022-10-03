@@ -525,6 +525,16 @@ app.get('/delivered_orders', function(req, res){
     })
 })
 
+
+app.get('/set_delivery/:id', function(req, res){
+    console.log('reached')
+    let today = getTOdayDate();
+
+    Order.findByIdAndUpdate({_id: req.params.id},{delivery_status: 'delivered', delivery_date: today}, function(err,data){
+        res.json(data);
+    })
+})
+
 let unirest = require('unirest');
 
 function accessToken(req, res, next){
@@ -639,14 +649,19 @@ app.get('/payment/:id', function(req, res){
     })
 })
 
-app.post('/confirm_payment', urlEncoded, function(req, res){
-
+function getTOdayDate(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = mm + '/' + dd + '/' + yyyy;
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+}
+
+app.post('/confirm_payment', urlEncoded, function(req, res){
+
+    let today = getTOdayDate();
 
 
     var someDate = new Date();
@@ -658,7 +673,7 @@ app.post('/confirm_payment', urlEncoded, function(req, res){
     var mmm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyyy = newDate.getFullYear();
 
-    let deliveryDate = mmm + '/' + ddd + '/' + yyyyy;
+    let deliveryDate = ddd + '/' + mmm + '/' + yyyyy;
 
 
     Stk.find({TransactionId: req.body.code}, function(err, data){
