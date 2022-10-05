@@ -15,6 +15,7 @@ import EditDelivery from '../delivery/EditDelivery';
 import PendingOrders from '../orders/PendingOrders';
 import MakeDelivery from '../orders/MakeDelivery';
 import DeliveredOrders from '../orders/DeliveredOrders';
+import OrderSummary from '../orders/OrderSummary';
 
 const AdminDash = () => {
     return (
@@ -120,6 +121,17 @@ const AdminDash = () => {
                                 <br />
                                     <DeliveredOrders />
                                 </Route>
+
+                                <Route path='/admin_dashboard/order_summary'>
+                                <div className="category_header">
+                                    Order Summary
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                    <OrderSummary />
+                                </Route>
+                                
                                 <Route path='/admin_dashboard/delivery'>
                                 <div className="category_header">
                                     DELIVERY DETAILS

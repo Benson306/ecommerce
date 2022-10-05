@@ -91,7 +91,7 @@ const DeliveredOrders = () => {
                                     <td>{cost}</td>
                                     <td>{order.order_date}</td>
                                     <td>{order.delivery_date}</td>
-                                     <td><Link to={{pathname: `/admin_dashboard/make_delivery`, state: {items: order.items ,user_id: order.user_id, order_id: order._id}}}>View Summary</Link></td>
+                                     <td><Link to={{pathname: `/admin_dashboard/order_summary`, state: {items: order.items ,user_id: order.user_id, order_id: order._id}}}>View Summary</Link></td>
                                 </tr> 
                                   )
                             }
