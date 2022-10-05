@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { Link, BrowserRouter as  Router, Route, Switch } from "react-router-dom";
 
-const ProductsByCategory = () => {
 
-    const { id } = useParams();
+const MoreProducts = ({props}) => {
+
 
     const [pending , setPending] = useState(true);
     const [error, setError] = useState(false);
@@ -12,7 +12,7 @@ const ProductsByCategory = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products/similar/'+id, {signal: abortCont.signal})
+        fetch('/products/similar/'+props, {signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 setPending(false);
@@ -36,9 +36,9 @@ const ProductsByCategory = () => {
     },[])
     
     console.log(products);
-    return ( <div className="moreCategoryProducts">
-        <h2>Products In the {id} Category</h2>
-        <br />
+
+    return ( <div className="moreProducts">
+        <h3>Similar Products</h3>
         <hr />
         {
             error &&  <div>Failed to Fetch Data</div>
@@ -48,16 +48,11 @@ const ProductsByCategory = () => {
         }
         <div class='morePd'>
         {
-            !pending && !error && products.length === 0 ? <div>
-                <br />
-                No products In this Category
-
-            </div> 
-            :  products.map(product =>(
+            !pending && !error && products.slice(0,4).reverse().map(product =>(
                 
                 <div className="product">
                     <Link key={product._id} to={`/preview/${product._id}`}>
-                        <img src={require(`../uploads/${product.preview1}`)} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
+                        <img src={`/uploads/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
                         <br />
                         <div className="bottom">
                             <div style={{paddingTop:'3px'}}>{product.prodName}</div>
@@ -69,13 +64,10 @@ const ProductsByCategory = () => {
             
             )) 
         }
-        {
-            
-        }
         
         </div>
         <br />
     </div>);
 }
  
-export default ProductsByCategory;
+export default MoreProducts;

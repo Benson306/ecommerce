@@ -148,17 +148,17 @@ const Preview = () => {
                             </button>
                             
                             <ul className="slides-container" id="slides-container">
-                                <li className="slide"><img src={require(`../uploads/${product.preview1}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
-                                <li className="slide"><img src={require(`../uploads/${product.preview2}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
-                                <li className="slide"><img src={require(`../uploads/${product.preview3}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
-                                <li className="slide"><img src={require(`../uploads/${product.preview4}`)} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`/uploads/${product.preview1}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`/uploads/${product.preview2}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`/uploads/${product.preview3}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`/uploads/${product.preview4}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
                             </ul>
                         </section>
                             <div className="moreImages">
-                                <img src={require(`../uploads/${product.preview1}`)} width='50px' height='50px' alt="" />
-                                <img src={require(`../uploads/${product.preview2}`)} width='50px' height='50px' alt="" />
-                                <img src={require(`../uploads/${product.preview3}`)} width='50px' height='50px' alt="" />
-                                <img src={require(`../uploads/${product.preview4}`)} width='50px' height='50px' alt="" />
+                                <img src={`/uploads/${product.preview1}`} width='50px' height='50px' alt="" />
+                                <img src={`/uploads/${product.preview2}`} width='50px' height='50px' alt="" />
+                                <img src={`/uploads/${product.preview3}`} width='50px' height='50px' alt="" />
+                                <img src={`/uploads/${product.preview4}`} width='50px' height='50px' alt="" />
                             </div>
                         </div>
                         <div className="topDetails">

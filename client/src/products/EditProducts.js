@@ -278,7 +278,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 1:</label>
                                 <br />
                                 <br />
-                                <img src={require(`../uploads/${data.preview1}`)} alt="" />
+                                <img src={`/uploads/${data.preview1}`} alt="" />
                                 <br />
                                 <br />
 
@@ -290,7 +290,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 2:</label>
                                 <br />
                                 <br />
-                                <img src={require(`../uploads/${data.preview2}`)} alt="" />
+                                <img src={`/uploads/${data.preview2}`} alt="" />
                                 <br />
                                 <br />
                                 <input onChange={e =>{ setPreview2(e.target.files[0]); handlePreview2(e) }} type="file" name="" id="img2" style={{display:'none'}}/>
@@ -300,7 +300,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
-                                <img src={require(`../uploads/${data.preview3}`)} alt=""  />
+                                <img src={`/uploads/${data.preview3}`} alt=""  />
                                 <br />
                                 <br />
                                 <input onChange={e => {setPreview3(e.target.files[0]); handlePreview3(e)}} type="file" name="" id="img3" style={{display:'none'}} />
@@ -310,7 +310,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
-                                <img src={require(`../uploads/${data.preview4}`)} alt="" />
+                                <img src={`/uploads/${data.preview4}`} alt="" />
                                 <br />
                                 <br />
                                 <input onChange={e => { setPreview4(e.target.files[0]); handlePreview4(e)}}type="file" name="" id="img4" style={{display:'none'}} />
