@@ -313,12 +313,16 @@ td button{
   color: white;
 }
 .pendingOrders table th{
-  padding: 5px;
+  padding: 10px;
 }
 .pendingOrders table tbody tr{
   background-color: white;
   color: black;
 }
+.pendingOrders table tbody tr:nth-child(even){background-color: #f2f2f2;}
+
+.pendingOrders table tbody  tr:hover {background-color: #ddd;}
+
 .makeDelivery{
   width: 99%;
   padding: 10px
@@ -1126,7 +1130,6 @@ margin-bottom: 1%;
   margin-top: 1%;
   border-radius: 5px;
 }
-
 .makeDelivery .detailsPreview .details .hidden{
   visibility: hidden;
   height: 0;

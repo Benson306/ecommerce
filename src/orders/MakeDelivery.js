@@ -166,7 +166,7 @@ const MakeDelivery = () => {
         <h2>Delivery Details:</h2>
         <hr />
         <br />
-
+        { loading && <div>Loading ...</div>}
         { !delivLoading &&
             <div className="details">
                 <div className="dtlTabs"> 
@@ -265,7 +265,7 @@ const MakeDelivery = () => {
 
 
             </div>
-    </div >
+    </div>
         <button onClick={(e)=>{ generatePDF(); handleClick(e)}} className='btn' type="button">Set Delivery For Today</button>
         <br /><br />
     </div>
