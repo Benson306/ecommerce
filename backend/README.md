@@ -1,7 +1,7 @@
-##### HOW TO INSTAL #####
+##### HOW TO INSTALL #####
 
 npm install
 
 #### HOW TO START APP BACKEND ####
 
-nodemon -- insecure-http--parse server.js
+nodemon -- insecure-http--parser server.js

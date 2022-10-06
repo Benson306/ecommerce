@@ -1,34 +1,33 @@
-import { BrowserRouter as  Router, Route, Switch, Routes } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Switch} from 'react-router-dom'
 import $ from 'jquery';
 import 'react-notifications-component/dist/theme.css'
 
 
-import AdminLogin from './admin/AdminLogin';
-import AdminDash from './admin/AdminDash';
-import AdminSidebar  from './admin/AdminSidebar';
+import AdminLogin from './components/admin/AdminLogin';
+import AdminDash from './components/admin/AdminDash';
+import AdminSidebar  from './components/admin/AdminSidebar';
 import { ReactNotifications } from 'react-notifications-component'
-import Preview from './clientComponents/Preview';
-import Nav from './Nav/Nav';
-import Login from './clientComponents/Login';
-import Register from './clientComponents/Register';
+import Preview from './components/clientComponents/Preview';
+import Nav from './components/Nav/Nav';
+import Login from './components/clientComponents/Login';
+import Register from './components/clientComponents/Register';
 import { useEffect, useState } from 'react';
-import ListCategories from './clientComponents/ListCategories';
-import Search from './clientComponents/Search';
-import LoggedNav from './Nav/LoggedNav';
-import TopProducts from './clientComponents/TopProducts';
-import Personal from './clientComponents/Personal';
-import ProfileSidebar from './clientComponents/ProfileSidebar';
-import EditPersonal from './clientComponents/EditPersonal';
-import Delivery from './clientComponents/Delivery';
-import AddDeliveryAdrr from './clientComponents/AddDeliveryAddr';
-import EditDeliveryAdrr from './clientComponents/EditDeliveryAddr';
-import CategoryTable from './categories/CategoryTable';
-import Cart from './clientComponents/Cart';
-import Summary from './clientComponents/Summary';
-import Payment from './clientComponents/Payment';
-import Orders from './clientComponents/Orders';
-import CompleteSummary from './clientComponents/CompleteSummary';
-import ProductsByCategory from './clientComponents/ProductsByCategory';
+import ListCategories from './components/clientComponents/ListCategories';
+import Search from './components/clientComponents/Search';
+import LoggedNav from './components/Nav/LoggedNav';
+import TopProducts from './components/clientComponents/TopProducts';
+import Personal from './components/clientComponents/Personal';
+import ProfileSidebar from './components/clientComponents/ProfileSidebar';
+import EditPersonal from './components/clientComponents/EditPersonal';
+import Delivery from './components/clientComponents/Delivery';
+import AddDeliveryAdrr from './components/clientComponents/AddDeliveryAddr';
+import EditDeliveryAdrr from './components/clientComponents/EditDeliveryAddr';
+import Cart from './components/clientComponents/Cart';
+import Summary from './components/clientComponents/Summary';
+import Payment from './components/clientComponents/Payment';
+import Orders from './components/clientComponents/Orders';
+import CompleteSummary from './components/clientComponents/CompleteSummary';
+import ProductsByCategory from './components/clientComponents/ProductsByCategory';
 
   function App() {
     $(function(){
