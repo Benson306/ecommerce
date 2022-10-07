@@ -16,6 +16,9 @@ import PendingOrders from '../../components/orders/PendingOrders';
 import MakeDelivery from '../../components/orders/MakeDelivery';
 import DeliveredOrders from '../../components/orders/DeliveredOrders';
 import OrderSummary from '../../components/orders/OrderSummary';
+import AddUsers from './AddUsers';
+import UsersTable from './UsersTable';
+import EditUsers from './EditUsers';
 
 const AdminDash = () => {
     return (
@@ -161,14 +164,25 @@ const AdminDash = () => {
                                 <br />
                                     profile
                                 </Route>
-                                <Route path='/admin_dashboard/users'>
+                                <Route exact path='/admin_dashboard/users'>
                                 <div className="category_header">
                                     MANAGE USERS
                                 </div>
                                 <br />
                                 <br />
                                 <br />
-                                    users
+                                    <AddUsers />
+                                    <br />
+                                    <UsersTable />
+                                </Route>
+                                <Route path='/admin_dashboard/users/:id'>
+                                <div className="category_header">
+                                    EDIT USER CREDENTIALS
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                    <EditUsers />
                                 </Route>
                             </Switch>
                         

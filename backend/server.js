@@ -73,6 +73,9 @@ app.use('/', OrdersController);
 let StkController = require('./routes/Stk');
 app.use('/', StkController);
 
+let AdminController = require('./routes/Admin');
+app.use('/', AdminController);
+
 app.get('/auth', function(req,res){
     if(req.session.isAuth){
         res.status(200).json('success');
