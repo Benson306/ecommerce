@@ -171,7 +171,7 @@ body{
 .adminNav .navRight{
   display: flex;
   text-align: right;
-  margin-left: 75%;
+  margin-left: 90%;
   position:inherit;
 }
 .add_product{
@@ -378,18 +378,36 @@ td button{
 .clientNav nav ul{
   display: flex;
 }
+.clientNav nav ul .left{
+  display: flex;
+  width: 30%;
+  margin-right: 35%;
+}
+.clientNav nav ul .right{
+  display: flex;
+  width: 35%;
+}
 .clientNav nav ul li{
   color: white;
   padding: 12px;
   list-style: none;
-  margin-right: 3%;
+  margin-right: 1%;
   text-transform: uppercase;
+}
+.clientNav nav ul .right li a{
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: large;
+}
+.clientNav nav ul .right li a:hover{
+  color: orange;
 }
 .clientNav nav ul li a{
   font-size: medium;
-}
-.clientNav nav ul li input{
-  width: 100%;
+  justify-content: center;
 }
 .home{
   background-color: #c1c0c4;

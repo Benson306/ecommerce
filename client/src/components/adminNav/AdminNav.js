@@ -40,7 +40,6 @@ const AdminNav = () => {
             <nav>
                 <ul>
                     <div className="navRight">
-                        <li style={{float:'right'}}><Link to={'/admin_dashboard/profile'}>My Account</Link></li>
                         <li><Link onClick={e => {logout(e)} }>Sign Out</Link></li>
                     </div>
                     
