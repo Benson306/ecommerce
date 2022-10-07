@@ -20,6 +20,19 @@ app.get('/admin/:id', function(req, res){
     })
 })
 
+app.post('/admin_login', urlEncoded, function(req, res){
+    Admin.find({$and: [{email:{$eq: req.body.email}},{password:{$eq: req.body.password}}]}, function(err, data){
+        if(data.length === 0){
+            res.status(400).json('failed');
+        }else{
+            req.session.isAdmin = true;
+            req.session.adminId = data[0]._id;
+            res.status(200).json('success');
+        }
+    })
+})
+
+
 app.post('/admins', urlEncoded, function(req, res){
     Admin.findOne({email: req.body.email}, function(err, data){
         if(data === null){
@@ -32,7 +45,6 @@ app.post('/admins', urlEncoded, function(req, res){
     })
     
 })
-
 
 app.put('/edit_admin/:id', urlEncoded, function(req,res){
     Admin.findByIdAndUpdate(req.params.id, req.body, function(err, data){

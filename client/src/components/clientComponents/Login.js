@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { Store } from 'react-notifications-component';
 

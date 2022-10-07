@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import AdminNav from '../../components/adminNav/AdminNav';
 import Products from '../../components/products/Products';
@@ -19,12 +20,41 @@ import OrderSummary from '../../components/orders/OrderSummary';
 import AddUsers from './AddUsers';
 import UsersTable from './UsersTable';
 import EditUsers from './EditUsers';
+import AdminLogin from './AdminLogin';
+
+
 
 const AdminDash = () => {
+
+    const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+      const abortCont = new AbortController();
+
+      fetch('/admin_auth', {signal: abortCont.signal})
+      .then((res)=>{
+          if(res.ok){
+              setLoggedIn(true);
+              setLoading(false);
+          }else{
+              setLoggedIn(false);
+              setLoading(false);
+          }
+      })
+
+      return () => abortCont.abort();
+  },[])
+
+
     return (
                         <div className="admin_main">
                             <AdminNav />
+                            
                             <br />
+                            {
+                                !loading && loggedIn &&
+                            
                             <Switch>
                                 <Route exact path='/admin_dashboard'>
                                     <div className="category_header">
@@ -186,7 +216,10 @@ const AdminDash = () => {
                                 </Route>
                             </Switch>
                         
-                        
+                            }
+                            {!loading && !loggedIn &&
+                                <AdminLogin />
+                            }
 
                         </div>
      );

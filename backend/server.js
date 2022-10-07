@@ -84,6 +84,20 @@ app.get('/auth', function(req,res){
     }
 });
 
+app.get('/admin_auth', function(req,res){
+    if(req.session.isAdmin){
+        res.status(200).json('success');
+    }else{
+        res.status(401).json('failed')
+    }
+});
+
+app.get('/admin_logout', urlEncoded, function(req,res){
+    req.session.destroy(function(err){
+        res.status(200).json('success');
+    })
+});
+
 app.get('/logout', urlEncoded, function(req,res){
     req.session.destroy(function(err){
         res.status(200).json('success');

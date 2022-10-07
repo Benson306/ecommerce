@@ -48,6 +48,9 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [adminLoggedIn, setAdminLoggedIn] = useState(false);
+      const [loadingAdmin, setLoadingAdmin] = useState(true);
+
   useEffect(()=>{
       const abortCont = new AbortController();
 
@@ -61,6 +64,19 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
               setLoading(false);
           }
       })
+      
+  
+      fetch('/admin_auth', {signal: abortCont.signal})
+      .then((res)=>{
+          if(res.ok){
+              setAdminLoggedIn(true);
+              setLoadingAdmin(false);
+          }else{
+              setAdminLoggedIn(false);
+              setLoadingAdmin(false);
+          }
+      })
+    
 
       return () => abortCont.abort();
   },[])
@@ -352,11 +368,16 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <Route path='/admin'>
                 <AdminLogin />
             </Route>
+
             <Route path='/admin_dashboard'>
-              <div className="adminDash">
+              
+              {!loadingAdmin && adminLoggedIn && <div className="adminDash">
                 <AdminSidebar /> 
-                <AdminDash />
-              </div>
+                <AdminDash /> </div>
+              }
+              {!loadingAdmin && !adminLoggedIn && <div>
+                <AdminLogin /></div>
+              }
             </Route>
             
             <Route path='*'>

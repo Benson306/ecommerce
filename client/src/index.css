@@ -13,7 +13,20 @@ body{
   margin: 0;
 }
 .loginadmin{
+  margin-top: 0%;
+  background-color: #030c3b;
+  height: 100vh;
+}
+.loginadmin h2{
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+}
+.loginadmin form{
   margin-top: 10%;
+}
+.loginadmin form label{
+  margin-left: 25%;
+  color: yellow;
 }
 .adminLogin {
   padding: 50px;
@@ -58,6 +71,9 @@ body{
   align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.adminSidebar ul li a:hover{
+  color: orange;
 }
 .adminDash{
   display: flex;
