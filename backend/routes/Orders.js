@@ -55,4 +55,10 @@ app.get('/set_delivery/:id', function(req, res){
     })
 })
 
+app.get('/order_count/:type', function(req, res){
+    Order.count({delivery_status: req.params.type}, function(err, count){
+        res.json(count);
+    })
+})
+
 module.exports = app;

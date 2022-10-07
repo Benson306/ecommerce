@@ -363,6 +363,37 @@ td button{
   padding: 10px;
   width: 30%;
 }
+.statViews{
+  display: flex;
+  margin-left: 3%;
+}
+.statistics{
+  margin-top: 2%;
+  background-color: white;
+  box-shadow: 1px 1px 8px 0px #888888;
+  padding: 10px;
+  width: 30%;
+  margin-right: 3%;
+  height: 150px;
+  text-align: center;
+}
+.statistics h2{
+  padding: 5px;
+  color: #030c3b;
+}
+.statistics h1{
+  text-align: center;
+  line-height: 50px;
+  vertical-align: middle;
+  color: orangered;
+}
+
+
+
+
+
+
+
 
 .clientNav nav{
   width: 100%;

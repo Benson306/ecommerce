@@ -21,6 +21,7 @@ import AddUsers from './AddUsers';
 import UsersTable from './UsersTable';
 import EditUsers from './EditUsers';
 import AdminLogin from './AdminLogin';
+import Dashboard from './Dashboard';
 
 
 
@@ -58,11 +59,11 @@ const AdminDash = () => {
                             <Switch>
                                 <Route exact path='/admin_dashboard'>
                                     <div className="category_header">
-                                        
-                                        Dashboard
+                                        DASHBOARD
                                     </div>
                                     <br />
                                     <br />
+                                    <Dashboard />
                                 </Route>
                                 <Route path='/admin_dashboard/categories/:id'>
                                     <EditCategories />

@@ -50,4 +50,10 @@ app.put('/edit_profile', urlEncoded, function(req,res){
     })
 })
 
+app.get('/count_users', function(req, res){
+    Register.count({}, function(err, data){
+        res.json(data);
+    })
+})
+
 module.exports = app;
