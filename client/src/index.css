@@ -428,10 +428,11 @@ td button{
   display:block;
   position: absolute;
   padding: 2px;
-  height: 80px;
-  visibility: visible;
+  height: 0px;
+  visibility: hidden;
   transition: 0.3s;
   overflow: hidden;
+  width: 99%;
 }
 .clientNav .dropDown a{
  padding: 15px;
@@ -985,6 +986,14 @@ margin-bottom: 1%;
 .cart{
   margin-top: 2%;
 }
+#emptyCart{
+  width:80%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #ddd; 
+  padding: 20px; 
+  text-align:center;
+}
 .crt{
   width: 60%;
   margin-left: 3%;
@@ -1291,6 +1300,9 @@ margin-bottom: 1%;
     width: 0;
     visibility: hidden;
   }
+  .clientNav .dropDown{
+    visibility: hidden;
+  }
   .clientNav nav ul li{
     padding: 12px;
   }
@@ -1378,6 +1390,9 @@ margin-bottom: 1%;
   }
   .clientNav nav ul .middle{
     width: 0;
+    visibility: hidden;
+  }
+  .clientNav .dropDown{
     visibility: hidden;
   }
   .product{

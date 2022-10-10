@@ -179,8 +179,9 @@ const Cart = () => {
                 </div> : <div></div> }
                 
             </div>
+
             { !pending && !error && products.length === 0  ? 
-            <div style={{width:'50%', margin: '0 auto', backgroundColor: '#ddd', padding: '20px', textAlign:'center'}}>
+            <div id='emptyCart'>
                 <h3>You have no items in Cart</h3><br /><br />
                 <img src={require('../../images/empty-cart.png')} alt="" />
                 <br /><br />
