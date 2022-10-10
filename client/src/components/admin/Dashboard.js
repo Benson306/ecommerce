@@ -1,3 +1,4 @@
+import BarChart from "./BarChart";
 import Statictics from "./Statistics";
 
 const Dashboard = () => {
@@ -5,6 +6,7 @@ const Dashboard = () => {
     return ( <div className="dashboard">
 
     <Statictics />
+
 
     </div> );
 }

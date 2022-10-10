@@ -29,27 +29,27 @@ import Orders from './components/clientComponents/Orders';
 import CompleteSummary from './components/clientComponents/CompleteSummary';
 import ProductsByCategory from './components/clientComponents/ProductsByCategory';
 
-  function App() {
-    $(function(){
-      // Check the initial Position of the fixed_nav_container
-      var stickyHeaderTop = $('.list').offset().top;
+ function App() {
+  //   $(function(){
+  //     // Check the initial Position of the fixed_nav_container
+  //     var stickyHeaderTop = $('.list').offset().top;
 
-      $(window).scroll(function(){
-          if( $(document).scrollTop() > stickyHeaderTop - 70 ) {
-              $('.list').css({position: 'fixed', top: '85px', marginLeft: '2%',width:'20%'});  
-              $('.topProducts').css({marginLeft:'24%'})
-          } else {
-              $('.list').css({position: '', top: '385px', marginLeft: '2%', width:'20%'});  
-              $('.topProducts').css({marginLeft:'2%'})
-          }
-      });
-  });
+  //     $(window).scroll(function(){
+  //         if( $(document).scrollTop() > stickyHeaderTop - 70 ) {
+  //             $('.list').css({position: 'fixed', top: '85px', marginLeft: '2%',width:'20%'});  
+  //             $('.topProducts').css({marginLeft:'24%'})
+  //         } else {
+  //             $('.list').css({position: '', top: '385px', marginLeft: '2%', width:'20%'});  
+  //             $('.topProducts').css({marginLeft:'2%'})
+  //         }
+  //     });
+  // });
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const [adminLoggedIn, setAdminLoggedIn] = useState(false);
-      const [loadingAdmin, setLoadingAdmin] = useState(true);
+  const [loadingAdmin, setLoadingAdmin] = useState(true);
 
   useEffect(()=>{
       const abortCont = new AbortController();
@@ -93,9 +93,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <div class="home">
                     { !loggedIn && <Nav />}
                     { loggedIn && <LoggedNav />}
-                    <br />
-                    <br />
-                    <br />
                     <br />
                     <div className="carou">
                         <br />

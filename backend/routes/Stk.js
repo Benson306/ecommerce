@@ -107,7 +107,7 @@ app.post('/stk_push/:id', accessToken, urlEncoded,  function(req, res){
         
         getPrices(data, function(cost){
             cost = cost+200;
-            stk_push(req, res, 10 ,req.body.phone, req.params.id); //initialize cost on production... 1 is for testing
+            stk_push(req, res, 1 ,req.body.phone, req.params.id); //initialize cost on production... 1 is for testing
         })
     })
     
