@@ -41,7 +41,7 @@ const Nav = () => {
 
         if (clicked === true){
             document.querySelector('.dropDown').style.visibility = 'visible';
-            document.querySelector('.dropDown').style.height = '80px';
+            document.querySelector('.dropDown').style.height = '160px';
 
             clicked = false;
         }else{
@@ -86,15 +86,15 @@ const Nav = () => {
             </ul>
         </nav>
         <div className="dropDown">
-
-        <Link to="/cart">Cart</Link>
-        <br />
-        <Link to="/account/orders" >My Orders</Link>
-        <br />
-        <Link to="/account/personal">Account</Link>
-        <br />
-        <Link  onClick={logout}>Sign Out</Link>
 <br />
+        <Link to="/cart">Cart</Link>
+        <br /><br />
+        <Link to="/account/orders" >My Orders</Link>
+        <br /><br />
+        <Link to="/account/personal">Account</Link>
+        <br /><br />
+        <Link  onClick={logout}>Sign Out</Link>
+        <br />
         </div>
     </div> );
 }

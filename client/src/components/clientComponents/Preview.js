@@ -4,7 +4,6 @@ import { Store } from 'react-notifications-component';
 
 import { Link } from 'react-router-dom';
 import Delivery from './Delivery'
-import MoreProducts from './MoreProducts';
 
 
 const Preview = () => {
@@ -186,6 +185,7 @@ const Preview = () => {
                         </div>
                     </div>
                 </div>
+                <br />
                 <div className="delivery">
                 { loggedIn && <Delivery /> }
                 {!loggedIn && <div style={{width:'50%', margin: '0 auto', textAlign:'center'}}>
@@ -198,7 +198,6 @@ const Preview = () => {
                     </div>}
                 </div>
         </div>}
-
         {!pending && <div className="detailsPreview">
             <div className="specHeading">SPECIFICATIONS</div>
             <hr />

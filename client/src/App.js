@@ -132,9 +132,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
                   { !loggedIn && <Nav />}
                   { loggedIn && <LoggedNav />}
                   <br />
-                  <br />
-                  <br />
-                  <br /> 
                     <Preview />
               </div>
             </Route>
