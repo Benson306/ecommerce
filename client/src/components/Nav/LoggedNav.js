@@ -32,6 +32,25 @@ const Nav = () => {
                 notify("Failed","Failed to Log Out","danger");
             }
         })
+    
+    }
+
+    let clicked = true;
+
+    const handleClick = () =>{
+
+        if (clicked === true){
+            document.querySelector('.dropDown').style.visibility = 'visible';
+            document.querySelector('.dropDown').style.height = '80px';
+
+            clicked = false;
+        }else{
+            document.querySelector('.dropDown').style.visibility = 'hidden';
+        document.querySelector('.dropDown').style.height = '0px';
+
+            clicked = true;
+        }
+        
     }
 
     
@@ -39,13 +58,20 @@ const Nav = () => {
         <nav>
             <ul>
                 <div className="left">
-                    <li style={{marginTop:'5px'}}>
+                    <li style={{marginTop:'7px'}}>
                     <Link to="/">
-                        <img src={require('../../images/menu.png')} alt="" width="30px"/>
+                        <img src={require('../../images/menu.png')} alt="" width="20px"/>
                     </Link>  
                     </li>
 
-                    <li style={{fontSize:'22px',marginTop:'5px'}}>Ecomm</li>
+                    <li style={{fontSize:'22px',marginTop:'3px'}}>Ecomm</li>
+                </div>
+                <div className="middle">
+                    <img 
+                    src={require('../../images/burger-menu.png')}
+                    onClick={handleClick} 
+                    alt="" 
+                    width="20px"/>
                 </div>
                 <div className="right">
                     <li><Link to="/cart">Cart</Link></li>
@@ -59,6 +85,17 @@ const Nav = () => {
             
             </ul>
         </nav>
+        <div className="dropDown">
+
+        <Link to="/cart">Cart</Link>
+        <br />
+        <Link to="/account/orders" >My Orders</Link>
+        <br />
+        <Link to="/account/personal">Account</Link>
+        <br />
+        <Link  onClick={logout}>Sign Out</Link>
+<br />
+        </div>
     </div> );
 }
  
