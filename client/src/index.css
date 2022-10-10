@@ -831,8 +831,8 @@ td button{
 .login form{
   background-color: #030c3b;
   padding: 20px;
-  width: 40%;
-  margin-left: 30%;
+  width: 85%;
+  margin-left: 2%;
   color: white;
   margin-top: 10%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -1322,6 +1322,16 @@ margin-bottom: 1%;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;
   }
+  .login form{
+    background-color: #030c3b;
+    padding: 20px;
+    width: 40%;
+    margin-left: 30%;
+    color: white;
+    margin-top: 10%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+  }
 
 }
 
@@ -1371,5 +1381,15 @@ margin-bottom: 1%;
     justify-content:center; 
     align-items:center;
     visibility: visible;
+  }
+  .login form{
+    background-color: #030c3b;
+    padding: 20px;
+    width: 40%;
+    margin-left: 30%;
+    color: white;
+    margin-top: 10%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
   }
 }
