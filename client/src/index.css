@@ -1071,62 +1071,60 @@ margin-bottom: 1%;
 }
 
 .summary{
-  margin-left: 2%;
-  width: 98%;
   margin-top: 2%;
-  display: flex;
+  display: block;
+  width: 100%;
 }
 .panel1{
-  width: 65%;
+  margin-left: 1%;
+  width: 95%;
   margin-right: 2%;
 }
 .panel2{
-  width: 30%;
-}
-.panel2 .deliv{
-  height: 300px;
+  visibility: hidden;
+  height: -30px;
 }
 .summary .personal .details .hidden{
   visibility: hidden;
   height: 0;
 }
 .summary .personal .details .dtlTabs{
-  display: flex;
+  display: block;
 }
 .summary .personal .details .dtlTabs .tabs{
  margin-right: 7%;
 }
 .detailsPreview table{
   margin-top: 2%;
-  width: 100%;
+  width: 90%;
 }
 .detailsPreview table th{
   border-bottom: 1px solid black;
 }
 .detailsPreview table th,  .detailsPreview table td{
-  padding: 10px;
+  padding: 5px;
   text-align: center;
 }
 .subttl{
-  margin-left: 70%;
+  margin-left: 35%;
   border-top: 1px solid black;
   padding: 5px;
   text-align: center;
   display: flex;
 }
 .subttl .brand{
-  margin-right: 22%;
+  margin-right: 10%;
   font-weight: bold;
 }
 .subTotal{
-  margin-left: 80%;
+  margin-left: 45%;
   border-top: 1px solid black;
   padding: 5px;
   text-align: center;
   display: flex;
 }
 .subTotal .brand{
-  margin-right: 15%;
+  margin-right: 25%;
   font-weight: bold;
 }
 .btns {
@@ -1135,10 +1133,10 @@ margin-bottom: 1%;
   margin-top: 2%;
 }
 .btns .recart{
-  width: 50%;
+  width: 40%;
 }
 .btns .recart2{
-  width: 50%;
+  width: 40%;
 }
 .btns .recart button{
   margin-left: 5%;
@@ -1149,13 +1147,13 @@ margin-bottom: 1%;
   margin-right: 5%;
 }
 .btns .recart2 button{
-  margin-right: 5%;
+  margin-right: 2%;
   background-color: green;
   padding: 10px;
   color: white;
   border: 1px solid green;
   border-radius: 5px;
-  margin-left: 60%;
+  margin-left: 80%;
 }
 .payment{
   font-family:'Times New Roman', Times, serif;
@@ -1171,13 +1169,13 @@ margin-bottom: 1%;
 }
 .payment form input[type="text"]{
   padding: 10px;
-  width: 30%;
+  width: 80%;
   margin-bottom: 1%;
   margin-top: 1%;
 }
 .payment form input[type="submit"]{
   padding: 5px;
-  width: 15%;
+  width: 45%;
   margin-bottom: 1%;
   background-color: orange;
   color: black;
@@ -1186,9 +1184,8 @@ margin-bottom: 1%;
 }
 
 .animation{
-  width: 40%;
+  width: 75%;
   position: absolute;
-  margin-left: 25%;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 5px;
@@ -1449,6 +1446,46 @@ margin-bottom: 1%;
     height: 150px;
     margin: 0 auto;
   }
+  .summary{
+    margin-left: 2%;
+  width: 98%;
+    display: flex; 
+   }
+   .panel1{
+    width: 65%;
+    margin-right: 2%;
+  }
+  .panel2{
+    width: 30%;
+    visibility: visible;
+  }
+  .panel2 .deliv{
+    height: 300px;
+    visibility: visible;
+  }
+  .summary .personal .details .dtlTabs{
+    display: flex;
+  }
+  .payment form input[type="text"]{
+    padding: 10px;
+    width: 30%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+  }
+  .payment form input[type="submit"]{
+    padding: 5px;
+    width: 15%;
+    margin-bottom: 1%;
+    background-color: orange;
+    color: black;
+    border: 1px solid orange;
+    border-radius: 5px;
+  }
+  .animation{
+    width: 40%;
+    position: absolute;
+    margin-left: 25%;
+  }
 }
 
 
@@ -1582,5 +1619,58 @@ margin-bottom: 1%;
     margin-top: 1.2%;
     height: 150px;
     margin: 0 auto;
+  }
+
+  .summary{
+    margin-left: 2%;
+  width: 98%;
+   display: flex; 
+  }
+  .panel1{
+    width: 65%;
+    margin-right: 2%;
+  }
+  .inside{
+    visibility: hidden;
+    height: 0;
+  }
+  .panle2{
+  width: 30%;
+  visibility: visible;
+  }
+  .panel2 .deliv{
+    height: 300px;
+  }
+  .summary .personal .details .dtlTabs{
+    display: flex;
+  }
+  .subttl{
+    margin-left: 70%;
+  }
+  .subTotal{
+    margin-left: 80%;
+  }
+  .btns .recart{
+    width: 50%;
+  }
+  .payment form input[type="text"]{
+    padding: 10px;
+    width: 30%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+  }
+  .payment form input[type="submit"]{
+    padding: 5px;
+    width: 15%;
+    margin-bottom: 1%;
+    background-color: orange;
+    color: black;
+    border: 1px solid orange;
+    border-radius: 5px;
+  }
+  .animation{
+    width: 40%;
+    position: absolute;
+    margin-left: 25%;
   }
 }

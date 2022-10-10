@@ -84,6 +84,10 @@ const Summary = () => {
             <div className="detailsPreview">
                 <Personal />
                 <br />
+                <div className="inside">
+                    <Delivery />
+                </div>
+                <br />
                 <h2>Your Order</h2>
                 <br />
                 <hr />
@@ -142,6 +146,7 @@ const Summary = () => {
             </div>
 
         </div>
+        <br />
         <div className="panel2">
             <Delivery />
         </div>
