@@ -174,7 +174,7 @@ const Cart = () => {
                 { !pending && !error && products.length > 0  ?  <div className='deliv'>
                             <h3>Total Price:</h3> <br />
                                <h1>{ newPrice }</h1> 
-                                <br /><br />
+                                <br />
                                 <button onClick={ (e)=>{handleClick(e)}}><img src={require('../../images/shopping-cart.png') } alt="" /> Checkout </button>
                 </div> : <div></div> }
                 
