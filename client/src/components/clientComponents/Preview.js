@@ -163,7 +163,7 @@ const Preview = () => {
                         <div className="topDetails">
                             <div className="prodHeading">{product.prodName}</div>
                             <div className="prodBody">
-                                Category: <Link to="">{product.categ}</Link> 
+                                Category: <Link to={`/products/categories/${product.categ}`}>{product.categ}</Link> 
                                 <br />
                                 <br />
                                 <span class="fa fa-star checked"></span>

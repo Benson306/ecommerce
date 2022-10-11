@@ -1254,15 +1254,26 @@ margin-bottom: 1%;
  .morePd .product .bottom{
    text-align: center;
    background-color: #c1c0c4;
-   font-size: large;
+   font-size: medium;
  }
 
  .moreCategoryProducts{
   background-color:#ddd;
   padding: 10px;
-  width: 90%;
+  width: 85%;
   margin-left: 5%;
   margin-top: 1%;
+  border-radius: 5px;
+}
+.moreCategoryProducts .product{
+  margin-top: 1%;
+  background-color: white;
+  padding: 5px;
+  color: black;
+  font-size: 16px;
+  margin-right: 2%;
+  width:40%;
+  height: 100%;
   border-radius: 5px;
 }
 .makeDelivery .detailsPreview .details .hidden{
@@ -1534,6 +1545,16 @@ margin-bottom: 1%;
     margin-top: 2.5%;
     transition: ease-in-out 0.6s;
   }
+  .moreCategoryProducts .product{
+    margin-top: 1%;
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    margin-right: 2%;
+    width:40%;
+    border-radius: 5px;
+  }
 }
 
 
@@ -1740,5 +1761,15 @@ margin-bottom: 1%;
     padding: 10px;
     margin-top: 2.5%;
     transition: ease-in-out 0.6s;
+  }
+  .moreCategoryProducts .product{
+    margin-top: 1%;
+    background-color: white;
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    margin-right: 2%;
+    width:20%;
+    border-radius: 5px;
   }
 }
