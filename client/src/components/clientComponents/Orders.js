@@ -71,6 +71,8 @@ const Orders = () => {
             </tbody>
             
         </table>
+        <br />
+        <br />
     </div> );
 }
  

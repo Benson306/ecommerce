@@ -90,7 +90,7 @@ const Login = () => {
             { pending && <input type="submit" value="Loading ..." style={{backgroundColor:'maroon', color:'white'}}/> }
             <br />
             <div className="btn">
-                <Link to="/login" style={{textDecoration:'none', color:'white'}}>Already Have an account? Login Here</Link>
+                <Link to="/login" style={{textDecoration:'none', color:'white', display:'flex'}}>Already Have an account? <div style={{color:'yellow'}}> Login Here</div></Link>
             </div>
             
         </form>

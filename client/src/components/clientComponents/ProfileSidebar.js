@@ -1,13 +1,61 @@
 import { Link } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
 
 const ProfileSidebar = () => {
+
+    let toggle = true;
+    const handleClick = () =>{
+
+        console.log(window.innerWidth);
+        if(toggle === true){
+
+            if(window.innerWidth > 1200){ //desktop
+                document.querySelector('.adminSidebar').style.width = '6.0%';
+                document.querySelector('.profile .right').style.marginLeft = '10%';
+                document.querySelector('.profile .right').style.width = '85%';
+            }else if(window.innerWidth < 1200 && window.innerHeight > 768){ //tablet
+                document.querySelector('.adminSidebar').style.width = '22%';
+                document.querySelector('.profile .right').style.marginLeft = '24%';
+                document.querySelector('.profile .right').style.width = '75%';
+            }
+        
+            toggle = false;
+
+        }else if(toggle === false){
+
+            if(window.innerWidth > 1200){ //desktop
+                document.querySelector('.adminSidebar').style.width = '20%';
+                document.querySelector('.profile .right').style.marginLeft = '22%';
+                document.querySelector('.profile .right').style.width = '75%';
+            }else if(window.innerWidth < 1200 && window.innerHeight > 768){ //tablet
+
+                document.querySelector('.adminSidebar').style.width = '9.8%';
+                document.querySelector('.profile .right').style.marginLeft = '12%';
+                document.querySelector('.profile .right').style.width = '85%';
+                
+            }
+            
+
+            toggle = true;
+        }
+
+    }
     return ( 
         <div className="adminSidebar">
-            <br /><br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br />
         <ul>
-            <li><Link to={'/account/personal'}><img src={require('../../images/application.png')} alt="" width='15px' style={{marginRight: '12px'}}/> Personal Info</Link></li>
-            <li><Link to={'/account/delivery'}><img src={require('../../images/shopping-bag.png')} alt="" width='20px' style={{marginRight: '12px'}}/> Delivery Address</Link></li>
-            <li><Link to={'/account/orders'}><img src={require('../../images/cargo.png')} alt="" width='20px' style={{marginRight: '12px'}}/> Orders</Link></li>   
+            <li><img onClick={handleClick}  src={require('../../images/side-menu.png')} alt="" width='32px' style={{marginRight: '12px'}}/></li>
+            
+            <li><Link to={'/account/personal'}><Tooltip title="Personal Info" arrow><img src={require('../../images/application.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip> Personal Info</Link></li>
+        
+        
+        
+            <li><Link to={'/account/delivery'}><Tooltip title="Delivery Address" arrow><img src={require('../../images/shopping-bag.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip> Delivery Address</Link></li>
+        
+        
+        
+            <li><Link to={'/account/orders'}><Tooltip title="My Orders" arrow><img src={require('../../images/cargo.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip>  Orders</Link></li>
+              
         </ul>
     </div>
      );
