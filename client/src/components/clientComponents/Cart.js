@@ -123,6 +123,31 @@ const Cart = () => {
         
       }
 
+      
+
+    //   const addQuantity = (e, item_id) =>{
+    //     e.preventDefault();
+    //     let input = document.querySelector(`#+${item_id}`);
+        
+    //     input.value = Number(input.value) + 1;
+
+    //     changeData(item_id, input.value);
+    //     getTotal();
+        
+    //   }
+    //   const minusQuantity = (e, item_id) =>{
+    //     e.preventDefault();
+    //     console.log(""+`#${item_id}`)
+    //     let input = document.querySelector(".input");
+
+    //     console.log(input);
+
+    //     input.value = Number(input.value) - 1;
+
+    //     changeData(item_id, input.value);
+    //     getTotal();
+    //   }
+
   
 
     return ( 
@@ -151,12 +176,14 @@ const Cart = () => {
                             <div className="cartButton">
                                 <form action="">
                                     <label style={{fontWeight:'bolder', padding:'10px'}}>Quantity:</label>
-                                    <input defaultValue={1} onChange={e => { 
+                                    {/* <button style={{marginLeft: '1%', backgroundColor:'orange', color:'black', border:'none', borderRadius:'5px', fontSize:'large',width:'10%'}} onClick={e => minusQuantity(e, product._id)}>-</button> */}
+                                    <input id={`${product._id}`} className="input" defaultValue={1} style={{marginLeft:'10%'}} onChange={e => { 
 
                                         e.target.value < 1  ?   changeData(product._id, 1) : changeData(product._id, e.target.value) ;
                                         getTotal();
 
-                                     }} type="number" min={1} name="" id="" />
+                                     }} type="number" min={1} />
+                                     {/* <button style={{marginLeft: '1%', backgroundColor:'orange', color:'black', border:'none', borderRadius:'5px', fontSize:'large',width:'10%'}} onClick={e => addQuantity(e, product._id)}>+</button> */}
                                 </form>
                                 <br />
                                 
