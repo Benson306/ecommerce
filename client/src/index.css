@@ -45,15 +45,17 @@ body{
 .adminSidebar{
   background-color: #030c3b;
   height: 100vh;
-  width: 20%;
+  width: 10%;
   padding: 1px;
   vertical-align:middle;
   position: fixed;
   transition: ease-in-out 0.5s;
 }
+.adminSidebar ul{
+  padding: 5px;
+}
 .adminSidebar ul li{
   list-style: none;
-  padding: 10px;
   padding-bottom: 30px;
   vertical-align: middle;
 }
@@ -905,8 +907,8 @@ td button{
 }
 .profile .right{
   background-color: #f0f0f0;
-  margin-left: 21%;
-  width: 75%;
+  margin-left: 12%;
+  width: 80%;
   padding: 10px;
   margin-top: 2.5%;
   transition: ease-in-out 0.6s;
@@ -941,12 +943,12 @@ margin-bottom: 1%;
 }
 .personal input {
   padding: 8px;
-  width: 40%;
+  width: 80%;
   margin-bottom: 1%;
 }
 .personal input[type="submit"] {
   padding: 8px;
-  width: 20%;
+  width: 40%;
   margin-bottom: 1%;
   background-color: orange;
   border: 1px solid orange;
@@ -1162,8 +1164,8 @@ margin-bottom: 1%;
   padding: 10px;
   background-color:white;
   border-radius: 5px;
-  width: 80%;
-  margin-left: 10%;
+  width: 90%;
+  margin-left: 2%;
   margin-top: 2%;
 }
 .payment form{
@@ -1499,10 +1501,13 @@ margin-bottom: 1%;
     background-color: #030c3b;
     height: 100vh;
     width: 9.8%;
-    padding: 1px;
+    padding: 0px;
     vertical-align:middle;
     position: fixed;
     transition: ease-in-out 0.5s;
+  }
+  .adminSidebar ul{
+    padding: 20px;
   }
   .adminSidebar ul li{
     list-style: none;
@@ -1724,6 +1729,9 @@ margin-bottom: 1%;
     vertical-align:middle;
     position: fixed;
     transition: ease-in-out 0.5s;
+  }
+  .adminSidebar ul{
+    padding: 20px;
   }
   .profile .right{
     background-color: #f0f0f0;

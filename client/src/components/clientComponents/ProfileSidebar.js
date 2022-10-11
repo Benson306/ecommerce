@@ -6,7 +6,6 @@ const ProfileSidebar = () => {
     let toggle = true;
     const handleClick = () =>{
 
-        console.log(window.innerWidth);
         if(toggle === true){
 
             if(window.innerWidth > 1200){ //desktop
@@ -17,6 +16,10 @@ const ProfileSidebar = () => {
                 document.querySelector('.adminSidebar').style.width = '22%';
                 document.querySelector('.profile .right').style.marginLeft = '24%';
                 document.querySelector('.profile .right').style.width = '75%';
+            }else if(window.innerHeight < 768){ //phone
+                document.querySelector('.adminSidebar').style.width = '55%';
+                document.querySelector('.profile .right').style.marginLeft = '12%';
+                document.querySelector('.profile .right').style.width = '80%';
             }
         
             toggle = false;
@@ -33,6 +36,12 @@ const ProfileSidebar = () => {
                 document.querySelector('.profile .right').style.marginLeft = '12%';
                 document.querySelector('.profile .right').style.width = '85%';
                 
+            }else if(window.innerHeight < 768){ //phone
+
+                document.querySelector('.adminSidebar').style.width = '10%';
+                document.querySelector('.profile .right').style.marginLeft = '12%';
+                document.querySelector('.profile .right').style.width = '80%';
+                
             }
             
 
@@ -42,9 +51,9 @@ const ProfileSidebar = () => {
     }
     return ( 
         <div className="adminSidebar">
-            <br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br />
         <ul>
-            <li><img onClick={handleClick}  src={require('../../images/side-menu.png')} alt="" width='32px' style={{marginRight: '12px'}}/></li>
+            <li><img onClick={handleClick}  src={require('../../images/side-menu.png')} alt="" width='22px' style={{marginRight: '12px'}}/></li>
             
             <li><Link to={'/account/personal'}><Tooltip title="Personal Info" arrow><img src={require('../../images/application.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip> Personal Info</Link></li>
         

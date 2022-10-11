@@ -53,7 +53,7 @@ const Orders = () => {
                                 return (
                                     <tr>
                                     <td>{count++}</td>
-                                    <td style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{order._id}</td>
+                                    <td style={{maxWidth:'20px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{order._id}</td>
                                     <td>{number}</td>
                                     <td>{cost}</td>
                                     <td>{order.order_date}</td>
