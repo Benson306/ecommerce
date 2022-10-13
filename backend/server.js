@@ -19,7 +19,7 @@ mongoose.connect(mongoURI);
 
 const cors = require("cors");
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://ecomm-test.onrender.com'],
     methods: ['GET','POST','DELETE', 'PUT'],
     credentials: true // enable set cookie
 }));
@@ -34,11 +34,20 @@ let store = new sessionStore({
     collection:'userSessions'
 });
 
+app.enable('trust proxy')
+
 app.use(session({
     secret: 'secret',
     saveUninitialized: false,
     resave: false,
-    store: store
+    store: store,
+    proxy: true,
+    name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
+    cookie: {
+      secure: true, // required for cookies to work on HTTPS
+      httpOnly: false,
+      sameSite: 'none'
+    }
 }))
 
 let isAuth = function(req, res, next){
@@ -109,4 +118,7 @@ app.get('/logout', urlEncoded, function(req,res){
     })
 });
 
-app.listen(8001);
+port = process.env.PORT || 8001;
+app.listen(port);
+
+console.log("App is listening at "+port)

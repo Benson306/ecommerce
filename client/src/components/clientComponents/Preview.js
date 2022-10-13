@@ -20,12 +20,20 @@ const Preview = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/auth', {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/auth`, {
+            credentials: 'include',
+            proxy: true,
+            withCredentials: true,
+            signal: abortCont.signal
+        })
         .then((res)=>{
-            if(res.ok){
+            return res.json();
+        })
+        .then((res)=>{
+            if(res === 'success'){
                 setLoggedIn(true);
                 setLoading(false);
-            }else{
+            }else if(res === 'failed'){
                 setLoggedIn(false);
                 setLoading(false);
             }
