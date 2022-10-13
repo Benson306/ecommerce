@@ -34,7 +34,7 @@ const EditUsers = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/admin/'+id,{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/admin/`+id,{signal: abortCont.signal})
         .then((data)=>{
             return data.json()
         })
@@ -53,7 +53,7 @@ const EditUsers = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/edit_admin/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_admin/`+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(newData)

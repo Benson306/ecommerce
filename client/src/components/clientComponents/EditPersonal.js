@@ -39,7 +39,12 @@ const EditPersonal = () => {
     
         useEffect(()=>{
             const abortCont = new AbortController();
-            fetch('/profile',{signal: abortCont.signal})
+            fetch(`${process.env.REACT_APP_API_URL}/profile`,{
+                credentials: 'include', 
+                proxy: true, 
+                withCredentials: true,
+                signal: abortCont.signal
+            })
             .then(res=>{
                 if(res.ok){
                     return res.json();
@@ -70,7 +75,10 @@ const EditPersonal = () => {
             e.target.value = null;
             e.preventDefault();
 
-            fetch('/edit_profile',{
+            fetch(`${process.env.REACT_APP_API_URL}/edit_profile`,{
+                credentials: 'include', 
+                proxy: true, 
+                withCredentials: true,
                 method: 'PUT',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({ name, email, phone, password })

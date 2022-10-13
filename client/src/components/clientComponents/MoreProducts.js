@@ -12,7 +12,7 @@ const MoreProducts = ({props}) => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products/similar/'+props, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/products/similar/`+props, {signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 setPending(false);

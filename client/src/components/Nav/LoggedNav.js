@@ -22,7 +22,7 @@ const Nav = () => {
     const history = useHistory();
 
     const logout = () =>{
-        fetch('/logout')
+        fetch(`${process.env.REACT_APP_API_URL}/logout`,{credentials: 'include', proxy: true, withCredentials: true})
         .then((res)=>{
             if(res.ok){
                 history.push('/');

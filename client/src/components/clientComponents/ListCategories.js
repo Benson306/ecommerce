@@ -12,7 +12,7 @@ const ListCategories = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/categories',{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/categories`,{signal: abortCont.signal})
         .then((response)=>{
             if(response.ok){
                 return response.json();

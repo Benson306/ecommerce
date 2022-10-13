@@ -18,7 +18,11 @@ let mongoURI = process.env.Mongo_URI;
 mongoose.connect(mongoURI);
 
 const cors = require("cors");
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000'],
+    methods: ['GET','POST','DELETE', 'PUT'],
+    credentials: true // enable set cookie
+}));
 app.use(express.static('src'));
 
 
@@ -80,11 +84,12 @@ app.get('/auth', function(req,res){
     if(req.session.isAuth){
         res.status(200).json('success');
     }else{
-        res.status(401).json('failed')
+        res.status(200).json('failed')
     }
 });
 
 app.get('/admin_auth', function(req,res){
+    
     if(req.session.isAdmin){
         res.status(200).json('success');
     }else{

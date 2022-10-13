@@ -12,7 +12,7 @@ const ProductsByCategory = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products/similar/'+id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/products/similar/`+id, {signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 setPending(false);
@@ -57,7 +57,7 @@ const ProductsByCategory = () => {
                 
                 <div className="product">
                     <Link key={product._id} to={`/preview/${product._id}`}>
-                        <img src={`/uploads/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
+                        <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
                         <br />
                         <div className="bottom" height="25%">
                             <div style={{paddingTop:'3px'}}>{product.prodName}</div>

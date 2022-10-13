@@ -8,7 +8,12 @@ const Orders = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/my_order',{ signal: AbortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/my_order`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true, 
+            signal: abortCont.signal
+        })
         .then((res)=>{
             return res.json();
         })

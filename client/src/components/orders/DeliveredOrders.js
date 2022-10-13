@@ -28,7 +28,7 @@ const DeliveredOrders = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/delivered_orders',{ signal: AbortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/delivered_orders`,{ signal: AbortController.signal})
         .then((res)=>{
             return res.json();
         })

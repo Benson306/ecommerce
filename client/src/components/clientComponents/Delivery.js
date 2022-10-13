@@ -12,7 +12,12 @@ const Delivery = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/address',{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/address`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
+            signal: abortCont.signal
+        })
         .then((res)=>{
             if(res.status === 200){
                 return res.json();

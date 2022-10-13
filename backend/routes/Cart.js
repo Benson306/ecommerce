@@ -8,7 +8,9 @@ let Cart = require('../models/CartModel');
 let Product = require('../models/ProductsModel');
 
 app.get('/cart', function(req, res){
+
     Cart.find({user_id: req.session.userId}, function(err, data){
+    
         if(data.length === 0){
             res.json(data);
         }else{

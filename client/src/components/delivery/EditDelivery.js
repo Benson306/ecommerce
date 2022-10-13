@@ -37,7 +37,7 @@ const EditDelivery = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/delivery/'+id,{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/delivery/`+id,{signal: abortCont.signal})
         .then((data)=>{
             return data.json()
         })
@@ -77,7 +77,7 @@ const EditDelivery = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/edit_delivery/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_delivery/`+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(datas)

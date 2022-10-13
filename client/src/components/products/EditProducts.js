@@ -17,7 +17,7 @@ const EditProducts = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/categories',{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/categories`,{signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 console.log("no data")
@@ -57,7 +57,7 @@ const EditProducts = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/products/'+id,{ signal: abortCont.signal })
+        fetch(`${process.env.REACT_APP_API_URL}/products/`+id,{ signal: abortCont.signal })
         .then((res)=>{
             return res.json();
         })
@@ -106,7 +106,7 @@ const EditProducts = () => {
         e.target.value = null;
 
      
-        fetch('/edit_product/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_product/`+id,{
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(datas)
@@ -132,7 +132,7 @@ const EditProducts = () => {
 
 
 
-        fetch('/edit_pic1/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_pic1/`+id,{
             method:'PUT',
             body: formData
         })
@@ -150,7 +150,7 @@ const EditProducts = () => {
         formData.append("file2", data);
 
 
-        fetch('/edit_pic2/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_pic2/`+id,{
             method:'PUT',
             body: formData
         })
@@ -168,7 +168,7 @@ const EditProducts = () => {
         formData.append("file3", data);
 
 
-        fetch('/edit_pic3/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_pic3/`+id,{
             method:'PUT',
             body: formData
         })
@@ -186,7 +186,7 @@ const EditProducts = () => {
         formData.append("file4", data);
 
 
-        fetch('/edit_pic4/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_pic4/`+id,{
             method:'PUT',
             body: formData
         })
@@ -278,7 +278,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 1:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${data.preview1}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.preview1}`} alt="" />
                                 <br />
                                 <br />
 
@@ -290,7 +290,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 2:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${data.preview2}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.preview2}`} alt="" />
                                 <br />
                                 <br />
                                 <input onChange={e =>{ setPreview2(e.target.files[0]); handlePreview2(e) }} type="file" name="" id="img2" style={{display:'none'}}/>
@@ -300,7 +300,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${data.preview3}`} alt=""  />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.preview3}`} alt=""  />
                                 <br />
                                 <br />
                                 <input onChange={e => {setPreview3(e.target.files[0]); handlePreview3(e)}} type="file" name="" id="img3" style={{display:'none'}} />
@@ -310,7 +310,7 @@ const EditProducts = () => {
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${data.preview4}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${data.preview4}`} alt="" />
                                 <br />
                                 <br />
                                 <input onChange={e => { setPreview4(e.target.files[0]); handlePreview4(e)}}type="file" name="" id="img4" style={{display:'none'}} />

@@ -19,7 +19,7 @@ const Summary = () => {
         const abortCont =  new AbortController();
 
         data.map(dt =>{
-            fetch('/products/'+dt.item_id, {signal: abortCont.signal})
+            fetch(`${process.env.REACT_APP_API_URL}/products/`+dt.item_id, {signal: abortCont.signal})
             .then((res)=>{
             return res.json();
             })
@@ -52,7 +52,10 @@ const Summary = () => {
     const handleClick = (e)=>{
         e.preventDefault();
 
-      fetch('/add_order',{
+      fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
+          credentials: 'include',
+          withCredentials: true,
+          proxy: true,
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify(data)

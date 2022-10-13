@@ -27,7 +27,7 @@ const MakeDelivery = () => {
         const abortCont =  new AbortController();
 
         data.items.map(dt =>{
-            fetch('/products/'+dt.item_id, {signal: abortCont.signal})
+            fetch(`${process.env.REACT_APP_API_URL}/products/`+dt.item_id, {signal: abortCont.signal})
             .then((res)=>{
             return res.json();
             })
@@ -38,7 +38,7 @@ const MakeDelivery = () => {
             })
         })
 
-        fetch('/user_data/'+data.user_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/user_data/`+data.user_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -47,7 +47,7 @@ const MakeDelivery = () => {
             setUserLoading(false);
         })
 
-        fetch('/address/'+data.user_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/address/`+data.user_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -56,7 +56,7 @@ const MakeDelivery = () => {
             setDelivLoading(false);
         })
 
-        fetch('/payment/'+data.order_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/payment/`+data.order_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -101,7 +101,7 @@ const MakeDelivery = () => {
     const handleClick = (e)=>{
         e.preventDefault();
 
-      fetch('/set_delivery/'+data.order_id)
+      fetch(`${process.env.REACT_APP_API_URL}/set_delivery/`+data.order_id)
       .then((res)=>{
           return res.json();
       })

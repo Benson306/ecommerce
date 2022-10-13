@@ -37,7 +37,7 @@ const Preview = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products/'+id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/products/`+id, {signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 setPending(false);
@@ -61,7 +61,7 @@ const Preview = () => {
 
         return () => abortCont.abort();
 
-    },[product])
+    },[])
 
 
 
@@ -101,7 +101,10 @@ const Preview = () => {
 
       const handleAddToCart = () =>{
           if(loggedIn === true){
-            fetch('/add_cart',{
+            fetch(`${process.env.REACT_APP_API_URL}/add_cart`,{
+                credentials:'include',
+                withCredentials: true, 
+                proxy: true,
                 method:'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({ item_id: id })
@@ -147,17 +150,17 @@ const Preview = () => {
                             </button>
                             
                             <ul className="slides-container" id="slides-container">
-                                <li className="slide"><img src={`/uploads/${product.preview1}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
-                                <li className="slide"><img src={`/uploads/${product.preview2}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
-                                <li className="slide"><img src={`/uploads/${product.preview3}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
-                                <li className="slide"><img src={`/uploads/${product.preview4}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview2}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview3}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
+                                <li className="slide"><img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview4}`} width="100%" height="100%" style={{objectFit:'scale-down'}} alt="" /></li>
                             </ul>
                         </section>
                             <div className="moreImages">
-                                <img src={`/uploads/${product.preview1}`} width='50px' height='50px' alt="" />
-                                <img src={`/uploads/${product.preview2}`} width='50px' height='50px' alt="" />
-                                <img src={`/uploads/${product.preview3}`} width='50px' height='50px' alt="" />
-                                <img src={`/uploads/${product.preview4}`} width='50px' height='50px' alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} width='50px' height='50px' alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview2}`} width='50px' height='50px' alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview3}`} width='50px' height='50px' alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview4}`} width='50px' height='50px' alt="" />
                             </div>
                         </div>
                         <div className="topDetails">

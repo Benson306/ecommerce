@@ -33,7 +33,10 @@ const Login = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/login',{
+        fetch(`${process.env.REACT_APP_API_URL}/login`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
             method:'POST',
             headers: {'content-Type':'application/json'},
             body: JSON.stringify(data)

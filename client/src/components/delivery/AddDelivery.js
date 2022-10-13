@@ -57,7 +57,7 @@ const AddDelivery = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/delivery',{
+        fetch(`${process.env.REACT_APP_API_URL}/delivery`,{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(data)

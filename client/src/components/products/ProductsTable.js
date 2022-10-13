@@ -31,7 +31,7 @@ const ProductsTable = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/products', {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/products`, {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')
@@ -77,7 +77,7 @@ const ProductsTable = () => {
     }
 
     const handleDelete = (id)=>{
-        fetch('/del_products/'+ id,{
+        fetch(`${process.env.REACT_APP_API_URL}/del_products/`+ id,{
             method: 'DELETE'
         })
         .then(()=>{

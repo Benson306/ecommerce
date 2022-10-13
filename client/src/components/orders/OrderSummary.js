@@ -30,7 +30,7 @@ const OrderSummary = () => {
         const abortCont =  new AbortController();
 
         data.items.map(dt =>{
-            fetch('/products/'+dt.item_id, {signal: abortCont.signal})
+            fetch(`${process.env.REACT_APP_API_URL}/products/`+dt.item_id, {signal: abortCont.signal})
             .then((res)=>{
             return res.json();
             })
@@ -41,7 +41,7 @@ const OrderSummary = () => {
             })
         })
 
-        fetch('/user_data/'+data.user_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/user_data/`+data.user_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -50,7 +50,7 @@ const OrderSummary = () => {
             setUserLoading(false);
         })
 
-        fetch('/address/'+data.user_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/address/`+data.user_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -59,7 +59,7 @@ const OrderSummary = () => {
             setDelivLoading(false);
         })
 
-        fetch('/payment/'+data.order_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/payment/`+data.order_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -68,7 +68,7 @@ const OrderSummary = () => {
             setPayLoading(false);
         })
 
-        fetch('/get_order/'+data.order_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/get_order/`+data.order_id, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })

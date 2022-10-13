@@ -22,7 +22,7 @@ const AddDeliveryAdrr = () => {
     useEffect(()=>{
         const abortController = new AbortController();
 
-        fetch('/county',{signal: abortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/county`,{signal: abortController.signal})
         .then((res)=>{
             if(res.ok){
                 return res.json();
@@ -56,7 +56,7 @@ const AddDeliveryAdrr = () => {
 
         const abortController = new AbortController();
 
-        fetch('/county/'+county ,{signal: abortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/county/`+county ,{signal: abortController.signal})
         .then((res)=>{
             if(res.ok){
                 return res.json();
@@ -104,7 +104,10 @@ const AddDeliveryAdrr = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/add_address',{
+        fetch(`${process.env.REACT_APP_API_URL}/add_address`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({ type, county, pickup, specificAddr })

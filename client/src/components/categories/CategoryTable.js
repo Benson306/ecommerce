@@ -30,7 +30,7 @@ const CategoryTable = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/categories', {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/categories`, {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')
@@ -73,7 +73,7 @@ const CategoryTable = () => {
     }
 
     const handleDelete = (id)=>{
-        fetch('/del_categories/'+ id,{
+        fetch(`${process.env.REACT_APP_API_URL}/del_categories/`+ id,{
             method: 'DELETE'
         })
         .then(()=>{

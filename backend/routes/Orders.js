@@ -9,6 +9,7 @@ let Cart = require('../models/CartModel');
 
 app.post('/add_order', urlEncoded, function(req, res){
     Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending',delivery_status: 'pending', delivery_cost: 200}).save(function(err,data){
+        
         Cart.findOneAndRemove({user_id: req.session.userId},function(err1, data1){
             res.json(data._id);
         })
@@ -45,9 +46,18 @@ app.get('/delivered_orders', function(req, res){
     })
 })
 
+function getTOdayDate(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+}
 
 app.get('/set_delivery/:id', function(req, res){
-    console.log('reached')
+
     let today = getTOdayDate();
 
     Order.findByIdAndUpdate({_id: req.params.id},{delivery_status: 'delivered', delivery_date: today}, function(err,data){

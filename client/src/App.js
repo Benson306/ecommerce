@@ -54,9 +54,13 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
   useEffect(()=>{
       const abortCont = new AbortController();
 
-      fetch('/auth', {signal: abortCont.signal})
+      fetch(`${process.env.REACT_APP_API_URL}/auth`,{credentials: 'include', proxy: true, withCredentials: true})
       .then((res)=>{
-          if(res.ok){
+        return res.json();
+      })
+      .then(res => {
+        console.log(res)
+          if(res === 'success'){
               setLoggedIn(true);
               setLoading(false);
           }else{
@@ -64,9 +68,13 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
               setLoading(false);
           }
       })
+      .catch(err=>{
+        console.log(err);
+      })
+      
       
   
-      fetch('/admin_auth', {signal: abortCont.signal})
+      fetch(`${process.env.REACT_APP_API_URL}/admin_auth`,{credentials: 'include', proxy: true, withCredentials: true})
       .then((res)=>{
           if(res.ok){
               setAdminLoggedIn(true);

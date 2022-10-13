@@ -22,7 +22,11 @@ const AdminNav = () => {
     };
 
     const logout = () =>{
-        fetch('/admin_logout')
+        fetch(`${process.env.REACT_APP_API_URL}/admin_logout`,{
+            credentials:'include',
+            proxy: true,
+            withCredentials: true
+        })
         .then((res)=>{
             if(res.ok){
                 history.push('/admin');

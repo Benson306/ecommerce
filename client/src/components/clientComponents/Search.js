@@ -11,7 +11,7 @@ const Search = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products',{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/products`,{signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })

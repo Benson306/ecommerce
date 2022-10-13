@@ -8,7 +8,7 @@ const Statictics = () => {
     useEffect(()=>{
         const AbortCont = new AbortController();
 
-        fetch('/count_users',{signal: AbortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/count_users`,{signal: AbortCont.signal})
         .then((res)=>{
             return res.json()
         })
@@ -16,7 +16,7 @@ const Statictics = () => {
             setCust(res);
         })
 
-        fetch('/order_count/'+'pending',{signal: AbortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/order_count/`+'pending',{signal: AbortCont.signal})
         .then((res)=>{
             return res.json()
         })
@@ -24,7 +24,7 @@ const Statictics = () => {
             setPending(res);
         })
 
-        fetch('/order_count/'+'delivered',{signal: AbortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/order_count/`+'delivered',{signal: AbortCont.signal})
         .then((res)=>{
             return res.json()
         })

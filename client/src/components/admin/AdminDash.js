@@ -33,7 +33,7 @@ const AdminDash = () => {
   useEffect(()=>{
       const abortCont = new AbortController();
 
-      fetch('/admin_auth', {signal: abortCont.signal})
+      fetch(`${process.env.REACT_APP_API_URL}/admin_auth`, {signal: abortCont.signal, credentials: 'include', proxy: true, withCredentials: true})
       .then((res)=>{
           if(res.ok){
               setLoggedIn(true);

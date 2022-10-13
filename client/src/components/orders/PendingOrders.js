@@ -28,7 +28,7 @@ const PendingOrders = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/pending_orders',{ signal: AbortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/pending_orders`,{ signal: AbortController.signal})
         .then((res)=>{
             return res.json();
         })

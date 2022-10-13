@@ -34,7 +34,10 @@ const AdminLogin = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/admin_login',{
+        fetch(`${process.env.REACT_APP_API_URL}/admin_login`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
             method:'POST',
             headers: {'content-Type':'application/json'},
             body: JSON.stringify(data)

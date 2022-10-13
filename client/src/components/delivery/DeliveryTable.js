@@ -30,7 +30,7 @@ const DeliveryTable = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/delivery', {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/delivery`, {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')
@@ -73,7 +73,7 @@ const DeliveryTable = () => {
     }
 
     const handleDelete = (id)=>{
-        fetch('/del_delivery/'+ id,{
+        fetch(`${process.env.REACT_APP_API_URL}/del_delivery/`+ id,{
             method: 'DELETE'
         })
         .then(()=>{

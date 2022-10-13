@@ -30,7 +30,7 @@ const UsersTable = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/admins', {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/admins`, {signal: abortCont.signal})
         .then( (res) =>{
             if(!res.ok){
                 throw Error('Could Not fetch Data')
@@ -73,7 +73,7 @@ const UsersTable = () => {
     }
 
     const handleDelete = (id)=>{
-        fetch('/del_admin/'+ id,{
+        fetch(`${process.env.REACT_APP_API_URL}/del_admin/`+ id,{
             method: 'DELETE'
         })
         .then(()=>{

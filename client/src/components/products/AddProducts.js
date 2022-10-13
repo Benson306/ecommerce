@@ -11,7 +11,7 @@ const AddProducts = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('http://localhost:8001/categories',{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/categories`,{signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
                 console.log("no data")
@@ -85,7 +85,7 @@ const AddProducts = () => {
         e.target.value = null;
 
      
-        fetch('/add_product',{
+        fetch(`${process.env.REACT_APP_API_URL}/add_product`,{
             method: 'POST',
             body: formData
         }).then((res)=>{
@@ -98,10 +98,6 @@ const AddProducts = () => {
         })
     }
 
-    console.log(preview1)
-    console.log(preview2)
-    console.log(preview3)
-    console.log(preview4)
 
 
 

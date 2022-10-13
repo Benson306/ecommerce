@@ -18,7 +18,7 @@ const Payment = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/get_order/'+data, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/get_order/`+data, {signal: abortCont.signal})
         .then((res)=>{
             return res.json();
         })
@@ -49,7 +49,10 @@ const Payment = () => {
 
     const handleStk =  (e) =>{
         e.preventDefault();
-         fetch('/stk_push/'+data,{
+         fetch(`${process.env.REACT_APP_API_URL}/stk_push/`+data,{
+             credentials: 'include',
+             proxy: true, 
+             withCredentials: true,
              method: 'POST',
              headers: {'Content-Type':'application/json'},
              body: JSON.stringify({ phone })
@@ -66,7 +69,7 @@ const Payment = () => {
     const handleConfirm = (e) =>{
 
         e.preventDefault();
-         fetch('/confirm_payment/',{
+         fetch(`${process.env.REACT_APP_API_URL}/confirm_payment/`,{
              method: 'POST',
              headers: {'Content-Type':'application/json'},
              body: JSON.stringify({ code, data })
@@ -107,7 +110,7 @@ const Payment = () => {
                     Thank you For shopping with Us.
                     <br />
                     <br />
-                    <Link to={'/account/personal'}><button>OK!</button></Link>
+                    <Link to={'/account/orders'}><button>OK!</button></Link>
                 </center>
                 
             </div> }

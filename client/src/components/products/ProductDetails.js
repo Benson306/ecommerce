@@ -15,7 +15,7 @@ const ProductDetails = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/products/'+id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/products/`+id, {signal: abortCont.signal})
         .then((res)=>{
             if(!res.ok){
 
@@ -53,7 +53,7 @@ const ProductDetails = () => {
 
 
     const handleDelete = ()=>{
-        fetch('/del_products/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/del_products/`+id,{
             method: 'DELETE'
         })
         .then(()=>{
@@ -126,26 +126,26 @@ const ProductDetails = () => {
                                 <label htmlFor="">Preview Picture 1:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${product.preview1}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} alt="" />
                 </div>
                                 
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 2:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${product.preview2}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview2}`} alt="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${product.preview3}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview3}`} alt="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
-                                <img src={`/uploads/${product.preview4}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview4}`} alt="" />
                 </div>
             </div>
             <br />

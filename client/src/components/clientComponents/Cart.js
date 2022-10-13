@@ -17,7 +17,12 @@ const Cart = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch('/cart', {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/cart`, {
+            credentials: 'include',
+            withCredentials: true,
+            proxy: true,
+            signal: abortCont.signal
+        })
         .then((res)=>{
             if(!res.ok){
                 setPending(false);
@@ -97,7 +102,7 @@ const Cart = () => {
       const handleRemove = (e, id) =>{
             e.preventDefault();
 
-            fetch('/remove_cart/'+id,{
+            fetch(`${process.env.REACT_APP_API_URL}/remove_cart/`+id,{
                 method: 'DELETE',
                 headers: {'Content-Type':'application/json'}
             })

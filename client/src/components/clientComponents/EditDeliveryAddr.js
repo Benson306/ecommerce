@@ -22,7 +22,7 @@ const EditDeliveryAdrr = () => {
     useEffect(()=>{
         const abortController = new AbortController();
 
-        fetch('/county',{signal: abortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/county`,{signal: abortController.signal})
         .then((res)=>{
             if(res.ok){
                 return res.json();
@@ -56,7 +56,7 @@ const EditDeliveryAdrr = () => {
 
         const abortController = new AbortController();
 
-        fetch('/county/'+county ,{signal: abortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/county/`+county ,{signal: abortController.signal})
         .then((res)=>{
             if(res.ok){
                 return res.json();
@@ -92,7 +92,12 @@ const EditDeliveryAdrr = () => {
     useEffect(()=>{
         const abortController = new AbortController();
 
-        fetch('/address',{signal: abortController.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/address`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
+            signal: abortController.signal
+        })
         .then((res)=>{
             if(res.ok){
                 return res.json();
@@ -149,7 +154,10 @@ const EditDeliveryAdrr = () => {
         }
 
 
-        fetch('/edit_address/'+id,{
+        fetch(`${process.env.REACT_APP_API_URL}/edit_address/`+id,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(body)

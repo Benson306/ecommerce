@@ -13,7 +13,12 @@ const Personal = () => {
 
     useEffect(()=>{
         const abortCont = new AbortController();
-        fetch('/profile',{signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/profile`,{
+            credentials: 'include', 
+            proxy: true, 
+            withCredentials: true,
+            signal: abortCont.signal
+        })
         .then(res=>{
             if(res.ok){
                 return res.json();

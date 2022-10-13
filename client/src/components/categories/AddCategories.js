@@ -26,7 +26,7 @@ const AddCategories = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/add_categories',{
+        fetch(`${process.env.REACT_APP_API_URL}/add_categories`,{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(categs)

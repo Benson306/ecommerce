@@ -38,7 +38,7 @@ const Login = () => {
         e.preventDefault();
         e.target.value = null;
 
-        fetch('/register',{
+        fetch(`${process.env.REACT_APP_API_URL}/register`,{
             method: 'POST',
             headers: {'content-Type':'application/json'},
             body: JSON.stringify(data)

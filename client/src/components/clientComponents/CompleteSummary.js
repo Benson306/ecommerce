@@ -19,7 +19,7 @@ const CompleteSummary = () => {
         const abortCont =  new AbortController();
 
         data.map(dt =>{
-            fetch('/products/'+dt.item_id, {signal: abortCont.signal})
+            fetch(`${process.env.REACT_APP_API_URL}/products/`+dt.item_id, {signal: abortCont.signal})
             .then((res)=>{
             return res.json();
             })
