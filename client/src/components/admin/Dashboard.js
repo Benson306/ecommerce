@@ -1,4 +1,3 @@
-import BarChart from "./BarChart";
 import Statictics from "./Statistics";
 
 const Dashboard = () => {

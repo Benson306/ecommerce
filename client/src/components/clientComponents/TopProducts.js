@@ -12,11 +12,10 @@ const TopProducts = () => {
 
         fetch('/products',{signal: abortCont.signal})
         .then(res=>{
-            if(!res.ok){
-                setPending(false);
-                setError(true);
-            }else{
+            if(res.ok){
                 return res.json();
+            }else{
+                throw Error('Could Not Fetch Data');
             }
         })
         .then(res=>{
@@ -41,7 +40,7 @@ const TopProducts = () => {
                 isPending && <div>Loading...</div>
             }
             {
-                isError && <div>Failed to Fetch Products</div>
+                isError && <div>Failed to Fetch Products. Check your Connection.</div>
             }
             { !isPending && !isError && products.map(product =>(
                 
