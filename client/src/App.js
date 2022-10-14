@@ -1,6 +1,6 @@
 import { BrowserRouter as  Router, Route, Switch} from 'react-router-dom'
 import $ from 'jquery';
-import 'react-notifications-component/dist/theme.css'
+import 'react-notifications-component/dist/theme.css';
 
 
 import AdminLogin from './components/admin/AdminLogin';
@@ -95,6 +95,7 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
   return (
     <Router>
     <div className="App">
+
     <ReactNotifications />
         
         <Switch>
@@ -172,8 +173,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
               <div className="home">
                   <LoggedNav />
                     <br />
-                    <br />
-                    <br />
                     <div className="profile">
                       <div className="left">
                           <ProfileSidebar />
@@ -188,8 +187,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <Route path='/account/edit_personal'>
               <div className="home">
                   <LoggedNav />
-                    <br />
-                    <br />
                     <br />
                     <div className="profile">
                       <div className="left">
@@ -206,8 +203,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <div className="home">
                   <LoggedNav />
                     <br />
-                    <br />
-                    <br />
                     <div className="profile">
                       <div className="left">
                           <ProfileSidebar />
@@ -221,8 +216,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <Route path='/account/add_delivery_addr'>
             <div className="home">
                   <LoggedNav />
-                    <br />
-                    <br />
                     <br />
                     <div className="profile">
                       <div className="left">
@@ -238,8 +231,6 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <div className="home">
                   <LoggedNav />
                     <br />
-                    <br />
-                    <br />
                     <div className="profile">
                       <div className="left">
                           <ProfileSidebar />
@@ -253,9 +244,7 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
             <Route path='/account/orders'>
             <div className="home">
                   <LoggedNav />
-                    <br />
-                    <br />
-                    <br />
+                  <br />
                     <div className="profile">
                       <div className="left">
                           <ProfileSidebar />

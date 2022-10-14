@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
-import { Checkmark } from 'react-checkmark'
+import { Checkmark } from 'react-checkmark';
+
+import { TrinitySpinner } from 'loading-animations-react';
 
 const Payment = () => {
     const location = useLocation();
@@ -47,8 +49,33 @@ const Payment = () => {
         }) 
     };
 
+    function showSpinner(){
+        document.querySelector('#spinner').style.visibility='visible';
+        document.querySelector('#spinner').style.width='20px';
+        document.querySelector('#spinner').style.marginLeft='20px';
+    }
+    function hideSpinner(){
+        document.querySelector('#spinner').style.visibility='hidden';
+        document.querySelector('#spinner').style.width='0px';
+        document.querySelector('#spinner').style.marginLeft='0px';
+    }
+
+    function showSpinner1(){
+        document.querySelector('#spinner2').style.visibility='visible';
+        document.querySelector('#spinner2').style.width='20px';
+        document.querySelector('#spinner2').style.marginLeft='20px';
+    }
+    function hideSpinner1(){
+        document.querySelector('#spinner2').style.visibility='hidden';
+        document.querySelector('#spinner2').style.width='0px';
+        document.querySelector('#spinner2').style.marginLeft='0px';
+    }
+
     const handleStk =  (e) =>{
         e.preventDefault();
+        
+        showSpinner();
+
          fetch(`${process.env.REACT_APP_API_URL}/stk_push/`+data,{
              credentials: 'include',
              proxy: true, 
@@ -61,14 +88,19 @@ const Payment = () => {
             return res.json();
         })
         .then((res)=>{
+            hideSpinner();
             notify("Infromation","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
         })
     }
+
     const [code, setCode]= useState('');
 
     const handleConfirm = (e) =>{
 
         e.preventDefault();
+
+        showSpinner1();
+
          fetch(`${process.env.REACT_APP_API_URL}/confirm_payment/`,{
              method: 'POST',
              headers: {'Content-Type':'application/json'},
@@ -78,7 +110,7 @@ const Payment = () => {
             return res.json();
         })
         .then((res)=>{
-            
+            hideSpinner1();
             if(res === 'confirmed'){
                 setShow(true);
                 //document.querySelector('.animation').style.visibility = "visible";
@@ -135,7 +167,11 @@ const Payment = () => {
                         <br />
                     <input type="text" name="" onChange={e => setPhone(e.target.value) } placeholder="254712345678" required />
                         <br />
-                    <input type="submit" value="Pay" />
+                    <div style={{display: 'flex'}}>
+                        <input type="submit" value="Pay" />
+                        <div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div>
+                    </div>
+                    
                 </form>
                 Input your PIN on your phone to Complete Payment.
                     <br /><br />
@@ -146,7 +182,10 @@ const Payment = () => {
                         <br />
                     <input type="text" name="" onChange={e => setCode(e.target.value) } placeholder="OCK1W5SQ8H" required />
                         <br />
-                    <input type="submit" value="Confirm Payment" />
+                    <div style={{display:'flex'}}>
+                        <input type="submit" value="Confirm Payment" />
+                        <div id="spinner2" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div>
+                    </div>
                 </form>
             </div> }
            

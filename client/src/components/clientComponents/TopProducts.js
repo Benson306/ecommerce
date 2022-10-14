@@ -47,7 +47,7 @@ const TopProducts = () => {
                 
                 <div className="product">
                     <Link to={`/preview/${product._id}`}>
-                        <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
+                        <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
                         <br />
                         <div className="bottom">
                             <div style={{paddingTop:'2px'}}>{product.prodName}</div>

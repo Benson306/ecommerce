@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { TrinitySpinner } from 'loading-animations-react';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -46,6 +47,7 @@ const Orders = () => {
                 <th></th>
             </tr>
             <tbody>
+                { loading && <div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'visible'}}><TrinitySpinner text="" color="blue" /></div>}
                 {
                     !loading && orders.map( order =>
                             {

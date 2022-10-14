@@ -69,19 +69,19 @@ const Login = () => {
         <form onSubmit={handleSubmit} action="">
             <div style={{justifyContent:'center', textAlign:'center'}}>LOGIN</div>
             <label htmlFor="">Email:</label> 
-            <br />
+            <br /><br />
             <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
             <br />
             <br />
             <label htmlFor="">Password:</label>
-            <br />
+            <br /><br />
             <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required />
             <br /><br />
             { !pending && <input type="submit" value="Login" /> }
             { pending && <input type="submit" value="Loading ...." style={{backgroundColor:'maroon', color:'white'}}/> }
-            <br />
+            <br /><br />
             <div className="btn">
-                <Link to="">Forgot Password?</Link>
+                <Link to="" style={{color:'white'}}>Forgot Password?</Link>
                 <br />
                 <Link to="/register">Register?</Link>
             </div>

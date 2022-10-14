@@ -1,5 +1,6 @@
 import {useState, useEffect } from 'react';
 import { Store } from 'react-notifications-component';
+import { TrinitySpinner } from 'loading-animations-react';
 
 import { Link, useHistory } from 'react-router-dom';
 
@@ -98,9 +99,21 @@ const Cart = () => {
         })
     }
     
+    function showSpinner(){
+        document.querySelector('#spinner').style.visibility='visible';
+        document.querySelector('#spinner').style.width='20px';
+        document.querySelector('#spinner').style.marginLeft='20px';
+    }
+    function hideSpinner(){
+        document.querySelector('#spinner').style.visibility='hidden';
+        document.querySelector('#spinner').style.width='0px';
+        document.querySelector('#spinner').style.marginLeft='0px';
+    }
 
       const handleRemove = (e, id) =>{
             e.preventDefault();
+
+            showSpinner();
 
             fetch(`${process.env.REACT_APP_API_URL}/remove_cart/`+id,{
                 withCredentials:true,
@@ -115,6 +128,7 @@ const Cart = () => {
             .then(res =>{
                 if(res === 'deleted'){
                     notify("Success","Removed From Cart","success");
+                    hideSpinner();
                     history.go(0);
                 }
             })
@@ -122,13 +136,13 @@ const Cart = () => {
       
       const handleClick = (e)=>{
           e.preventDefault();
+          showSpinner();
 
         history.push({
             pathname: '/summary',
             state: data
         })
-
-        
+        hideSpinner();
       }
 
       
@@ -195,7 +209,7 @@ const Cart = () => {
                                 </form>
                                 <br />
                                 
-                                <button onClick={ (e) => { handleRemove(e, product._id) }}>Remove from Cart</button>
+                                <button onClick={ (e) => { handleRemove(e, product._id) }} style={{display:'flex',justifyContent:'center'}}>Remove from Cart<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div></button>
                                 <br />
                                 
                             </div>
@@ -210,7 +224,7 @@ const Cart = () => {
                             <h3>Total Price:</h3> <br />
                                <h1>{ newPrice }</h1> 
                                 <br />
-                                <button onClick={ (e)=>{handleClick(e)}}><img src={require('../../images/shopping-cart.png') } alt="" /> Checkout </button>
+                                <button onClick={ (e)=>{handleClick(e)}}><img src={require('../../images/shopping-cart.png') } style={{display:'flex',justifyContent:'center'}} alt="" /> Checkout <div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div></button>
                 </div> : <div></div> }
                 
             </div>

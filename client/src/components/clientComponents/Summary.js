@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
+import { TrinitySpinner } from 'loading-animations-react';
 
 import Delivery from "./Delivery";
 import Personal from "./Personal";
@@ -33,6 +34,17 @@ const Summary = () => {
        return () => abortCont.abort(); 
     },[])
 
+    function showSpinner(){
+        document.querySelector('#spinner').style.visibility='visible';
+        document.querySelector('#spinner').style.width='20px';
+        document.querySelector('#spinner').style.marginLeft='20px';
+    }
+    function hideSpinner(){
+        document.querySelector('#spinner').style.visibility='hidden';
+        document.querySelector('#spinner').style.width='0px';
+        document.querySelector('#spinner').style.marginLeft='0px';
+    }
+
     function notify(title, message, type){
         Store.addNotification({
             title: title,
@@ -51,6 +63,7 @@ const Summary = () => {
 
     const handleClick = (e)=>{
         e.preventDefault();
+        showSpinner();
 
       fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
           credentials: 'include',
@@ -64,10 +77,12 @@ const Summary = () => {
           return res.json();
       })
       .then(res =>{
+          hideSpinner();
             history.push({
                 pathname: '/payment',
                 state: res
             })
+            
             notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
       })
 
@@ -136,10 +151,10 @@ const Summary = () => {
                     <br />
                     <div className="btns">
                         <div className="recart">
-                            <Link to={'/cart'}><button>Make Changes to Order</button></Link>
+                            <Link to={'/cart'}><button >Make Changes to Order</button></Link>
                         </div>
                         <div className="recart2">
-                            <button onClick={(e)=>handleClick(e)}>Complete Order</button>
+                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Complete Order<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}><TrinitySpinner text="" color="white" /></div></button>
                         </div>
                             
                     </div>

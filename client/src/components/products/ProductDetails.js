@@ -126,26 +126,26 @@ const ProductDetails = () => {
                                 <label htmlFor="">Preview Picture 1:</label>
                                 <br />
                                 <br />
-                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview1}`} alt="" />
                 </div>
                                 
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 2:</label>
                                 <br />
                                 <br />
-                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview2}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview2}`} alt="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 3:</label>
                                 <br />
                                 <br />
-                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview3}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview3}`} alt="" />
                 </div>
                 <div className="previewsInput">
                                 <label htmlFor="">Preview Picture 4:</label>
                                 <br />
                                 <br />
-                                <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview4}`} alt="" />
+                                <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview4}`} alt="" />
                 </div>
             </div>
             <br />

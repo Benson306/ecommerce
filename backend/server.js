@@ -59,7 +59,7 @@ let isAuth = function(req, res, next){
     }
 }
 
-let CategoriesController = require('./routes/Categories');
+let CategoriesController = require('routes/Categories');
 
 app.use('/', CategoriesController);
 
@@ -71,22 +71,22 @@ app.use('/', ProductsController);
 let DeliveryController = require('./routes/Delivery');
 app.use('/', DeliveryController);
 
-let UsersController = require('./routes/Users');
+let UsersController = require('routes/Users');
 app.use('/', UsersController);
 
-let AddressController = require('./routes/Address');
+let AddressController = require('routes/Address');
 app.use('/', AddressController);
 
-let CartController = require('./routes/Cart');
+let CartController = require('routes/Cart');
 app.use('/', CartController);
 
-let OrdersController = require('./routes/Orders');
+let OrdersController = require('routes/Orders');
 app.use('/', OrdersController);
 
 let StkController = require('./routes/Stk');
 app.use('/', StkController);
 
-let AdminController = require('./routes/Admin');
+let AdminController = require('routes/Admin');
 app.use('/', AdminController);
 
 app.get('/auth', function(req,res){

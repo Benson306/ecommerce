@@ -397,7 +397,7 @@ td button{
   padding: 0px;
   position: fixed;
   z-index: 100;
-  height: 55px;
+  height: 50px;
   box-shadow: 0px 15px 10px -15px #111; 
 }
 .clientNav nav:hover{
@@ -588,7 +588,10 @@ td button{
   flex-wrap: wrap;
   margin-left: 1%;
 }
-
+.productList::after{
+  content: "";
+  flex: auto;
+}
 .topTitile{
   margin-left: 1%;
   font-size:18px; 
@@ -891,7 +894,11 @@ td button{
 .login .btn{
   display: flex;
   margin-top: 5px;
-  justify-content: right;
+  margin-left: 10%;
+  justify-content: left;
+}
+#reg{
+  display: block;
 }
 .login a{
   margin-right: 10%;
@@ -903,14 +910,14 @@ td button{
 
 .profile{
   display: flex;
-  
+  margin-top: 25px;
 }
 .profile .right{
   background-color: #f0f0f0;
   margin-left: 12%;
   width: 80%;
   padding: 10px;
-  margin-top: 2.5%;
+  margin-top: 4.5%;
   transition: ease-in-out 0.6s;
 }
 .personal h1{
@@ -1100,7 +1107,7 @@ margin-bottom: 1%;
 }
 .detailsPreview table{
   margin-top: 2%;
-  width: 90%;
+  width: 98%;
 }
 .detailsPreview table th{
   border-bottom: 1px solid black;
@@ -1110,7 +1117,7 @@ margin-bottom: 1%;
   text-align: center;
 }
 .subttl{
-  margin-left: 35%;
+  margin-left: 43%;
   border-top: 1px solid black;
   padding: 5px;
   text-align: center;
@@ -1121,7 +1128,7 @@ margin-bottom: 1%;
   font-weight: bold;
 }
 .subTotal{
-  margin-left: 45%;
+  margin-left: 55%;
   border-top: 1px solid black;
   padding: 5px;
   text-align: center;
@@ -1137,10 +1144,10 @@ margin-bottom: 1%;
   margin-top: 2%;
 }
 .btns .recart{
-  width: 40%;
+  width: 100%;
 }
 .btns .recart2{
-  width: 40%;
+  width: 100%;
 }
 .btns .recart button{
   margin-left: 5%;
@@ -1157,7 +1164,7 @@ margin-bottom: 1%;
   color: white;
   border: 1px solid green;
   border-radius: 5px;
-  margin-left: 80%;
+  margin-left: 40%;
 }
 .payment{
   font-family:'Times New Roman', Times, serif;
@@ -1266,16 +1273,10 @@ margin-bottom: 1%;
   border-radius: 5px;
 }
 .moreCategoryProducts .product{
-  margin-top: 1%;
-  background-color: white;
-  padding: 5px;
-  color: black;
-  font-size: 16px;
-  margin-right: 2%;
-  width:40%;
-  height: 100%;
-  border-radius: 5px;
-}
+  height: 180px;
+  width: 100%;
+  margin-bottom: 3%;
+ }
 .makeDelivery .detailsPreview .details .hidden{
   visibility: hidden;
   height: 0;
@@ -1488,6 +1489,15 @@ margin-bottom: 1%;
   .summary .personal .details .dtlTabs{
     display: flex;
   }
+  .detailsPreview table{
+    width: 98%;
+  }
+  .subttl{
+    margin-left: 57%;
+  }
+  .subTotal{
+    margin-left: 64%;
+  }
   .payment form input[type="text"]{
     padding: 10px;
     width: 30%;
@@ -1546,14 +1556,11 @@ margin-bottom: 1%;
     transition: ease-in-out 0.6s;
   }
   .moreCategoryProducts .product{
-    margin-top: 1%;
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    margin-right: 2%;
-    width:40%;
-    border-radius: 5px;
+    width: 30%;
+   height: 200px;
+  }
+  #reg{
+    display: flex;
   }
 }
 
@@ -1564,11 +1571,14 @@ margin-bottom: 1%;
     height: 65px;
   }
   .clientNav nav ul .left{
-    margin-right: 45%;
+    margin-right: 40%;
   }
   .clientNav nav ul .middle{
     width: 0;
     visibility: hidden;
+  }
+  .clientNav nav ul .right li a{
+    width: 10%;
   }
   .clientNav .dropDown{
     visibility: hidden;
@@ -1602,7 +1612,7 @@ margin-bottom: 1%;
     width: 60%;
   }
   #signIn{
-    width: 5%;
+    width: 10%;
     display:flex;
     justify-content:center; 
     align-items:center;
@@ -1713,14 +1723,20 @@ margin-bottom: 1%;
   .summary .personal .details .dtlTabs{
     display: flex;
   }
+  .detailsPreview table{
+    width: 98%;
+  }
   .subttl{
-    margin-left: 70%;
+    margin-left: 72%;
   }
   .subTotal{
-    margin-left: 80%;
+    margin-left: 75%;
   }
   .btns .recart{
     width: 50%;
+  }
+  .btns .recart2 button{
+    margin-left: 70%;
   }
   .payment form input[type="text"]{
     padding: 10px;
@@ -1763,13 +1779,10 @@ margin-bottom: 1%;
     transition: ease-in-out 0.6s;
   }
   .moreCategoryProducts .product{
-    margin-top: 1%;
-    background-color: white;
-    padding: 5px;
-    color: black;
-    font-size: 16px;
-    margin-right: 2%;
-    width:20%;
-    border-radius: 5px;
+    width: 22%;
+   height: 200px;
+  }
+  #reg{
+    display: flex;
   }
 }

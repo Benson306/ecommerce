@@ -46,7 +46,7 @@ const ProductsByCategory = () => {
         {
             pending && < div>Loading ....</div>
         }
-        <div class='morePd'>
+        <div class='productList'>
         {
             !pending && !error && products.length === 0 ? <div>
                 <br />
@@ -55,19 +55,20 @@ const ProductsByCategory = () => {
             </div> 
             :  products.map(product =>(
                 
-                <div className="product">
-                    <Link key={product._id} to={`/preview/${product._id}`}>
-                        <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
+                <div className="product" >
+                    <Link to={`/preview/${product._id}`}>
+                        <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
                         <br />
-                        <div className="bottom" height="25%">
-                            <div style={{paddingTop:'3px'}}>{product.prodName}</div>
+                        <div className="bottom" >
+                            <div style={{paddingTop:'2px'}}>{product.prodName}</div>
                             <div style={{color:'#030c3b', paddingTop:'2px'}}>Ksh. {product.price}</div> 
                         </div>
-                    </Link>
-                
+                   </Link>
+                   
                 </div>
-            
-            )) 
+                
+                
+            ))
         }
         {
             

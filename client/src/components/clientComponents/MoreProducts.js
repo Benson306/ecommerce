@@ -52,7 +52,7 @@ const MoreProducts = ({props}) => {
                 
                 <div className="product">
                     <Link key={product._id} to={`/preview/${product._id}`}>
-                        <img src={`/uploads/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
+                        <img src={`${process.env.REACT_APP_API_URL}/images/${product.preview1}`} width='100%' height="75%" style={{objectFit:'scale-down'}} alt="" />
                         <br />
                         <div className="bottom">
                             <div style={{paddingTop:'3px'}}>{product.prodName}</div>
