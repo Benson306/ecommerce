@@ -64,24 +64,23 @@ function stk_push(req,res, amount, phone, transId){
 
 
 app.post('/callback', urlEncoded, function(req,res){
-  
-
-   let result = { 
-        TransactionId : req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
-        PhoneNumber : req.body.Body.stkCallback.CallbackMetadata.Item[4].Value,
-        Amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value, 
-        TransactionDate : req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
-        status: 'pending'
-        
-    }
-
-    if(req.body.Body.stkCallback.ResultDesc === 'The service request is processed successfully.'){
-            Stk(result).save(function(err,data){
-                    if(err) throw err;
-                })
-    }else{
-        res.json('not done')
-    }
+    
+        if(req.body.Body.stkCallback.ResultDesc === 'The service request is processed successfully.'){
+            let result = { 
+                TransactionId : req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
+                PhoneNumber : req.body.Body.stkCallback.CallbackMetadata.Item[4].Value,
+                Amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value, 
+                TransactionDate : req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
+                status: 'pending'
+                
+            }
+                Stk(result).save(function(err,data){
+                        if(err) throw err;
+                    })
+        }else{
+            res.json('not done')
+        }
+   
 
 });
 

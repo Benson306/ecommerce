@@ -76,13 +76,16 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
   
       fetch(`${process.env.REACT_APP_API_URL}/admin_auth`,{credentials: 'include', proxy: true, withCredentials: true})
       .then((res)=>{
-          if(res.ok){
-              setAdminLoggedIn(true);
-              setLoadingAdmin(false);
-          }else{
-              setAdminLoggedIn(false);
-              setLoadingAdmin(false);
-          }
+        return res.json();
+      })
+      .then(res=>{
+        if(res === 'success'){
+          setAdminLoggedIn(true);
+          setLoadingAdmin(false);
+      }else if(res === 'failed'){
+          setAdminLoggedIn(false);
+          setLoadingAdmin(false);
+      }
       })
     
 

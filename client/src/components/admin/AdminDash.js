@@ -35,13 +35,16 @@ const AdminDash = () => {
 
       fetch(`${process.env.REACT_APP_API_URL}/admin_auth`, {signal: abortCont.signal, credentials: 'include', proxy: true, withCredentials: true})
       .then((res)=>{
-          if(res.ok){
-              setLoggedIn(true);
-              setLoading(false);
-          }else{
-              setLoggedIn(false);
-              setLoading(false);
-          }
+          return res.json();
+      })
+      .then((res)=>{
+        if(res === 'success'){
+            setLoggedIn(true);
+            setLoading(false);
+        }else if(res === 'failed'){
+            setLoggedIn(false);
+            setLoading(false);
+        }
       })
 
       return () => abortCont.abort();
