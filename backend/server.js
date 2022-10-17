@@ -19,7 +19,7 @@ mongoose.connect(mongoURI);
 
 const cors = require("cors");
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://ecomm-test.onrender.com'],
+    origin: ['http://localhost:3000', 'https://ecomm-test.onrender.com','*'],
     methods: ['GET','POST','DELETE', 'PUT'],
     credentials: true // enable set cookie
 }));
