@@ -70,7 +70,7 @@ const Payment = () => {
         document.querySelector('#spinner2').style.width='0px';
         document.querySelector('#spinner2').style.marginLeft='0px';
     }
-
+    const [clickable, setClickable] = useState(false);
     const handleStk =  (e) =>{
         e.preventDefault();
         
@@ -94,6 +94,14 @@ const Payment = () => {
     }
 
     const [code, setCode]= useState('');
+
+    const checkNumber = (num) =>{
+        if(num.length === 12 && num.startsWith("254")){
+            setClickable(true);
+        }else{
+            setClickable(false);
+        }
+    }
 
     const handleConfirm = (e) =>{
 
@@ -165,12 +173,14 @@ const Payment = () => {
                 <form onSubmit={handleStk}>
                     <label htmlFor="">Phone Number:</label>
                         <br />
-                    <input type="text" name="" onChange={e => setPhone(e.target.value) } placeholder="254712345678" required />
-                        <br />
-                    <div style={{display: 'flex'}}>
+                    <input type="text" name="" onChange={e =>{ setPhone(e.target.value) ;checkNumber(e.target.value) }} placeholder="254712345678" required />
+                        { !clickable && <p style={{color:'red'}}>Number should start with 254 and have 12 digits.</p> }
+                        {!clickable && <br />}
+                    { clickable && <div style={{display: 'flex'}}>
+                        
                         <input type="submit" value="Pay" />
                         <div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div>
-                    </div>
+                    </div> }
                     
                 </form>
                 Input your PIN on your phone to Complete Payment.

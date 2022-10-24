@@ -107,7 +107,7 @@ const CompleteSummary = () => {
                     <br />
                     <div className="btns">
                         <div className="recart">
-                            <Link to={'/account/orders'}><button style={{backgroundColor:'green', color:'white', border:'none'}}>Go Back To Complete</button></Link>
+                            <Link to={'/account/orders'}><button style={{backgroundColor:'green', color:'white', border:'none'}}>Go Back</button></Link>
                         </div>
                             
                     </div>

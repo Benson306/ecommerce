@@ -57,6 +57,7 @@ function stk_push(req,res, amount, phone, transId){
     .end(response => {
         if (response.error) {console.log(response.error)};
         let result = JSON.parse(response.raw_body);
+        console.log(request);
         res.json(result)
     });
 };
