@@ -70,7 +70,7 @@ const CompleteSummary = () => {
                 {loading && <div>Loading...</div>}
                     <table>
                         <th>#</th>
-                        <th>Item Name</th>
+                        <th>Items</th>
                         <th>Unit Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
