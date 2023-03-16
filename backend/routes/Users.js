@@ -6,6 +6,7 @@ let urlEncoded = bodyParser.urlencoded({extended: false});
 
 let Register = require('../models/UsersModel');
 
+
 app.post('/register', urlEncoded, function(req, res){
     Register.find({$or: [{email:{$eq :req.body.email}},{name: {$eq: req.body.name}},{phone: {$eq: req.body.phone}}]},function(err,data){
             if(data.length !== 0){

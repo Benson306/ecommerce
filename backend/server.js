@@ -1,5 +1,8 @@
 let express = require('express');
 
+
+//let swaggerDocs = require('./swagger.js')
+
 let app = express();
 
 let bodyParser = require('body-parser');
@@ -117,6 +120,12 @@ app.get('/logout', urlEncoded, function(req,res){
         res.status(200).json('success');
     })
 });
+
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 port = process.env.PORT || 8001;
 app.listen(port);
