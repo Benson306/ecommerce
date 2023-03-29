@@ -5,7 +5,6 @@ import { TrinitySpinner } from 'loading-animations-react';
 
 
 import { Link } from 'react-router-dom';
-import Delivery from './Delivery'
 
 
 const Preview = () => {
@@ -206,17 +205,7 @@ const Preview = () => {
                     </div>
                 </div>
                 <br />
-                <div className="delivery">
-                { loggedIn && <Delivery /> }
-                {!loggedIn && <div style={{width:'50%', margin: '0 auto', textAlign:'center'}}>
-                    Login In to Set Delivery Address <br /> <br />
-                    <img src={require('../../images/padlock.png')} alt="" />
-                    <br />
-                    <br />
-                    <Link to="/login"><button style={{padding:'10px', backgroundColor:'orange', border:'none'}}>Login to Continue</button></Link>
-
-                    </div>}
-                </div>
+            
         </div>}
         {!pending && <div className="detailsPreview">
             <div className="specHeading">SPECIFICATIONS</div>

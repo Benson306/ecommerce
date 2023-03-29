@@ -1784,4 +1784,7 @@ margin-bottom: 1%;
   #reg{
     display: flex;
   }
+  .moreImages{
+    margin-left: 25%;
+  }
 }
