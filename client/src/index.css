@@ -1030,12 +1030,11 @@ margin-bottom: 1%;
   width: 100%;
   margin-left: 2%;
 }
+
 .cartButton{
-  width: 100%;
-}
-.cartButton form{
   display: flex;
   margin-top: 3%;
+  width:10%;
 }
 .cartButton button{
   margin-left: 20%;
@@ -1301,6 +1300,11 @@ margin-bottom: 1%;
   border: 1px solid orange;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.cartPanels{
+  width:30%;
+  padding-left:38%;
+  margin-bottom:10px;
+}
 
 /* tablet */
 @media screen and (min-width: 758px) {
@@ -1457,10 +1461,6 @@ margin-bottom: 1%;
     width: 40%;
     margin-left: 10%;
   }
-  .cartButton button{
-    margin-left: 50%;
-    width: 50%;
-  }
   .cartLayout .deliv{
     width: 30%;
     margin-left: 3%;
@@ -1561,6 +1561,11 @@ margin-bottom: 1%;
   #reg{
     display: flex;
   }
+  .cartPanels{
+    width:30%;
+    padding-left:0%;
+    margin-bottom:10;
+  }
 }
 
 
@@ -1578,6 +1583,11 @@ margin-bottom: 1%;
   }
   .clientNav nav ul .right li a{
     width: 10%;
+  }
+  .cartPanels{
+    width:30%;
+    padding-left:0%;
+    margin-bottom:0;
   }
   .clientNav .dropDown{
     visibility: hidden;

@@ -28,6 +28,7 @@ import Payment from './components/clientComponents/Payment';
 import Orders from './components/clientComponents/Orders';
 import CompleteSummary from './components/clientComponents/CompleteSummary';
 import ProductsByCategory from './components/clientComponents/ProductsByCategory';
+import { CartProvider } from './context/CartContext';
 
  function App() {
   //   $(function(){
@@ -93,6 +94,7 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
   },[])
 
   return (
+    <CartProvider>
     <Router>
     <div className="App">
 
@@ -383,6 +385,7 @@ import ProductsByCategory from './components/clientComponents/ProductsByCategory
     </div>
     
     </Router>
+    </CartProvider>
   );
 }
 

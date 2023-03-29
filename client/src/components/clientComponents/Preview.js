@@ -5,6 +5,7 @@ import { TrinitySpinner } from 'loading-animations-react';
 
 
 import { Link } from 'react-router-dom';
+import useCart from '../../context/CartContext';
 
 
 const Preview = () => {
@@ -108,43 +109,17 @@ const Preview = () => {
         }) 
     };
 
-      const handleAddToCart = () =>{
+
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (product) =>{
         document.querySelector('#spinner').style.visibility='visible';
 
-          if(loggedIn === true){
-            fetch(`${process.env.REACT_APP_API_URL}/add_cart`,{
-                credentials:'include',
-                withCredentials: true, 
-                proxy: true,
-                method:'POST',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify({ item_id: id })
-            })
-            .then((res)=>{
-                return res.json();
-            })
-            .then((res)=>{
-              if(res === 'sent'){
-                  notify("Success","Added To Cart","success");
-                  document.querySelector('#spinner').style.visibility='hidden';
-              }else{
-                  notify("Failed","Item already exists in your cart","danger");
-                  document.querySelector('#spinner').style.visibility='hidden';
-              }
-            })
-            .catch((err)=>{
-                  console.log('error');
-            })
-          }else{
-            notify("Login","Login to Continue","info");
-            history.push('/login')
-            document.querySelector('#spinner').style.visibility='hidden';
-          }
-          
-          
-      }
+        addToCart(product);
 
-        
+        document.querySelector('#spinner').style.visibility='hidden';
+    }
+
 
     return ( <div className="previewPage">
         { error && <div>Failed to fetch Data.. Try again</div>}
@@ -198,7 +173,7 @@ const Preview = () => {
                                 <Link><img src={require("../../images/twitter.png")} width="30px" style={{objectFit:'scale-down'}} alt="" /></Link>
                                 
                             </div>
-                            <button onClick={handleAddToCart} style={{display:'flex',justifyContent:'center'}}>Add to Cart<div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div></button>
+                            <button onClick={() => handleAddToCart(product)} style={{display:'flex',justifyContent:'center'}}>Add to Cart<div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div></button>
                             <br />
 
                         </div>
