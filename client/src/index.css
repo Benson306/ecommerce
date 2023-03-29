@@ -1715,19 +1715,9 @@ margin-bottom: 1%;
    display: flex; 
   }
   .panel1{
-    width: 65%;
-    margin-right: 2%;
-  }
-  .inside{
-    visibility: hidden;
-    height: 0;
-  }
-  .panle2{
-  width: 30%;
-  visibility: visible;
-  }
-  .panel2 .deliv{
-    height: 300px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
   .summary .personal .details .dtlTabs{
     display: flex;

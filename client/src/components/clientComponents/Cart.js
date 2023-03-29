@@ -1,6 +1,5 @@
 import {useState, useEffect } from 'react';
 import { Store } from 'react-notifications-component';
-import { TrinitySpinner } from 'loading-animations-react';
 
 import { Link, useHistory } from 'react-router-dom';
 import useCart from '../../context/CartContext';
@@ -61,10 +60,7 @@ const Cart = () => {
     const handleClick = (e)=>{
         e.preventDefault();
 
-    history.push({
-        pathname: '/summary',
-        state: { items , addQuantity, minusQuantity, removeFromCart, total }
-    })
+        history.push('/summary')
     }
 
     return ( 
@@ -112,7 +108,7 @@ const Cart = () => {
                             <h3>Total Price:</h3> <br />
                                <h1>{ total }</h1> 
                                 <br />
-                                <button onClick={ (e)=>{handleClick(e)}}><img src={require('../../images/shopping-cart.png') } style={{display:'flex',justifyContent:'center'}} alt="" /> Checkout <div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div></button>
+                                <button onClick={ (e)=>{handleClick(e)}}><img src={require('../../images/shopping-cart.png') } style={{display:'flex',justifyContent:'center'}} alt="" /> Checkout <div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}></div></button>
                 </div> : <div></div> }
                 
             </div>

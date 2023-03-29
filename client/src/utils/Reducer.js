@@ -1,6 +1,8 @@
 export const initialState = {
     total: 0,
-    products: []
+    products: [],
+    deliveryCounty: "",
+    pickupPoint: ""
 }
 
 
@@ -23,6 +25,16 @@ const Reducer = (state, action) =>{
                 ...state,
                 total: payload.total
             };
+        case "ADD_DELIVERY_COUNTY":
+            return {
+                ...state,
+                deliveryCounty: payload.deliveryCounty
+            }
+        case "ADD_PICKUP_POINT":
+            return {
+                ...state,
+                pickupPoint: payload.pickupPoint
+            }
         default:
             throw new Error(`No case for type ${type} found in reducer`)
     }
