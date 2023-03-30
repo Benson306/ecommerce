@@ -6,7 +6,7 @@ import useCart from "../../context/CartContext";
 
 const Summary = () => {
 
-    const { products , total }  = useCart();
+    const { products , deliveryCounty, pickupPoint , total, updateCounty, updatePickup }  = useCart();
 
     const history = useHistory();
 
@@ -77,9 +77,18 @@ const Summary = () => {
         .catch((err)=>{
             setPending(false);
         })
+
+        updateCounty(county);
+
+        console.log(deliveryCounty)
         
         return () => abortController.abort();  
     },[county])
+
+    useEffect(()=>{
+        updatePickup(county);
+        console.log(pickupPoint);
+    },[location])
 
 
 

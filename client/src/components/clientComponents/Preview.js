@@ -1,7 +1,6 @@
 import {useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Store } from 'react-notifications-component';
-import { TrinitySpinner } from 'loading-animations-react';
 
 
 import { Link } from 'react-router-dom';
@@ -10,39 +9,12 @@ import useCart from '../../context/CartContext';
 
 const Preview = () => {
     const { id } = useParams();
-    const history = useHistory();
 
     const [product, setProduct] = useState([]);
     const [pending , setPending] = useState(true);
     const [error, setError] = useState(false);
+    const [loading , setLoading ] = useState(false);
 
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(()=>{
-        const abortCont = new AbortController();
-
-        fetch(`${process.env.REACT_APP_API_URL}/auth`, {
-            credentials: 'include',
-            proxy: true,
-            withCredentials: true,
-            signal: abortCont.signal
-        })
-        .then((res)=>{
-            return res.json();
-        })
-        .then((res)=>{
-            if(res === 'success'){
-                setLoggedIn(true);
-                setLoading(false);
-            }else if(res === 'failed'){
-                setLoggedIn(false);
-                setLoading(false);
-            }
-        })
-
-        return () => abortCont.abort();
-    },[])
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -67,7 +39,6 @@ const Preview = () => {
             setPending(false);
         })
 
-        
 
         return () => abortCont.abort();
 
@@ -113,11 +84,11 @@ const Preview = () => {
     const { addToCart } = useCart();
 
     const handleAddToCart = (product) =>{
-        document.querySelector('#spinner').style.visibility='visible';
 
         addToCart(product);
 
-        document.querySelector('#spinner').style.visibility='hidden';
+        notify("Success","Product Has Been Added To Cart","success");
+
     }
 
 
@@ -173,7 +144,7 @@ const Preview = () => {
                                 <Link><img src={require("../../images/twitter.png")} width="30px" style={{objectFit:'scale-down'}} alt="" /></Link>
                                 
                             </div>
-                            <button onClick={() => handleAddToCart(product)} style={{display:'flex',justifyContent:'center'}}>Add to Cart<div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div></button>
+                            <button onClick={() => handleAddToCart(product)} style={{display:'flex',justifyContent:'center'}}>Add to Cart</button>
                             <br />
 
                         </div>
