@@ -141,16 +141,16 @@ const Summary = () => {
         .then(res =>{   
             hideSpinner()
 
-            // localStorage.removeItem('state');
+            localStorage.removeItem('state');
 
-            // clearState();
+            clearState();
 
-            // history.push({
-            //     pathname: '/payment',
-            //     state: res._id   
-            // });
+            history.push({
+                pathname: '/payment',
+                state: res._id   
+            });
             
-            // notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");            
+            notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");            
         })
       
     }
