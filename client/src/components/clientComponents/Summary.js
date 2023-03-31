@@ -3,6 +3,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
 import Personal from "./Personal";
 import useCart from "../../context/CartContext";
+import { initialState } from "../../utils/Reducer";
 
 const Summary = () => {
 
@@ -11,8 +12,8 @@ const Summary = () => {
     const history = useHistory();
 
     
-    const [ location, setLocation ] = useState(""); //set pickup point
-    const [ county, setCounty ] = useState(""); //set county
+    const [ location, setLocation ] = useState(null); //set pickup point
+    const [ county, setCounty ] = useState(null); //set county
 
     const [ pickup, setPickup ] = useState([]); //list of pickup points
     const [ counties, setCounties ] = useState([]); //list of counties
@@ -79,18 +80,13 @@ const Summary = () => {
         })
 
         updateCounty(county);
-
-        console.log(deliveryCounty)
         
         return () => abortController.abort();  
     },[county])
 
     useEffect(()=>{
-        updatePickup(county);
-        console.log(pickupPoint);
-    },[location])
-
-
+        updatePickup(location);
+    },[location]);
 
 
     function notify(title, message, type){
@@ -109,9 +105,13 @@ const Summary = () => {
         }) 
     };
 
+
     const handleClick = (e)=>{
         e.preventDefault();
-        
+        if(location === null || county === null || location === "" || county === ""){
+            notify('Failed', 'Select A delivery Station To Proceed', 'danger')
+            return
+        }
 
     //   fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
     //       credentials: 'include',
@@ -148,31 +148,36 @@ const Summary = () => {
                 <h2>Delivery</h2>
                 <hr />
                 <br />
-                <form style={{width:'80%', marginLeft:'5%'}}>
-                    <h4>Select County:</h4>
-                    <br />
-                    <select
-                    onChange={e => setCounty(e.target.value)}
-                    style={{marginLeft:'5%'}}
-                    >
-                        { !loading && counties.map( cty => (
-                            <option>{cty}</option>
-                        ))  }
-                    
-                    </select>
-                    <br /><br />
-
-                    <h4>Select Pickup Point:</h4>
-                    <br />
-                    <select
-                        onChange={e => setLocation(e.target.value)}
+                <form >
+                    <div style={{width:'80%', marginLeft:'5%'}}>
+                        <h4>Select County:</h4>
+                        <br />
+                        <select
+                        onChange={e =>{setCounty(e.target.value); setLocation(null)} }
                         style={{marginLeft:'5%'}}
-                    >
-                        { !pending && pickup.map( cty => (
-                            <option>{cty}</option>
-                        ))  }
-                    </select>
-                </form>
+                        >
+                            { !loading && counties.map( cty => (
+                                <option>{cty}</option>
+                            ))  }
+                        
+                        </select>
+                        <br /><br />
+
+                        <h4>Select Pickup Point:</h4>
+                        <br />
+                        <select
+                            onChange={e => setLocation(e.target.value)}
+                            style={{marginLeft:'5%'}}
+                            required
+                        >
+                            <option value=""></option>
+                            { !pending && pickup.map( cty => (
+                                <option>{cty}</option>
+                            ))  }
+                        </select>
+                    </div>
+
+                   </form>
 
                 <br />
                 <h2>{items.length} Items</h2>

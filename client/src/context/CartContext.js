@@ -102,6 +102,8 @@ export const CartProvider = ({ children }) =>{
     const value = {
         total: state.total,
         products: state.products,
+        deliveryCounty: state.deliveryCounty,
+        pickupPoint: state.pickupPoint,
         addToCart,
         minusQuantity,
         addQuantity,

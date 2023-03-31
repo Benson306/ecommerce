@@ -1,8 +1,8 @@
 export const initialState = {
     total: 0,
     products: [],
-    deliveryCounty: "",
-    pickupPoint: ""
+    deliveryCounty: null,
+    pickupPoint: null
 }
 
 
