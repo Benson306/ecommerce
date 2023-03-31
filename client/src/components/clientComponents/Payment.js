@@ -76,7 +76,6 @@ const Payment = () => {
     const handleStk =  (e) =>{
         e.preventDefault();
 
-        console.log('ck')
         
         showSpinner();
 
@@ -99,7 +98,7 @@ const Payment = () => {
         hideSpinner();
     }
 
-    const [code, setCode]= useState('');
+    const [code, setCode]= useState(''); //Transactio Code
 
     const checkNumber = (num) =>{
         if(num.length === 12 && num.startsWith("254")){

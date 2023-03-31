@@ -86,7 +86,9 @@ app.post('/callback', urlEncoded, function(req,res){
 
 app.post('/stk_push', accessToken, urlEncoded,  function(req, res){
     Order.findById(req.body.order_id, function(err, data){
-        stk_push(req, res, data.total + 100 ,req.body.phone, req.body.order_id); //initialize cost on production... 1 is for testing
+        // let amount =  data.total + 100
+        let amount =  1;
+        stk_push(req, res, amount ,req.body.phone, req.body.order_id); //initialize cost on production... 1 is for testing
     })
     
 })
