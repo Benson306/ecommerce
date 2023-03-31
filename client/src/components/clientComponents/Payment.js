@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
 import { Checkmark } from 'react-checkmark';
 
@@ -7,8 +7,11 @@ import { TrinitySpinner } from 'loading-animations-react';
 import useCart from "../../context/CartContext";
 
 const Payment = () => {
+
+    const { location } = useHistory();
+
     
-    const [prices, setPrices] = useState([]);
+    const [price, setPrice] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const [phone, setPhone] = useState(true);
@@ -20,16 +23,14 @@ const Payment = () => {
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        // fetch(`${process.env.REACT_APP_API_URL}/get_order/`+data, {signal: abortCont.signal})
-        // .then((res)=>{
-        //     return res.json();
-        // })
-        // .then((res)=>{
-        //     res.items.map( items => {
-        //         setPrices(current => [... current, items.price*items.quantity])
-        //     })
-        //     setLoading(false);
-        // })
+        fetch(`${process.env.REACT_APP_API_URL}/get_order/${location.state}`, {signal: abortCont.signal})
+        .then((res)=>{
+            return res.json();
+        })
+        .then((res)=>{
+            setPrice(res.total)
+            setLoading(false);
+        })
         
     },[])
 
@@ -134,20 +135,7 @@ const Payment = () => {
         // })
     }
 
-       //   fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
-    //       credentials: 'include',
-    //       withCredentials: true,
-    //       proxy: true,
-    //       method: 'POST',
-    //       headers: {'Content-Type':'application/json'},
-    //       body: JSON.stringify()
-    //   })
-    //   .then((res)=>{
-    //       return res.json();
-    //   })
-    //   .then(res =>{            
-    //         notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
-    //   })
+    let deliveryFee = 100;
 
     return ( <div className="payment">
                 <br />
@@ -177,7 +165,7 @@ const Payment = () => {
             {!loading && <div>
                 Amount to be Paid:
                     <br />
-                   <h3>{total + 100}</h3>
+                   <h3>{price + deliveryFee }</h3>
                     <br />
                 We accept payments through MPESA. Insert you MPESA phone number below and click Pay to initiate an MPESA STK PUSH notification.
                     <br />

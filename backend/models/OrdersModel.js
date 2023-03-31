@@ -7,7 +7,7 @@ let orderSchema =  new mongoose.Schema({
     deliveryCounty: String,
     pickupPoint: String,
     delivery_status: String,
-    delivery_cost: String,
+    delivery_cost: Number,
     order_date: String,
     delivery_date: String,
     total: Number

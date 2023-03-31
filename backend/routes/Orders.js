@@ -23,7 +23,7 @@ app.post('/add_order', urlEncoded, function(req, res){
     let today = getTodayDate();
 
     Order({ user_id: req.session.userId , items: req.body.products, completion_status: 'pending', deliveryCounty: req.body.deliveryCounty, pickupPoint: req.body.pickupPoint, delivery_status: 'pending', total: req.body.total, order_date: today, delivery_cost: 100}).save(function(err,data){
-        res.json('success')
+        res.json(data)
     })
 })
 

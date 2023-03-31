@@ -3,6 +3,7 @@ import { Store } from 'react-notifications-component';
 
 import { Link, useHistory } from 'react-router-dom';
 import useCart from '../../context/CartContext';
+import { initialState } from '../../utils/Reducer';
 
 
 const Cart = () => {
@@ -20,7 +21,7 @@ const Cart = () => {
 
         return () => abortCont.abort();
 
-    },[products])
+    },[])
     
  
 

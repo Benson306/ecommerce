@@ -3,11 +3,10 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
 import Personal from "./Personal";
 import useCart from "../../context/CartContext";
-import { initialState } from "../../utils/Reducer";
 
 const Summary = () => {
 
-    const { products, total, updateCounty, updatePickup }  = useCart();
+    const { products, total, updateCounty, updatePickup, clearState }  = useCart();
 
     const history = useHistory();
 
@@ -113,8 +112,6 @@ const Summary = () => {
             return
         }
 
-        // history.push('/payment');
-
         fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
             credentials: 'include',
             withCredentials: true,
@@ -127,11 +124,17 @@ const Summary = () => {
             return res.json();
         })
         .then(res =>{   
-            if(res === 'success'){
-                localStorage.setItem('state', null);
-                notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
-            }         
+
+            localStorage.removeItem('state');
+
+            clearState();
+
+            history.push({
+                pathname: '/payment',
+                state: res._id   
+            });
             
+            notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");            
         })
       
     }
@@ -220,7 +223,7 @@ const Summary = () => {
                             <Link to={'/cart'}><button >Make Changes to Order</button></Link>
                         </div>
                         <div className="recart2">
-                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Pay Shs.{total}<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}></div></button>
+                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Pay Shs.{total + deliveryFee}<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}></div></button>
                         </div>
                             
                     </div>

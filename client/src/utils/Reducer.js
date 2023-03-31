@@ -47,6 +47,13 @@ const Reducer = (state, action) =>{
             }
             localStorage.setItem('state', JSON.stringify(pickupState));
             return pickupState;
+        case "CLEAR_STATE":
+            return {
+                total: 0,
+                products: [],
+                deliveryCounty: null,
+                pickupPoint: null
+            }
         default:
             throw new Error(`No case for type ${type} found in reducer`)
     }

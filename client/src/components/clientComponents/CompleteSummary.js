@@ -8,30 +8,27 @@ import Personal from "./Personal";
 const CompleteSummary = () => {
     const location = useLocation();
     const data = location.state;
-    const history = useHistory();
 
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [dt, setDt] =  useState([]);
+    const [total, setTotal ] = useState(0);
 
     useEffect(()=>{
         const abortCont =  new AbortController();
 
-        data.map(dt =>{
-            fetch(`${process.env.REACT_APP_API_URL}/products/`+dt.item_id, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/get_order/${data}`, {signal: abortCont.signal})
             .then((res)=>{
-            return res.json();
+                return res.json();
             })
             .then((res)=>{
-                addData(res._id, res.prodName, res.price, dt.quantity);
-                setProducts(current => [... current, res]);
+                setProducts(res.items)
+                setTotal(res.total);
                 setLoading(false)
             })
-        })
 
        return () => abortCont.abort(); 
-    },[])
+    },[]);
 
     function notify(title, message, type){
         Store.addNotification({
@@ -50,13 +47,8 @@ const CompleteSummary = () => {
     };
 
 
-    const addData = (item_id, name, price, quantity) =>{
-        let newData = {item_id, name, price, quantity};
-        setDt(prevArray => [...prevArray, newData]);
-    }
-
     let no = 1;
-    let total = 200;
+    let deliveryCost = 100;
     return ( 
     <div className="summary">
         <div className="panel1">
@@ -76,11 +68,11 @@ const CompleteSummary = () => {
                         <th>Total</th>
                     
                     {
-                        !loading && dt.reverse().map(dt =>(
+                        !loading && products.reverse().map(dt =>(
                             <tr>
                                 
                                 <td>{ no++ }</td>
-                                <td>{dt.name}</td>
+                                <td>{dt.prodName}</td>
                                 <td>{dt.price}</td>
                                 <td>{dt.quantity}</td>
                                 <td>{dt.price*dt.quantity}</td>
@@ -89,37 +81,25 @@ const CompleteSummary = () => {
                             
                         ))
                     }
-                    {
-                        !loading && dt.map(dt =>
-                            {total = total + (dt.price*dt.quantity)}
-                        )
-                    }
                     </table>
                     <div className="subttl">
                        <div className="brand">Delivery Amount:</div>        
-                       200
+                       100
                     </div>
                     <br />
                     <div className="subTotal">
                        <div className="brand">Subtotal:</div>        
-                       {total}
+                       {deliveryCost + total}
                     </div>
                     <br />
                     <div className="btns">
                         <div className="recart">
                             <Link to={'/account/orders'}><button style={{backgroundColor:'green', color:'white', border:'none'}}>Go Back</button></Link>
-                        </div>
-                            
+                        </div>                            
                     </div>
-                    
                    <br />
-
-
             </div>
 
-        </div>
-        <div className="panel2">
-            <Delivery />
         </div>
         
         

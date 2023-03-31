@@ -27,6 +27,7 @@ const Orders = () => {
     },[])
 
     let count = 1;
+    let deliveryCost = 100;
     return ( <div className="orders">
         <br />
         <center>
@@ -51,23 +52,18 @@ const Orders = () => {
                 {
                     !loading && orders.map( order =>
                             {
-                                let cost = 200;
-                                let number =  order.items.length;
-                                order.items.map(item =>{
-                                    cost += (item.price * item.quantity)
-                                })                                
-
+                                let number =  order.items.length;                                
                                 return (
                                     <tr>
                                     <td>{count++}</td>
                                     <td style={{maxWidth:'20px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{order._id}</td>
                                     <td>{number}</td>
-                                    <td>{cost}</td>
+                                    <td>{order.total + deliveryCost}</td>
                                     <td>{order.order_date}</td>
                                     {order.completion_status === 'completed' ? <td style={{color:'green', fontWeight:'bold'}}>{order.completion_status}</td> : <td style={{color:'red'}}>{order.completion_status}</td>}
                                     <td>{order.delivery_status}</td>
                                     <td>{order.delivery_date}</td>
-                                    <td><Link to={{pathname:'/view_summary', state: order.items }} style={{color:"blue"}}>View</Link></td>
+                                    <td><Link to={{pathname:'/view_summary', state: order._id }} style={{color:"blue"}}>View</Link></td>
                                     {order.completion_status !== 'completed' ? <td><Link to={{pathname:'/payment', state: order._id }} style={{color:'green'}}>Complete Order</Link></td>  : <td></td>}
                                     
                                 </tr> 
