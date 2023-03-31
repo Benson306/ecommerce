@@ -3,6 +3,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { Store } from 'react-notifications-component';
 import Personal from "./Personal";
 import useCart from "../../context/CartContext";
+import { TrinitySpinner } from 'loading-animations-react';
 
 const Summary = () => {
 
@@ -52,6 +53,17 @@ const Summary = () => {
 
        return () => abortCont.abort(); 
     },[])
+
+    function showSpinner(){
+        document.querySelector('#spinner').style.visibility='visible';
+        document.querySelector('#spinner').style.width='20px';
+        document.querySelector('#spinner').style.marginLeft='20px';
+    }
+    function hideSpinner(){
+        document.querySelector('#spinner').style.visibility='hidden';
+        document.querySelector('#spinner').style.width='0px';
+        document.querySelector('#spinner').style.marginLeft='0px';
+    }
 
     useEffect(()=>{
         setPending(true)
@@ -107,6 +119,9 @@ const Summary = () => {
 
     const handleClick = (e)=>{
         e.preventDefault();
+
+        showSpinner();
+
         if(location === null || county === null || location === "" || county === ""){
             notify('Failed', 'Select a Delivery Station To Proceed', 'danger')
             return
@@ -124,17 +139,18 @@ const Summary = () => {
             return res.json();
         })
         .then(res =>{   
+            hideSpinner()
 
-            localStorage.removeItem('state');
+            // localStorage.removeItem('state');
 
-            clearState();
+            // clearState();
 
-            history.push({
-                pathname: '/payment',
-                state: res._id   
-            });
+            // history.push({
+            //     pathname: '/payment',
+            //     state: res._id   
+            // });
             
-            notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");            
+            // notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");            
         })
       
     }
@@ -223,7 +239,7 @@ const Summary = () => {
                             <Link to={'/cart'}><button >Make Changes to Order</button></Link>
                         </div>
                         <div className="recart2">
-                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Pay Shs.{total + deliveryFee}<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}></div></button>
+                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Pay Shs.{total + deliveryFee}<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}><TrinitySpinner text="" color="white" /></div></button>
                         </div>
                             
                     </div>

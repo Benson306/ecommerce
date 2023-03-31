@@ -7,24 +7,28 @@ import Personal from "./Personal";
 
 const CompleteSummary = () => {
     const location = useLocation();
-    const data = location.state;
+    const id = location.state;
 
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [total, setTotal ] = useState(0);
 
+    const [data, setData] = useState();
+
     useEffect(()=>{
         const abortCont =  new AbortController();
 
-        fetch(`${process.env.REACT_APP_API_URL}/get_order/${data}`, {signal: abortCont.signal})
+        fetch(`${process.env.REACT_APP_API_URL}/get_order/${id}`, {signal: abortCont.signal})
             .then((res)=>{
                 return res.json();
             })
             .then((res)=>{
                 setProducts(res.items)
+
                 setTotal(res.total);
                 setLoading(false)
+                setData(res)
             })
 
        return () => abortCont.abort(); 
@@ -55,10 +59,25 @@ const CompleteSummary = () => {
             <div className="detailsPreview">
                 <Personal />
                 <br />
+                <h2>Delivery</h2>
+                <br />
+                <hr />
+                <div style={{display:'flex', gap:120, marginLeft: 10, marginTop:10}}>
+                    <div>
+                        <h3 style={{color:'maroon'}}>County:</h3>
+                        <p>{data.deliveryCounty}</p>
+                    </div>
+                    <div>
+                        <h3 style={{color:'maroon'}}>Pickup Point:</h3>
+                        <p>{data.pickupPoint}</p>
+                    </div>
+                </div>
+                
+                <br />
                 <h2>Your Order</h2>
                 <br />
                 <hr />
-                
+            
                 {loading && <div>Loading...</div>}
                     <table>
                         <th>#</th>

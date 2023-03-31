@@ -73,10 +73,10 @@ const Payment = () => {
     }
     const [clickable, setClickable] = useState(false);
 
+
     const handleStk =  (e) =>{
         e.preventDefault();
 
-        
         showSpinner();
 
          fetch(`${process.env.REACT_APP_API_URL}/stk_push`,{
@@ -95,7 +95,6 @@ const Payment = () => {
             notify("Information","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
         })
 
-        hideSpinner();
     }
 
     const [code, setCode]= useState(''); //Transactio Code
@@ -114,27 +113,27 @@ const Payment = () => {
 
         showSpinner1();
 
-        //  fetch(`${process.env.REACT_APP_API_URL}/confirm_payment/`,{
-        //      method: 'POST',
-        //      headers: {'Content-Type':'application/json'},
-        //      body: JSON.stringify({ code, data })
-        //  })
-        // .then((res)=>{
-        //     return res.json();
-        // })
-        // .then((res)=>{
-        //     hideSpinner1();
-        //     if(res === 'confirmed'){
-        //         setShow(true);
-        //         //document.querySelector('.animation').style.visibility = "visible";
-        //         //notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
-        //     }else if(res === 'pending'){
-        //         notify("Pending","Payment Has Not been received. Try Again in A few minutes","Danger");
-        //     }else if(res === 'existing'){
-        //         notify("Failed","MPESA code has already been used to confirm another payment","Danger");
-        //     }
+         fetch(`${process.env.REACT_APP_API_URL}/confirm_payment`,{
+             method: 'POST',
+             headers: {'Content-Type':'application/json'},
+             body: JSON.stringify({ code , data: location.state })
+         })
+        .then((res)=>{
+            return res.json();
+        })
+        .then((res)=>{
+            hideSpinner1();
+            if(res === 'confirmed'){
+                setShow(true);
+                //document.querySelector('.animation').style.visibility = "visible";
+                //notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
+            }else if(res === 'pending'){
+                notify("Pending","Payment Has Not been received. Try Again in A few minutes","Danger");
+            }else if(res === 'existing'){
+                notify("Failed","MPESA code has already been used to confirm another payment","Danger");
+            }
             
-        // })
+        })
     }
 
     let deliveryFee = 100;
@@ -178,11 +177,11 @@ const Payment = () => {
                     <input type="text" name="" onChange={e =>{ setPhone(e.target.value) ;checkNumber(e.target.value) }} placeholder="254712345678" required />
                         { !clickable && <p style={{color:'red'}}>Number should start with 254 and have 12 digits.</p> }
                         {!clickable && <br />}
-                    { clickable && <div style={{display: 'flex'}}>
+                    <div style={{display: 'flex'}}>
                         
                         <input type="submit" value="Pay" />
                         <div id="spinner" style={{width:'20px',justifyContent:'center', marginLeft:'20px', visibility:'hidden'}}><TrinitySpinner text="" color="blue" /></div>
-                    </div> }
+                    </div>
                     
                 </form>
                 Input your PIN on your phone to Complete Payment.
