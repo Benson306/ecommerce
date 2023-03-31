@@ -121,7 +121,7 @@ const Summary = () => {
             proxy: true,
             method: 'POST',
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ products, total, deliveryCounty: county, pickup: location })
+            body: JSON.stringify({ products, total, deliveryCounty: county, pickupPoint: location })
         })
         .then((res)=>{
             return res.json();
@@ -133,7 +133,6 @@ const Summary = () => {
             }         
             
         })
-
       
     }
     
