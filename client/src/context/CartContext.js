@@ -121,7 +121,7 @@ const useCart = () =>{
     const context = useContext(CartContext);
 
     if (context === 'undefined'){
-        throw new Error("useart must be used within CartContext")
+        throw new Error("useCart must be used within CartContext")
     }
 
     return context;

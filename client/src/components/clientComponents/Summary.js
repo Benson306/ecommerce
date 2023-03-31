@@ -7,7 +7,7 @@ import { initialState } from "../../utils/Reducer";
 
 const Summary = () => {
 
-    const { products , deliveryCounty, pickupPoint , total, updateCounty, updatePickup }  = useCart();
+    const { products, total, updateCounty, updatePickup }  = useCart();
 
     const history = useHistory();
 
@@ -109,7 +109,7 @@ const Summary = () => {
     const handleClick = (e)=>{
         e.preventDefault();
         if(location === null || county === null || location === "" || county === ""){
-            notify('Failed', 'Select A delivery Station To Proceed', 'danger')
+            notify('Failed', 'Select a Delivery Station To Proceed', 'danger')
             return
         }
 
