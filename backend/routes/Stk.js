@@ -57,7 +57,6 @@ function stk_push(req, res, amount, phone, transId){
     .end(response => {
         if (response.error) {console.log(response.error)};
         let result = JSON.parse(response.raw_body);
-        console.log(request);
         res.json(result)
     });
 };
@@ -86,7 +85,10 @@ app.post('/callback', urlEncoded, function(req,res){
 });
 
 app.post('/stk_push', accessToken, urlEncoded,  function(req, res){
-    stk_push(req, res, 1 ,req.body.phone, req.params.id); //initialize cost on production... 1 is for testing
+    Order.findById(req.body.order_id, function(err, data){
+        stk_push(req, res, data.total + 100 ,req.body.phone, req.body.order_id); //initialize cost on production... 1 is for testing
+    })
+    
 })
 
 app.get('/payment/:id', function(req, res){

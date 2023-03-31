@@ -72,26 +72,29 @@ const Payment = () => {
         document.querySelector('#spinner2').style.marginLeft='0px';
     }
     const [clickable, setClickable] = useState(false);
+
     const handleStk =  (e) =>{
         e.preventDefault();
+
+        console.log('ck')
         
         showSpinner();
 
-        //  fetch(`${process.env.REACT_APP_API_URL}/stk_push/`+data,{
-        //      credentials: 'include',
-        //      proxy: true, 
-        //      withCredentials: true,
-        //      method: 'POST',
-        //      headers: {'Content-Type':'application/json'},
-        //      body: JSON.stringify({ phone })
-        //  })
-        // .then((res)=>{
-        //     return res.json();
-        // })
-        // .then((res)=>{
-        //     hideSpinner();
-        //     notify("Information","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
-        // })
+         fetch(`${process.env.REACT_APP_API_URL}/stk_push`,{
+             credentials: 'include',
+             proxy: true, 
+             withCredentials: true,
+             method: 'POST',
+             headers: {'Content-Type':'application/json'},
+             body: JSON.stringify({ phone, order_id: location.state })
+         })
+        .then((res)=>{
+            return res.json();
+        })
+        .then((res)=>{
+            hideSpinner();
+            notify("Information","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
+        })
 
         hideSpinner();
     }
