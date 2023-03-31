@@ -4,32 +4,32 @@ import { Store } from 'react-notifications-component';
 import { Checkmark } from 'react-checkmark';
 
 import { TrinitySpinner } from 'loading-animations-react';
+import useCart from "../../context/CartContext";
 
 const Payment = () => {
-    const location = useLocation();
-    const data = location.state;
     
     const [prices, setPrices] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const [phone, setPhone] = useState(true);
     const [show, setShow] = useState(false);
 
-    let cost = 200;
+
+    const { products, total, updateCounty, updatePickup }  = useCart();
 
     useEffect(()=>{
         const abortCont = new AbortController();
 
-        fetch(`${process.env.REACT_APP_API_URL}/get_order/`+data, {signal: abortCont.signal})
-        .then((res)=>{
-            return res.json();
-        })
-        .then((res)=>{
-            res.items.map( items => {
-                setPrices(current => [... current, items.price*items.quantity])
-            })
-            setLoading(false);
-        })
+        // fetch(`${process.env.REACT_APP_API_URL}/get_order/`+data, {signal: abortCont.signal})
+        // .then((res)=>{
+        //     return res.json();
+        // })
+        // .then((res)=>{
+        //     res.items.map( items => {
+        //         setPrices(current => [... current, items.price*items.quantity])
+        //     })
+        //     setLoading(false);
+        // })
         
     },[])
 
@@ -76,21 +76,23 @@ const Payment = () => {
         
         showSpinner();
 
-         fetch(`${process.env.REACT_APP_API_URL}/stk_push/`+data,{
-             credentials: 'include',
-             proxy: true, 
-             withCredentials: true,
-             method: 'POST',
-             headers: {'Content-Type':'application/json'},
-             body: JSON.stringify({ phone })
-         })
-        .then((res)=>{
-            return res.json();
-        })
-        .then((res)=>{
-            hideSpinner();
-            notify("Infromation","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
-        })
+        //  fetch(`${process.env.REACT_APP_API_URL}/stk_push/`+data,{
+        //      credentials: 'include',
+        //      proxy: true, 
+        //      withCredentials: true,
+        //      method: 'POST',
+        //      headers: {'Content-Type':'application/json'},
+        //      body: JSON.stringify({ phone })
+        //  })
+        // .then((res)=>{
+        //     return res.json();
+        // })
+        // .then((res)=>{
+        //     hideSpinner();
+        //     notify("Information","MPESA payment request has been sent to your number. Enter PIN to proceed","info");
+        // })
+
+        hideSpinner();
     }
 
     const [code, setCode]= useState('');
@@ -109,28 +111,43 @@ const Payment = () => {
 
         showSpinner1();
 
-         fetch(`${process.env.REACT_APP_API_URL}/confirm_payment/`,{
-             method: 'POST',
-             headers: {'Content-Type':'application/json'},
-             body: JSON.stringify({ code, data })
-         })
-        .then((res)=>{
-            return res.json();
-        })
-        .then((res)=>{
-            hideSpinner1();
-            if(res === 'confirmed'){
-                setShow(true);
-                //document.querySelector('.animation').style.visibility = "visible";
-                //notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
-            }else if(res === 'pending'){
-                notify("Pending","Payment Has Not been received. Try Again in A few minutes","Danger");
-            }else if(res === 'existing'){
-                notify("Failed","MPESA code has already been used to confirm another payment","Danger");
-            }
+        //  fetch(`${process.env.REACT_APP_API_URL}/confirm_payment/`,{
+        //      method: 'POST',
+        //      headers: {'Content-Type':'application/json'},
+        //      body: JSON.stringify({ code, data })
+        //  })
+        // .then((res)=>{
+        //     return res.json();
+        // })
+        // .then((res)=>{
+        //     hideSpinner1();
+        //     if(res === 'confirmed'){
+        //         setShow(true);
+        //         //document.querySelector('.animation').style.visibility = "visible";
+        //         //notify("Success","Payment Has Been Confirmed. Our agents will make delivery in 2 Days. Thank you For shopping with US","Success");
+        //     }else if(res === 'pending'){
+        //         notify("Pending","Payment Has Not been received. Try Again in A few minutes","Danger");
+        //     }else if(res === 'existing'){
+        //         notify("Failed","MPESA code has already been used to confirm another payment","Danger");
+        //     }
             
-        })
+        // })
     }
+
+       //   fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
+    //       credentials: 'include',
+    //       withCredentials: true,
+    //       proxy: true,
+    //       method: 'POST',
+    //       headers: {'Content-Type':'application/json'},
+    //       body: JSON.stringify()
+    //   })
+    //   .then((res)=>{
+    //       return res.json();
+    //   })
+    //   .then(res =>{            
+    //         notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
+    //   })
 
     return ( <div className="payment">
                 <br />
@@ -159,13 +176,8 @@ const Payment = () => {
             {loading && <div>Loading ....</div>}
             {!loading && <div>
                 Amount to be Paid:
-                    {
-                        prices.map( prc =>{
-                                cost += Number(prc)
-                        })
-                    }
                     <br />
-                   <h3>{cost}</h3>
+                   <h3>{total + 100}</h3>
                     <br />
                 We accept payments through MPESA. Insert you MPESA phone number below and click Pay to initiate an MPESA STK PUSH notification.
                     <br />

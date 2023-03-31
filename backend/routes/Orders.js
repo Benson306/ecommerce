@@ -7,12 +7,23 @@ let urlEncoded = bodyParser.urlencoded({extended: false});
 let Order = require('../models/OrdersModel');
 let Cart = require('../models/CartModel');
 
+function getTodayDate(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+}
+
+
 app.post('/add_order', urlEncoded, function(req, res){
-    Order({ user_id: req.session.userId , items: req.body, completion_status: 'pending',delivery_status: 'pending', delivery_cost: 200}).save(function(err,data){
-        
-        Cart.findOneAndRemove({user_id: req.session.userId},function(err1, data1){
-            res.json(data._id);
-        })
+
+    let today = getTodayDate();
+
+    Order({ user_id: req.session.userId , items: req.body.products, completion_status: 'pending', deliveryCounty: req.body.deliveryCounty, pickupPoint: req.body.pickupPoint, delivery_status: 'pending', total: req.body.total, order_date: today, delivery_cost: 100}).save(function(err,data){
+        res.json('success')
     })
 })
 
@@ -46,21 +57,12 @@ app.get('/delivered_orders', function(req, res){
     })
 })
 
-function getTOdayDate(){
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-
-    today = dd + '/' + mm + '/' + yyyy;
-    return today;
-}
 
 app.get('/set_delivery/:id', function(req, res){
 
-    let today = getTOdayDate();
+    let today = getTodayDate();
 
-    Order.findByIdAndUpdate({_id: req.params.id},{delivery_status: 'delivered', delivery_date: today}, function(err,data){
+    Order.findByIdAndUpdate({_id: req.params.id}, {delivery_status: 'delivered', delivery_date: today}, function(err,data){
         res.json(data);
     })
 })

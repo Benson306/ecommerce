@@ -113,25 +113,26 @@ const Summary = () => {
             return
         }
 
-    //   fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
-    //       credentials: 'include',
-    //       withCredentials: true,
-    //       proxy: true,
-    //       method: 'POST',
-    //       headers: {'Content-Type':'application/json'},
-    //       body: JSON.stringify(data)
-    //   })
-    //   .then((res)=>{
-    //       return res.json();
-    //   })
-    //   .then(res =>{
-    //         history.push({
-    //             pathname: '/payment',
-    //             state: res
-    //         })
+        // history.push('/payment');
+
+        fetch(`${process.env.REACT_APP_API_URL}/add_order`,{
+            credentials: 'include',
+            withCredentials: true,
+            proxy: true,
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ products, total, deliveryCounty: county, pickup: location })
+        })
+        .then((res)=>{
+            return res.json();
+        })
+        .then(res =>{   
+            if(res === 'success'){
+                localStorage.setItem('state', null);
+                notify("Information","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
+            }         
             
-    //         notify("Infromation","Cart has been cleared. Your order Has Been Saved under your Orders on your profile","info");
-    //   })
+        })
 
       
     }
@@ -220,7 +221,7 @@ const Summary = () => {
                             <Link to={'/cart'}><button >Make Changes to Order</button></Link>
                         </div>
                         <div className="recart2">
-                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Complete Order<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}></div></button>
+                            <button onClick={(e)=>handleClick(e)} style={{display:'flex',justifyContent:'center'}}>Pay Shs.{total}<div id="spinner" style={{width:'0px',justifyContent:'center', marginLeft:'0px', visibility:'hidden'}}></div></button>
                         </div>
                             
                     </div>

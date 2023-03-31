@@ -25,7 +25,7 @@ function accessToken(req, res, next){
       });
  }
 
-function stk_push(req,res, amount, phone, transId){
+function stk_push(req, res, amount, phone, transId){
 
     let token = "Bearer " + req.access_token;
     let unirest = require('unirest');
@@ -85,33 +85,8 @@ app.post('/callback', urlEncoded, function(req,res){
 
 });
 
-app.post('/stk_push/:id', accessToken, urlEncoded,  function(req, res){
-    
-    Order.findById(req.params.id, function(err, data){
-        
-        let cost = 0;
-        var itemsProcessed = 0;
-        let getPrices = async function(data, callback){
-            
-             await data.items.forEach(dt=>{
-                    Product.findById(dt.item_id, function data2(err1, data1){
-                            itemsProcessed++;
-                            let price = data1.price * dt.quantity;
-                            cost+=price;
-                            if(itemsProcessed === data.items.length) {
-                            callback && callback(cost)
-                            }
-                        })
-                });
-        }
-        
-        getPrices(data, function(cost){
-            cost = cost+200;
-            stk_push(req, res, 1 ,req.body.phone, req.params.id); //initialize cost on production... 1 is for testing
-        })
-    })
-    
-    
+app.post('/stk_push', accessToken, urlEncoded,  function(req, res){
+    stk_push(req, res, 1 ,req.body.phone, req.params.id); //initialize cost on production... 1 is for testing
 })
 
 app.get('/payment/:id', function(req, res){
@@ -120,7 +95,7 @@ app.get('/payment/:id', function(req, res){
     })
 })
 
-function getTOdayDate(){
+function getTodayDate(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -132,7 +107,7 @@ function getTOdayDate(){
 
 app.post('/confirm_payment', urlEncoded, function(req, res){
 
-    let today = getTOdayDate();
+    let today = getTodayDate();
 
 
     var someDate = new Date();
