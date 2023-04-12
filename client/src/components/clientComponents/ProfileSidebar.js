@@ -55,12 +55,7 @@ const ProfileSidebar = () => {
         <ul>
             <li><img onClick={handleClick}  src={require('../../images/side-menu.png')} alt="" width='22px' style={{marginRight: '12px'}}/></li>
             
-            <li><Link to={'/account/personal'}><Tooltip title="Personal Info" arrow><img src={require('../../images/application.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip> Personal Info</Link></li>
-        
-        
-        
-            <li><Link to={'/account/delivery'}><Tooltip title="Delivery Address" arrow><img src={require('../../images/shopping-bag.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip> Delivery Address</Link></li>
-        
+            <li><Link to={'/account/personal'}><Tooltip title="Personal Info" arrow><img src={require('../../images/application.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip> Personal Info</Link></li>    
         
         
             <li><Link to={'/account/orders'}><Tooltip title="My Orders" arrow><img src={require('../../images/cargo.png')} alt="" width='20px' style={{marginRight: '12px'}}/></Tooltip>  Orders</Link></li>
